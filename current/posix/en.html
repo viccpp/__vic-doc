@@ -329,10 +329,38 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.7.5</td>
-<td style="padding-left:4ex"><a href="#rotl"><tt>rotl()</tt>, <tt>rotr()</tt></a></td>
+<td style="padding-left:4ex"><a href="#popcount"><tt>popcount()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.7.6</td>
+<td style="padding-left:4ex"><a href="#msb_position"><tt>msb_position()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.7</td>
+<td style="padding-left:4ex"><a href="#ispow2"><tt>ispow2()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.8</td>
+<td style="padding-left:4ex"><a href="#ceil2"><tt>ceil2()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.9</td>
+<td style="padding-left:4ex"><a href="#floor2"><tt>floor2()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.10</td>
+<td style="padding-left:4ex"><a href="#ceil_log2"><tt>ceil_log2()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.11</td>
+<td style="padding-left:4ex"><a href="#floor_log2"><tt>floor_log2()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.12</td>
+<td style="padding-left:4ex"><a href="#rotl"><tt>rotl()</tt>, <tt>rotr()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.7.13</td>
 <td style="padding-left:4ex"><a href="#swapped_nibbles"><tt>swapped_nibbles()</tt></a></td>
 </tr>
 <tr>
@@ -362,706 +390,774 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9</td>
-<td><a href="#error.h"><tt>__vic/error.h</tt></a></td>
+<td><a href="#endian.h"><tt>__vic/endian.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9.1</td>
-<td style="padding-left:4ex"><a href="#exception"><tt>exception</tt></a></td>
+<td style="padding-left:4ex"><a href="#endianness"><tt>endianness</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9.2</td>
-<td style="padding-left:4ex"><a href="#libc_error"><tt>libc_error</tt></a></td>
+<td style="padding-left:4ex"><a href="#endian--from"><tt>endian::from_...()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.9.3</td>
+<td style="padding-left:4ex"><a href="#endian--to"><tt>endian::to_...()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.9.4</td>
+<td style="padding-left:4ex"><a href="#swab"><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10</td>
-<td><a href="#fs.h"><tt>__vic/fs.h</tt></a></td>
+<td><a href="#error.h"><tt>__vic/error.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10.1</td>
+<td style="padding-left:4ex"><a href="#exception"><tt>exception</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.10.2</td>
+<td style="padding-left:4ex"><a href="#libc_error"><tt>libc_error</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.11</td>
+<td><a href="#fs.h"><tt>__vic/fs.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.11.1</td>
 <td style="padding-left:4ex"><a href="#path_exists"><tt>path_exists()</tt>, <tt>file_exists()</tt>, <tt>dir_exists()</tt>
 </a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.2</td>
+<td class="toc-chapter-no">2.11.2</td>
 <td style="padding-left:4ex"><a href="#mkdir"><tt>mkdir()</tt>, <tt>mkdir_if_absent()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.3</td>
+<td class="toc-chapter-no">2.11.3</td>
 <td style="padding-left:4ex"><a href="#rmdir"><tt>rmdir()</tt>, <tt>rmdir_if_exists()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.4</td>
+<td class="toc-chapter-no">2.11.4</td>
 <td style="padding-left:4ex"><a href="#get_current_dir"><tt>get_current_dir()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.5</td>
+<td class="toc-chapter-no">2.11.5</td>
 <td style="padding-left:4ex"><a href="#remove_file"><tt>remove_file()</tt>, <tt>remove_file_if_exists()</tt>,
 <tt>remove_file_nt()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.6</td>
+<td class="toc-chapter-no">2.11.6</td>
 <td style="padding-left:4ex"><a href="#copy_file"><tt>copy_file()</tt>, <tt>copy_file_if_exists()</tt>,
 <tt>copy_file_replace()</tt>, <tt>copy_file_replace_if_exists()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.7</td>
+<td class="toc-chapter-no">2.11.7</td>
 <td style="padding-left:4ex"><a href="#move_file"><tt>move_file()</tt>, <tt>move_file_if_exists()</tt>,
 <tt>move_file_replace()</tt>, <tt>move_file_replace_if_exists()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.8</td>
+<td class="toc-chapter-no">2.11.8</td>
 <td style="padding-left:4ex"><a href="#rename_file"><tt>rename_file()</tt>, <tt>rename_file_if_exists()</tt>,
     <tt>rename_file_replace()</tt>, <tt>rename_file_replace_if_exists()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.9</td>
+<td class="toc-chapter-no">2.11.9</td>
 <td style="padding-left:4ex"><a href="#file_size"><tt>file_size()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11</td>
+<td class="toc-chapter-no">2.12</td>
 <td><a href="#iterator.h"><tt>__vic/iterator.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11.1</td>
+<td class="toc-chapter-no">2.12.1</td>
 <td style="padding-left:4ex"><a href="#begin-array"><tt>begin(T[])</tt>, <tt>end(T[])</tt>, <tt>cbegin(T[])</tt>,
 <tt>cend(T[])</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11.2</td>
+<td class="toc-chapter-no">2.12.2</td>
 <td style="padding-left:4ex"><a href="#advance"><tt>advance()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11.3</td>
+<td class="toc-chapter-no">2.12.3</td>
 <td style="padding-left:4ex"><a href="#next"><tt>next()</tt>, <tt>prev()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.12</td>
+<td class="toc-chapter-no">2.13</td>
 <td><a href="#logger.h"><tt>__vic/logger.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.12.1</td>
+<td class="toc-chapter-no">2.13.1</td>
 <td style="padding-left:4ex"><a href="#logger"><tt>logger</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.13</td>
-<td><a href="#mutex.h"><tt>__vic/mutex.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.13.1</td>
-<td style="padding-left:4ex"><a href="#mutex"><tt>mutex</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.13.2</td>
-<td style="padding-left:4ex"><a href="#mutex_lock"><tt>mutex_lock</tt></a></td>
-</tr>
-<tr>
 <td class="toc-chapter-no">2.14</td>
-<td><a href="#object_pool.h"><tt>__vic/object_pool.h</tt></a></td>
+<td><a href="#memory.h"><tt>__vic/memory.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.14.1</td>
-<td style="padding-left:4ex"><a href="#object_pool"><tt>object_pool</tt></a></td>
+<td style="padding-left:4ex"><a href="#load_unaligned"><tt>load_unaligned()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.15</td>
-<td><a href="#packon.h"><tt>__vic/packon.h</tt> &amp; <tt>__vic/packoff.h</tt></a></td>
+<td><a href="#mutex.h"><tt>__vic/mutex.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.15.1</td>
+<td style="padding-left:4ex"><a href="#mutex"><tt>mutex</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.15.2</td>
+<td style="padding-left:4ex"><a href="#mutex_lock"><tt>mutex_lock</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.16</td>
-<td><a href="#readers"><tt>__vic/readers/</tt></a></td>
+<td><a href="#object_pool.h"><tt>__vic/object_pool.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.16.1</td>
-<td style="padding-left:4ex"><a href="#reader-concept"><tt>Reader</tt> concept</a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.16.2</td>
-<td style="padding-left:4ex"><a href="#iterator_reader"><tt>iterator_reader</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.16.3</td>
-<td style="padding-left:4ex"><a href="#iterator_reader_n"><tt>iterator_reader_n</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.16.4</td>
-<td style="padding-left:4ex"><a href="#container_reader"><tt>container_reader</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.16.5</td>
-<td style="padding-left:4ex"><a href="#cstring_reader"><tt>cstring_reader</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.16.6</td>
-<td style="padding-left:4ex"><a href="#string_reader"><tt>string_reader</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.16.7</td>
-<td style="padding-left:4ex"><a href="#cstream_reader"><tt>cstream_reader</tt></a></td>
+<td style="padding-left:4ex"><a href="#object_pool"><tt>object_pool</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.17</td>
-<td><a href="#readonly_cstring.h"><tt>__vic/readonly_cstring.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.17.1</td>
-<td style="padding-left:4ex"><a href="#readonly_cstring"><tt>readonly_cstring</tt></a></td>
+<td><a href="#packon.h"><tt>__vic/packon.h</tt> &amp; <tt>__vic/packoff.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.18</td>
-<td><a href="#set_of_chars.h"><tt>__vic/set_of_chars.h</tt></a></td>
+<td><a href="#readers"><tt>__vic/readers/</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.18.1</td>
-<td style="padding-left:4ex"><a href="#set_of_chars"><tt>set_of_chars</tt></a></td>
+<td style="padding-left:4ex"><a href="#reader-concept"><tt>Reader</tt> concept</a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.18.2</td>
+<td style="padding-left:4ex"><a href="#iterator_reader"><tt>iterator_reader</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.18.3</td>
+<td style="padding-left:4ex"><a href="#iterator_reader_n"><tt>iterator_reader_n</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.18.4</td>
+<td style="padding-left:4ex"><a href="#container_reader"><tt>container_reader</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.18.5</td>
+<td style="padding-left:4ex"><a href="#cstring_reader"><tt>cstring_reader</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.18.6</td>
+<td style="padding-left:4ex"><a href="#string_reader"><tt>string_reader</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.18.7</td>
+<td style="padding-left:4ex"><a href="#cstream_reader"><tt>cstream_reader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.19</td>
-<td><a href="#stdint.h"><tt>__vic/stdint.h</tt></a></td>
+<td><a href="#readonly_cstring.h"><tt>__vic/readonly_cstring.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.19.1</td>
-<td style="padding-left:4ex"><a href="#intN_t">Exact-width integer types</a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.19.2</td>
-<td style="padding-left:4ex"><a href="#int_leastN_t">Minimum-width integer types</a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.19.3</td>
-<td style="padding-left:4ex"><a href="#int_fastN_t">Fastest minimum-width integer types</a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.19.4</td>
-<td style="padding-left:4ex"><a href="#intmax_t">Greatest-width integer types</a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.19.5</td>
-<td style="padding-left:4ex"><a href="#intptr_t">Integer types capable of holding object pointers</a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.19.6</td>
-<td style="padding-left:4ex"><a href="#int_exactly_bytes"><tt>int_exactly_bytes&lt;&gt;</tt>, <tt>uint_exactly_bytes&lt;&gt;</tt></a></td>
+<td style="padding-left:4ex"><a href="#readonly_cstring"><tt>readonly_cstring</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.20</td>
-<td><a href="#stdio_file.h"><tt>__vic/stdio_file.h</tt></a></td>
+<td><a href="#set_of_chars.h"><tt>__vic/set_of_chars.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.20.1</td>
+<td style="padding-left:4ex"><a href="#set_of_chars"><tt>set_of_chars</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21</td>
+<td><a href="#stdint.h"><tt>__vic/stdint.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21.1</td>
+<td style="padding-left:4ex"><a href="#intN_t">Exact-width integer types</a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21.2</td>
+<td style="padding-left:4ex"><a href="#int_leastN_t">Minimum-width integer types</a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21.3</td>
+<td style="padding-left:4ex"><a href="#int_fastN_t">Fastest minimum-width integer types</a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21.4</td>
+<td style="padding-left:4ex"><a href="#intmax_t">Greatest-width integer types</a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21.5</td>
+<td style="padding-left:4ex"><a href="#intptr_t">Integer types capable of holding object pointers</a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.21.6</td>
+<td style="padding-left:4ex"><a href="#int_exactly_bytes"><tt>int_exactly_bytes&lt;&gt;</tt>, <tt>uint_exactly_bytes&lt;&gt;</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.22</td>
+<td><a href="#stdio_file.h"><tt>__vic/stdio_file.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.22.1</td>
 <td style="padding-left:4ex"><a href="#stdio_file"><tt>stdio_file</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.20.2</td>
+<td class="toc-chapter-no">2.22.2</td>
 <td style="padding-left:4ex"><a href="#read-FILE-char"><tt>read(std::FILE, char&amp;)</tt>,
     <tt>read(std::FILE, unsigned char&amp;)</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.20.3</td>
+<td class="toc-chapter-no">2.22.3</td>
 <td style="padding-left:4ex"><a href="#write-FILE-char"><tt>write(std::FILE, char)</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.20.4</td>
+<td class="toc-chapter-no">2.22.4</td>
 <td style="padding-left:4ex"><a href="#getline-FILE"><tt>getline(std::FILE)</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.21</td>
+<td class="toc-chapter-no">2.23</td>
 <td><a href="#str2num.h"><tt>__vic/str2num.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.21.1</td>
+<td class="toc-chapter-no">2.23.1</td>
 <td style="padding-left:4ex"><a href="#decimal_to_number"><tt>decimal_to_number()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.21.2</td>
+<td class="toc-chapter-no">2.23.2</td>
 <td style="padding-left:4ex"><a href="#decimal_to_number_range"><tt>decimal_to_number_range()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.21.3</td>
+<td class="toc-chapter-no">2.23.3</td>
 <td style="padding-left:4ex"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.21.4</td>
+<td class="toc-chapter-no">2.23.4</td>
 <td style="padding-left:4ex"><a href="#number_parse_status"><tt>number_parse_status</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.22</td>
+<td class="toc-chapter-no">2.24</td>
 <td><a href="#string_buffer.h"><tt>__vic/string_buffer.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.22.1</td>
+<td class="toc-chapter-no">2.24.1</td>
 <td style="padding-left:4ex"><a href="#string_buffer"><tt>string_buffer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.23</td>
+<td class="toc-chapter-no">2.25</td>
 <td><a href="#string_ref.h"><tt>__vic/string_ref.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.23.1</td>
+<td class="toc-chapter-no">2.25.1</td>
 <td style="padding-left:4ex"><a href="#string_ref"><tt>string_ref</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24</td>
+<td class="toc-chapter-no">2.26</td>
 <td><a href="#string_utils.h"><tt>__vic/string_utils.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.1</td>
+<td class="toc-chapter-no">2.26.1</td>
 <td style="padding-left:4ex"><a href="#trim"><tt>trim</tt> functions</a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.2</td>
+<td class="toc-chapter-no">2.26.2</td>
 <td style="padding-left:4ex"><a href="#sift"><tt>sift()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.3</td>
+<td class="toc-chapter-no">2.26.3</td>
 <td style="padding-left:4ex"><a href="#sift_if"><tt>sift_if()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.4</td>
+<td class="toc-chapter-no">2.26.4</td>
 <td style="padding-left:4ex"><a href="#pad_left"><tt>pad_left()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.5</td>
+<td class="toc-chapter-no">2.26.5</td>
 <td style="padding-left:4ex"><a href="#pad_right"><tt>pad_right()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.6</td>
+<td class="toc-chapter-no">2.26.6</td>
 <td style="padding-left:4ex"><a href="#starts_with"><tt>starts_with()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.24.7</td>
+<td class="toc-chapter-no">2.26.7</td>
 <td style="padding-left:4ex"><a href="#ends_with"><tt>ends_with()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25</td>
+<td class="toc-chapter-no">2.27</td>
 <td><a href="#tchar.h"><tt>__vic/tchar.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.1</td>
+<td class="toc-chapter-no">2.27.1</td>
 <td style="padding-left:4ex"><a href="#tchar--length"><tt>tchar::length()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.2</td>
+<td class="toc-chapter-no">2.27.2</td>
+<td style="padding-left:4ex"><a href="#tchar--empty"><tt>tchar::empty()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.27.3</td>
 <td style="padding-left:4ex"><a href="#tchar--end"><tt>tchar::end()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.3</td>
+<td class="toc-chapter-no">2.27.4</td>
 <td style="padding-left:4ex"><a href="#tchar--compare"><tt>tchar::compare()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.4</td>
+<td class="toc-chapter-no">2.27.5</td>
+<td style="padding-left:4ex"><a href="#tchar--equal"><tt>tchar::equal()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.27.6</td>
 <td style="padding-left:4ex"><a href="#tchar--copy"><tt>tchar::copy()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.5</td>
+<td class="toc-chapter-no">2.27.7</td>
 <td style="padding-left:4ex"><a href="#tchar--move"><tt>tchar::move()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.6</td>
+<td class="toc-chapter-no">2.27.8</td>
 <td style="padding-left:4ex"><a href="#tchar--concat"><tt>tchar::concat()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.7</td>
+<td class="toc-chapter-no">2.27.9</td>
 <td style="padding-left:4ex"><a href="#tchar--find"><tt>tchar::find()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.8</td>
+<td class="toc-chapter-no">2.27.10</td>
 <td style="padding-left:4ex"><a href="#tchar--rfind"><tt>tchar::rfind()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.9</td>
+<td class="toc-chapter-no">2.27.11</td>
 <td style="padding-left:4ex"><a href="#tchar--find_if"><tt>tchar::find_if()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.10</td>
+<td class="toc-chapter-no">2.27.12</td>
 <td style="padding-left:4ex"><a href="#tchar--find_if_not"><tt>tchar::find_if_not()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.11</td>
+<td class="toc-chapter-no">2.27.13</td>
 <td style="padding-left:4ex"><a href="#tchar--rfind_if"><tt>tchar::rfind_if()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.12</td>
+<td class="toc-chapter-no">2.27.14</td>
 <td style="padding-left:4ex"><a href="#tchar--rfind_if_not"><tt>tchar::rfind_if_not()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.13</td>
+<td class="toc-chapter-no">2.27.15</td>
 <td style="padding-left:4ex"><a href="#tchar--find_first_of"><tt>tchar::find_first_of()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.14</td>
+<td class="toc-chapter-no">2.27.16</td>
 <td style="padding-left:4ex"><a href="#tchar--find_first_not_of"><tt>tchar::find_first_not_of()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.15</td>
+<td class="toc-chapter-no">2.27.17</td>
 <td style="padding-left:4ex"><a href="#tchar--find_last_of"><tt>tchar::find_last_of()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.16</td>
+<td class="toc-chapter-no">2.27.18</td>
 <td style="padding-left:4ex"><a href="#tchar--find_last_not_of"><tt>tchar::find_last_not_of()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.25.17</td>
+<td class="toc-chapter-no">2.27.19</td>
 <td style="padding-left:4ex"><a href="#tchar--skip"><tt>tchar::skip()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.26</td>
+<td class="toc-chapter-no">2.28</td>
 <td><a href="#thread.h"><tt>__vic/thread.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.26.1</td>
+<td class="toc-chapter-no">2.28.1</td>
 <td style="padding-left:4ex"><a href="#thread"><tt>thread</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.26.2</td>
+<td class="toc-chapter-no">2.28.2</td>
 <td style="padding-left:4ex"><a href="#thread--id"><tt>thread::id</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.26.3</td>
+<td class="toc-chapter-no">2.28.3</td>
 <td style="padding-left:4ex"><a href="#this_thread"><tt>this_thread</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.27</td>
+<td class="toc-chapter-no">2.29</td>
 <td><a href="#to_text.h"><tt>__vic/to_text.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.27.1</td>
+<td class="toc-chapter-no">2.29.1</td>
 <td style="padding-left:4ex"><a href="#to_text_append"><tt>to_text_append()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28</td>
+<td class="toc-chapter-no">2.30</td>
 <td><a href="#type_traits.h"><tt>__vic/type_traits.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.1</td>
+<td class="toc-chapter-no">2.30.1</td>
 <td style="padding-left:4ex"><a href="#integral_constant"><tt>integral_constant</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.2</td>
+<td class="toc-chapter-no">2.30.2</td>
 <td style="padding-left:4ex"><a href="#true_type"><tt>true_type</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.3</td>
+<td class="toc-chapter-no">2.30.3</td>
 <td style="padding-left:4ex"><a href="#false_type"><tt>false_type</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.4</td>
+<td class="toc-chapter-no">2.30.4</td>
 <td style="padding-left:4ex"><a href="#is_same"><tt>is_same</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.5</td>
+<td class="toc-chapter-no">2.30.5</td>
 <td style="padding-left:4ex"><a href="#is_const"><tt>is_const</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.6</td>
+<td class="toc-chapter-no">2.30.6</td>
 <td style="padding-left:4ex"><a href="#is_signed_integer"><tt>is_signed_integer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.7</td>
+<td class="toc-chapter-no">2.30.7</td>
 <td style="padding-left:4ex"><a href="#is_unsigned_integer"><tt>is_unsigned_integer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.8</td>
+<td class="toc-chapter-no">2.30.8</td>
 <td style="padding-left:4ex"><a href="#remove_const"><tt>remove_const</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.9</td>
+<td class="toc-chapter-no">2.30.9</td>
 <td style="padding-left:4ex"><a href="#remove_volatile"><tt>remove_volatile</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.10</td>
+<td class="toc-chapter-no">2.30.10</td>
 <td style="padding-left:4ex"><a href="#remove_cv"><tt>remove_cv</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.11</td>
+<td class="toc-chapter-no">2.30.11</td>
 <td style="padding-left:4ex"><a href="#remove_reference"><tt>remove_reference</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.12</td>
+<td class="toc-chapter-no">2.30.12</td>
 <td style="padding-left:4ex"><a href="#remove_cvref"><tt>remove_cvref</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.13</td>
+<td class="toc-chapter-no">2.30.13</td>
 <td style="padding-left:4ex"><a href="#remove_pointer"><tt>remove_pointer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.14</td>
+<td class="toc-chapter-no">2.30.14</td>
 <td style="padding-left:4ex"><a href="#enable_if"><tt>enable_if</tt>, <tt>disable_if</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.28.15</td>
+<td class="toc-chapter-no">2.30.15</td>
 <td style="padding-left:4ex"><a href="#index_sequence"><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="sign">[C++11]</span></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.29</td>
+<td class="toc-chapter-no">2.31</td>
 <td><a href="#unicode.h"><tt>__vic/unicode.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.29.1</td>
+<td class="toc-chapter-no">2.31.1</td>
 <td style="padding-left:4ex"><a href="#unicode_t"><tt>unicode_t</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.29.2</td>
+<td class="toc-chapter-no">2.31.2</td>
 <td style="padding-left:4ex"><a href="#utf_transcode"><tt>utf_transcode()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.29.3</td>
+<td class="toc-chapter-no">2.31.3</td>
 <td style="padding-left:4ex"><a href="#unicode_code_point_constants"><tt>Code point constants</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.30</td>
+<td class="toc-chapter-no">2.32</td>
 <td><a href="#utf8.status.h"><tt>__vic/utf8/status.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.30.1</td>
+<td class="toc-chapter-no">2.32.1</td>
 <td style="padding-left:4ex"><a href="#utf8--status"><tt>utf8::status</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.30.2</td>
+<td class="toc-chapter-no">2.32.2</td>
 <td style="padding-left:4ex"><a href="#utf8--is_error"><tt>utf8::is_error()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.30.3</td>
+<td class="toc-chapter-no">2.32.3</td>
 <td style="padding-left:4ex"><a href="#utf8--throw_if_error"><tt>utf8::throw_if_error()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.31</td>
+<td class="toc-chapter-no">2.33</td>
 <td><a href="#utf8.exceptions.h"><tt>__vic/utf8/exceptions.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.32</td>
+<td class="toc-chapter-no">2.34</td>
 <td><a href="#utf8.reader.h"><tt>__vic/utf8/reader.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.32.1</td>
+<td class="toc-chapter-no">2.34.1</td>
 <td style="padding-left:4ex"><a href="#utf8--reader"><tt>utf8::reader</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.33</td>
+<td class="toc-chapter-no">2.35</td>
 <td><a href="#utf8.writer.h"><tt>__vic/utf8/writer.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.33.1</td>
+<td class="toc-chapter-no">2.35.1</td>
 <td style="padding-left:4ex"><a href="#utf8--writer"><tt>utf8::writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.34</td>
+<td class="toc-chapter-no">2.36</td>
 <td><a href="#utf16.defs.h"><tt>__vic/utf16/defs.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.34.1</td>
+<td class="toc-chapter-no">2.36.1</td>
 <td style="padding-left:4ex"><a href="#utf16--code_unit_t"><tt>utf16::code_unit_t</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.35</td>
+<td class="toc-chapter-no">2.37</td>
 <td><a href="#utf16.status.h"><tt>__vic/utf16/status.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.35.1</td>
+<td class="toc-chapter-no">2.37.1</td>
 <td style="padding-left:4ex"><a href="#utf16--status"><tt>utf16::status</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.35.2</td>
+<td class="toc-chapter-no">2.37.2</td>
 <td style="padding-left:4ex"><a href="#utf16--is_error"><tt>utf16::is_error()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.35.3</td>
+<td class="toc-chapter-no">2.37.3</td>
 <td style="padding-left:4ex"><a href="#utf16--throw_if_error"><tt>utf16::throw_if_error()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.36</td>
+<td class="toc-chapter-no">2.38</td>
 <td><a href="#utf16.exceptions.h"><tt>__vic/utf16/exceptions.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.37</td>
+<td class="toc-chapter-no">2.39</td>
 <td><a href="#utf16.reader.h"><tt>__vic/utf16/reader.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.37.1</td>
+<td class="toc-chapter-no">2.39.1</td>
 <td style="padding-left:4ex"><a href="#utf16--reader"><tt>utf16::reader</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.38</td>
+<td class="toc-chapter-no">2.40</td>
 <td><a href="#utf16.writer.h"><tt>__vic/utf16/writer.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.38.1</td>
+<td class="toc-chapter-no">2.40.1</td>
 <td style="padding-left:4ex"><a href="#utf16--writer"><tt>utf16::writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.39</td>
+<td class="toc-chapter-no">2.41</td>
 <td><a href="#waitable_event.h"><tt>__vic/waitable_event.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.39.1</td>
+<td class="toc-chapter-no">2.41.1</td>
 <td style="padding-left:4ex"><a href="#waitable_event"><tt>waitable_event</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40</td>
+<td class="toc-chapter-no">2.42</td>
 <td><a href="#writers"><tt>__vic/writers/</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40.1</td>
+<td class="toc-chapter-no">2.42.1</td>
 <td style="padding-left:4ex"><a href="#writer-concept"><tt>Writer</tt> concept</a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40.2</td>
+<td class="toc-chapter-no">2.42.2</td>
 <td style="padding-left:4ex"><a href="#null_writer"><tt>null_writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40.3</td>
+<td class="toc-chapter-no">2.42.3</td>
 <td style="padding-left:4ex"><a href="#push_back_writer"><tt>push_back_writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40.4</td>
+<td class="toc-chapter-no">2.42.4</td>
 <td style="padding-left:4ex"><a href="#iterator_writer"><tt>iterator_writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40.5</td>
+<td class="toc-chapter-no">2.42.5</td>
 <td style="padding-left:4ex"><a href="#string_writer"><tt>string_writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.40.6</td>
+<td class="toc-chapter-no">2.42.6</td>
 <td style="padding-left:4ex"><a href="#cstream_writer"><tt>cstream_writer</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.41</td>
+<td class="toc-chapter-no">2.43</td>
 <td><a href="#posix.cond_variable.h"><tt>__vic/posix/cond_variable.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.41.1</td>
+<td class="toc-chapter-no">2.43.1</td>
 <td style="padding-left:4ex"><a href="#posix--cond_variable"><tt>posix::cond_variable</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.42</td>
-<td><a href="#posix.dir_entries.h"><tt>__vic/posix/dir_entries.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.42.1</td>
-<td style="padding-left:4ex"><a href="#posix--dir_entries"><tt>posix::dir_entries</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.43</td>
-<td><a href="#posix.dir_files.h"><tt>__vic/posix/dir_files.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.43.1</td>
-<td style="padding-left:4ex"><a href="#posix--dir_files"><tt>posix::dir_files</tt></a></td>
-</tr>
-<tr>
 <td class="toc-chapter-no">2.44</td>
-<td><a href="#posix.error.h"><tt>__vic/posix/error.h</tt></a></td>
+<td><a href="#posix.daemon_control.h"><tt>__vic/posix/daemon_control.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.44.1</td>
-<td style="padding-left:4ex"><a href="#posix--is_EAGAIN"><tt>posix::is_EAGAIN()</tt>, <tt>posix::is_ENOENT()</tt></a></td>
+<td style="padding-left:4ex"><a href="#posix--daemon_control"><tt>posix::daemon_control</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.45</td>
-<td><a href="#posix.file.h"><tt>__vic/posix/file.h</tt></a></td>
+<td><a href="#posix.dir_entries.h"><tt>__vic/posix/dir_entries.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.45.1</td>
-<td style="padding-left:4ex"><a href="#posix--file"><tt>posix::file</tt></a></td>
+<td style="padding-left:4ex"><a href="#posix--dir_entries"><tt>posix::dir_entries</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.46</td>
-<td><a href="#posix.file_stat.h"><tt>__vic/posix/file_stat.h</tt></a></td>
+<td><a href="#posix.dir_files.h"><tt>__vic/posix/dir_files.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.46.1</td>
-<td style="padding-left:4ex"><a href="#posix--file_stat"><tt>posix::file_stat</tt></a></td>
+<td style="padding-left:4ex"><a href="#posix--dir_files"><tt>posix::dir_files</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.47</td>
-<td><a href="#posix.fs.h"><tt>__vic/posix/fs.h</tt></a></td>
+<td><a href="#posix.error.h"><tt>__vic/posix/error.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.47.1</td>
+<td style="padding-left:4ex"><a href="#posix--is_EAGAIN"><tt>posix::is_EAGAIN()</tt>, <tt>posix::is_ENOENT()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.48</td>
+<td><a href="#posix.file.h"><tt>__vic/posix/file.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.48.1</td>
+<td style="padding-left:4ex"><a href="#posix--file"><tt>posix::file</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.49</td>
+<td><a href="#posix.file_stat.h"><tt>__vic/posix/file_stat.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.49.1</td>
+<td style="padding-left:4ex"><a href="#posix--file_stat"><tt>posix::file_stat</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.50</td>
+<td><a href="#posix.fs.h"><tt>__vic/posix/fs.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.50.1</td>
 <td style="padding-left:4ex"><a href="#posix--basename"><tt>posix::basename()</tt>, <tt>posix::dirname()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.47.2</td>
+<td class="toc-chapter-no">2.50.2</td>
 <td style="padding-left:4ex"><a href="#posix--add_trailing_slash"><tt>posix::add_trailing_slash()</tt>,
     <tt>posix::with_trailing_slash()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.48</td>
+<td class="toc-chapter-no">2.51</td>
 <td><a href="#posix.iov.h"><tt>__vic/posix/iov.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.48.1</td>
+<td class="toc-chapter-no">2.51.1</td>
 <td style="padding-left:4ex"><a href="#posix--ovectors"><tt>posix::ovectors</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.48.2</td>
+<td class="toc-chapter-no">2.51.2</td>
 <td style="padding-left:4ex"><a href="#posix--total-iovec"><tt>posix::total(iovec[])</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.48.3</td>
+<td class="toc-chapter-no">2.51.3</td>
 <td style="padding-left:4ex"><a href="#posix--cut_prefix-iovec"><tt>posix::cut_prefix(iovec[])</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.48.4</td>
+<td class="toc-chapter-no">2.51.4</td>
 <td style="padding-left:4ex"><a href="#posix--writev_all"><tt>posix::writev_all()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.49</td>
+<td class="toc-chapter-no">2.52</td>
 <td><a href="#posix.mutex.h"><tt>__vic/posix/mutex.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.49.1</td>
+<td class="toc-chapter-no">2.52.1</td>
 <td style="padding-left:4ex"><a href="#posix--mutex"><tt>posix::mutex</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.49.2</td>
+<td class="toc-chapter-no">2.52.2</td>
 <td style="padding-left:4ex"><a href="#posix--mutex_lock"><tt>posix::mutex_lock</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.50</td>
-<td><a href="#posix.process.h"><tt>__vic/posix/process.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.50.1</td>
-<td style="padding-left:4ex"><a href="#posix--daemon"><tt>posix::daemon()</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.50.2</td>
-<td style="padding-left:4ex"><a href="#posix--ignore_signals"><tt>posix::ignore_signals()</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.50.3</td>
-<td style="padding-left:4ex"><a href="#posix--process_alive"><tt>posix::process_alive()</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.51</td>
-<td><a href="#posix.sigset.h"><tt>__vic/posix/sigset.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.51.1</td>
-<td style="padding-left:4ex"><a href="#posix--sigset"><tt>posix::sigset</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.52</td>
-<td><a href="#posix.thread.h"><tt>__vic/posix/thread.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.52.1</td>
-<td style="padding-left:4ex"><a href="#posix--this_thread"><tt>posix::this_thread</tt></a></td>
-</tr>
-<tr>
 <td class="toc-chapter-no">2.53</td>
-<td><a href="#posix.time.h"><tt>__vic/posix/time.h</tt></a></td>
+<td><a href="#posix.pidfile.h"><tt>__vic/posix/pidfile.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.53.1</td>
+<td style="padding-left:4ex"><a href="#posix--pidfile"><tt>posix::pidfile</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.54</td>
+<td><a href="#posix.process.h"><tt>__vic/posix/process.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.54.1</td>
+<td style="padding-left:4ex"><a href="#posix--daemon"><tt>posix::daemon()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.54.2</td>
+<td style="padding-left:4ex"><a href="#posix--ignore_signals"><tt>posix::ignore_signals()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.54.3</td>
+<td style="padding-left:4ex"><a href="#posix--process_alive"><tt>posix::process_alive()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.55</td>
+<td><a href="#posix.sigset.h"><tt>__vic/posix/sigset.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.55.1</td>
+<td style="padding-left:4ex"><a href="#posix--sigset"><tt>posix::sigset</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.56</td>
+<td><a href="#posix.thread.h"><tt>__vic/posix/thread.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.56.1</td>
+<td style="padding-left:4ex"><a href="#posix--this_thread"><tt>posix::this_thread</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.56.2</td>
+<td style="padding-left:4ex"><a href="#posix--this_thread--sigwait"><tt>posix::this_thread::sigwait()</tt>,
+       <tt>posix::this_thread::sigwait_at_most()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.56.3</td>
+<td style="padding-left:4ex"><a href="#posix--this_thread--sigwaitinfo"><tt>posix::this_thread::sigwaitinfo()</tt>,
+       <tt>posix::this_thread::sigwaitinfo_at_most()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.56.4</td>
+<td style="padding-left:4ex"><a href="#posix--this_thread--block_signals"><tt>posix::this_thread::block_signals()</tt>,
+       <tt>posix::this_thread::unblock_signals()</tt>,
+       <tt>posix::this_thread::set_sigmask()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.57</td>
+<td><a href="#posix.time.h"><tt>__vic/posix/time.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.57.1</td>
 <td style="padding-left:4ex"><a href="#posix--time_spec"><tt>posix::time_spec</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.53.2</td>
+<td class="toc-chapter-no">2.57.2</td>
 <td style="padding-left:4ex"><a href="#posix--nanoseconds_since_epoch"><tt>posix::nanoseconds_since_epoch()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.53.3</td>
+<td class="toc-chapter-no">2.57.3</td>
 <td style="padding-left:4ex"><a href="#posix--realtime_clock"><tt>posix::realtime_clock</tt>, <tt>posix::monotonic_clock</tt></a></td>
 </tr>
 <tr><td colspan="2" style="font-size:5pt;"> </td></tr>
@@ -2378,33 +2474,170 @@ constexpr int ord(char ch);
 
 
 
-<h3 id="rotl">
-<span class="h3_num">2.7.5</span><tt>rotl()</tt>, <tt>rotr()</tt>
+<h3 id="popcount">
+<span class="h3_num">2.7.5</span><tt>popcount()</tt>
 </h3>
 
 
 <pre class="code">
-uint8_t  rotl(uint8_t  v, int shift);
-uint16_t rotl(uint16_t v, int shift);
-uint32_t rotl(uint32_t v, int shift);
-uint64_t rotl(uint64_t v, int shift);
+unsigned popcount(unsigned v);
+unsigned popcount(unsigned long v);
+unsigned popcount(unsigned long long v);
+unsigned popcount(unsigned short v);
+unsigned popcount(unsigned char v);
+</pre>
 
-uint8_t  rotr(uint8_t  v, int shift);
-uint16_t rotr(uint16_t v, int shift);
-uint32_t rotr(uint32_t v, int shift);
-uint64_t rotr(uint64_t v, int shift);
+<p>Returns the number of one bits in the given value.</p>
+
+
+
+
+<h3 id="msb_position">
+<span class="h3_num">2.7.6</span><tt>msb_position()</tt>
+</h3>
+
+
+<pre class="code">
+unsigned msb_position(unsigned v)
+unsigned msb_position(unsigned long v);
+unsigned msb_position(unsigned long long v);
+unsigned msb_position(unsigned short v);
+unsigned msb_position(unsigned char v);
+</pre>
+
+<div>
+<u>Precondition</u>: <tt>v != 0</tt>
+</div>
+
+<p>Returns the position of the most significant 1-bit. The result is unspecified
+if <tt>v == 0</tt>.</p>
+
+
+
+
+<h3 id="ispow2">
+<span class="h3_num">2.7.7</span><tt>ispow2()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class UInt&gt;
+bool ispow2(UInt n);
+</pre>
+
+<div>
+<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+
+<p>Returns <tt>true</tt> if <tt>n</tt> is an integral power of 2.</p>
+
+
+
+
+<h3 id="ceil2">
+<span class="h3_num">2.7.8</span><tt>ceil2()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class UInt&gt;
+UInt ceil2(UInt n);
+</pre>
+
+<div>
+<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+
+<p>Returns the minimal value <tt>m</tt> such that <tt>ispow2(m) &amp;&amp;
+m &gt;= n</tt>. If <tt>m</tt> is not representable as a value of type
+<tt>UInt</tt>, the result is an unspecified value.</p>
+
+
+
+
+<h3 id="floor2">
+<span class="h3_num">2.7.9</span><tt>floor2()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class UInt&gt;
+UInt floor2(UInt n);
+</pre>
+
+<div>
+<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+
+<p>If <tt>n != 0</tt> returns the maximal value <tt>m</tt> such that
+<tt>ispow2(m) &amp;&amp; m &lt;= n</tt>. Otherwise <tt>0</tt> is returned.</p>
+
+
+
+
+<h3 id="ceil_log2">
+<span class="h3_num">2.7.10</span><tt>ceil_log2()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class UInt&gt;
+unsigned ceil_log2(UInt n);
+</pre>
+
+<div>
+<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+
+<p>Returns <tt>ceil(log2(n))</tt> if <tt>n != 0</tt> or 0 otherwise.</p>
+
+
+
+
+<h3 id="floor_log2">
+<span class="h3_num">2.7.11</span><tt>floor_log2()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class UInt&gt;
+unsigned floor_log2(UInt n);
+</pre>
+
+<div>
+<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+
+<p>Returns <tt>floor(log2(n))</tt> if <tt>n != 0</tt> or 0 otherwise.</p>
+
+
+
+
+<h3 id="rotl">
+<span class="h3_num">2.7.12</span><tt>rotl()</tt>, <tt>rotr()</tt>
+</h3>
+
+
+<pre class="code">
+unsigned long long rotl(unsigned long long v, int shift);
+unsigned long      rotl(unsigned long v, int shift);
+unsigned           rotl(unsigned v, int shift);
+unsigned short     rotl(unsigned short v, int shift);
+unsigned char      rotl(unsigned char v, int shift);
+
+unsigned long long rotr(unsigned long long v, int shift);
+unsigned long      rotr(unsigned long v, int shift);
+unsigned           rotr(unsigned v, int shift);
+unsigned short     rotr(unsigned short v, int shift);
+unsigned char      rotr(unsigned char v, int shift);
 </pre>
 
 <p>The functions perform circular left (<tt>rotl</tt>) or right
 (<tt>rotr</tt>) bitwise shift (rotation).</p>
 <div>
-<u>Precondition</u>: shift &gt;= 0</div>
+<u>Precondition</u>: <tt>0 &lt;= shift &amp;&amp; shift &lt; sizeof(v)*CHAR_BIT</tt>
+</div>
 
 
 
 
 <h3 id="swapped_nibbles">
-<span class="h3_num">2.7.6</span><tt>swapped_nibbles()</tt>
+<span class="h3_num">2.7.13</span><tt>swapped_nibbles()</tt>
 </h3>
 
 
@@ -2528,8 +2761,147 @@ day) or <tt>59:60</tt> (leap second) are considered as invalid!</div>
 
 
 
+<h2 id="endian.h">
+<span class="h2_num">2.9</span><tt>__vic/endian.h</tt>
+</h2>
+
+
+<p>Byte order-related utilities.</p>
+
+
+<h3 id="endianness">
+<span class="h3_num">2.9.1</span><tt>endianness</tt>
+</h3>
+
+
+<pre class="code">
+namespace endian {
+enum endianness
+{
+    unknown = 0,
+    little  = 1234,
+    big     = 4321,
+    pdp     = 3412,
+    native  = <span class="nonterminal">&lt;one-of-the-above&gt;</span>
+};
+} // namespace
+
+using endian::endianness;
+</pre>
+
+<p>Byte order constants. <tt>endian::native</tt> is set equal to one of the
+constants and represents the byte order used on the current platform (like
+<tt>__BYTE_ORDER__</tt> macro on UNIX-like platforms). The values are supposed
+to be used for template specializations or for compile-time checks (e.g. in
+<tt>static_assert</tt>).</p>
+
+<div class="section">Examples</div>
+<pre class="code">
+template&lt;__vic::endianness &gt; struct some_algo; // not implemented
+
+// Implementation for little-endian
+template&lt;&gt; struct some_algo&lt;__vic::endian::little&gt;
+{
+    static void doit() { ... }
+};
+// Implementation for big-endian
+template&lt;&gt; struct some_algo&lt;__vic::endian::big&gt;
+{
+    static void doit() { ... }
+};
+
+// Automatically choose an appropriate implementation for the used platform
+some_algo&lt;__vic::endian::native&gt;::doit();
+</pre>
+
+<pre class="code">
+static_assert(__vic::endian::native == __vic::endian:little,
+    "Litte-endian is expected");
+</pre>
+
+
+
+
+
+<h3 id="endian--from">
+<span class="h3_num">2.9.2</span><tt>endian::from_...()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class T&gt; [[nodiscard]] constexpr T endian::from_little(T v);
+template&lt;class T&gt; [[nodiscard]] constexpr T endian::from_big(T v);
+</pre>
+
+<p>Return a value represented in native byte order converted from litte/big
+endian if appropriate.</p>
+
+<p><tt>T</tt> can be any integral type or enum with size up to
+<tt>sizeof(long long)</tt>.</p>
+
+<div class="section">Example</div>
+<pre class="code">
+uint16_t v;
+read_bytes(&amp;v, 2); // serialized as big endian
+std::cout &lt;&lt; "The value is " &lt;&lt; __vic::endian::from_big(v) &lt;&lt; '\n';
+</pre>
+
+
+
+
+
+<h3 id="endian--to">
+<span class="h3_num">2.9.3</span><tt>endian::to_...()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class T&gt; [[nodiscard]] constexpr T endian::to_little(T v);
+template&lt;class T&gt; [[nodiscard]] constexpr T endian::to_big(T v);
+</pre>
+
+<p>Return a value represented in litte/big endian byte order.</p>
+
+<p><tt>T</tt> can be any integral type or enum with size up to
+<tt>sizeof(long long)</tt>.</p>
+
+<div class="section">Example</div>
+<pre class="code">
+uint16_t v = __vic::endian::to_big(...);
+write_bytes(&amp;v, 2); // serialize as big endian
+</pre>
+
+
+
+
+
+<h3 id="swab">
+<span class="h3_num">2.9.4</span><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt>
+</h3>
+
+
+<pre class="code">
+[[nodiscard]] constexpr uint16_t swab16(uint16_t v);
+[[nodiscard]] constexpr uint32_t swab32(uint32_t v);
+[[nodiscard]] constexpr uint64_t swab64(uint64_t v);
+</pre>
+
+<p>Fast utilities to reverse byte order (usually implemented using
+compiler-specific intrinsics).</p>
+
+<div class="section">Example</div>
+<pre class="code">
+static_assert(__vic::swab32(0x01020304) == 0x04030201);
+</pre>
+
+
+
+
+
+
+
 <h2 id="error.h">
-<span class="h2_num">2.9</span><tt>__vic/error.h</tt>
+<span class="h2_num">2.10</span><tt>__vic/error.h</tt>
 </h2>
 
 
@@ -2537,7 +2909,7 @@ day) or <tt>59:60</tt> (leap second) are considered as invalid!</div>
 
 
 <h3 id="exception">
-<span class="h3_num">2.9.1</span><tt>exception</tt>
+<span class="h3_num">2.10.1</span><tt>exception</tt>
 </h3>
 
 
@@ -2611,7 +2983,7 @@ throw custom_exception("Error condition description");
 
 
 <h3 id="libc_error">
-<span class="h3_num">2.9.2</span><tt>libc_error</tt>
+<span class="h3_num">2.10.2</span><tt>libc_error</tt>
 </h3>
 
 
@@ -2736,7 +3108,7 @@ meaning as the parameter of <tt>std::perror()</tt>.</p>
 
 
 <h2 id="fs.h">
-<span class="h2_num">2.10</span><tt>__vic/fs.h</tt>
+<span class="h2_num">2.11</span><tt>__vic/fs.h</tt>
 </h2>
 
 
@@ -2747,7 +3119,7 @@ meaning as the parameter of <tt>std::perror()</tt>.</p>
 
 
 <h3 id="path_exists">
-<span class="h3_num">2.10.1</span><tt>path_exists()</tt>, <tt>file_exists()</tt>, <tt>dir_exists()</tt>
+<span class="h3_num">2.11.1</span><tt>path_exists()</tt>, <tt>file_exists()</tt>, <tt>dir_exists()</tt>
 </h3>
 
 
@@ -2770,7 +3142,7 @@ references to a regular file or to a directory, respectively.</p>
 
 
 <h3 id="mkdir">
-<span class="h3_num">2.10.2</span><tt>mkdir()</tt>, <tt>mkdir_if_absent()</tt>
+<span class="h3_num">2.11.2</span><tt>mkdir()</tt>, <tt>mkdir_if_absent()</tt>
 </h3>
 
 
@@ -2790,7 +3162,7 @@ the directory already exists.</p>
 
 
 <h3 id="rmdir">
-<span class="h3_num">2.10.3</span><tt>rmdir()</tt>, <tt>rmdir_if_exists()</tt>
+<span class="h3_num">2.11.3</span><tt>rmdir()</tt>, <tt>rmdir_if_exists()</tt>
 </h3>
 
 
@@ -2810,7 +3182,7 @@ the directory doesn't exist.</p>
 
 
 <h3 id="get_current_dir">
-<span class="h3_num">2.10.4</span><tt>get_current_dir()</tt>
+<span class="h3_num">2.11.4</span><tt>get_current_dir()</tt>
 </h3>
 
 
@@ -2824,7 +3196,7 @@ std::string get_current_dir();
 
 
 <h3 id="remove_file">
-<span class="h3_num">2.10.5</span><tt>remove_file()</tt>, <tt>remove_file_if_exists()</tt>,
+<span class="h3_num">2.11.5</span><tt>remove_file()</tt>, <tt>remove_file_if_exists()</tt>,
 <tt>remove_file_nt()</tt>
 </h3>
 
@@ -2852,7 +3224,7 @@ if the file doesn't exist.</p>
 
 
 <h3 id="copy_file">
-<span class="h3_num">2.10.6</span><tt>copy_file()</tt>, <tt>copy_file_if_exists()</tt>,
+<span class="h3_num">2.11.6</span><tt>copy_file()</tt>, <tt>copy_file_if_exists()</tt>,
 <tt>copy_file_replace()</tt>, <tt>copy_file_replace_if_exists()</tt>
 </h3>
 
@@ -2898,7 +3270,7 @@ if <tt>src_path</tt> doesn't exist.</p>
 
 
 <h3 id="move_file">
-<span class="h3_num">2.10.7</span><tt>move_file()</tt>, <tt>move_file_if_exists()</tt>,
+<span class="h3_num">2.11.7</span><tt>move_file()</tt>, <tt>move_file_if_exists()</tt>,
 <tt>move_file_replace()</tt>, <tt>move_file_replace_if_exists()</tt>
 </h3>
 
@@ -2934,7 +3306,7 @@ if <tt>src_path</tt> doesn't exist.</p>
 
 
 <h3 id="rename_file">
-<span class="h3_num">2.10.8</span><tt>rename_file()</tt>, <tt>rename_file_if_exists()</tt>,
+<span class="h3_num">2.11.8</span><tt>rename_file()</tt>, <tt>rename_file_if_exists()</tt>,
     <tt>rename_file_replace()</tt>, <tt>rename_file_replace_if_exists()</tt>
 </h3>
 
@@ -2970,7 +3342,7 @@ if <tt>src_path</tt> doesn't exist.</p>
 
 
 <h3 id="file_size">
-<span class="h3_num">2.10.9</span><tt>file_size()</tt>
+<span class="h3_num">2.11.9</span><tt>file_size()</tt>
 </h3>
 
 
@@ -2987,7 +3359,7 @@ uintmax_t file_size(const std::string &amp;path);
 
 
 <h2 id="iterator.h">
-<span class="h2_num">2.11</span><tt>__vic/iterator.h</tt>
+<span class="h2_num">2.12</span><tt>__vic/iterator.h</tt>
 </h2>
 
 
@@ -2995,7 +3367,7 @@ uintmax_t file_size(const std::string &amp;path);
 
 
 <h3 id="begin-array">
-<span class="h3_num">2.11.1</span><tt>begin(T[])</tt>, <tt>end(T[])</tt>, <tt>cbegin(T[])</tt>,
+<span class="h3_num">2.12.1</span><tt>begin(T[])</tt>, <tt>end(T[])</tt>, <tt>cbegin(T[])</tt>,
 <tt>cend(T[])</tt>
 </h3>
 
@@ -3022,7 +3394,7 @@ assert(lst.size() == 3);
 
 
 <h3 id="advance">
-<span class="h3_num">2.11.2</span><tt>advance()</tt>
+<span class="h3_num">2.12.2</span><tt>advance()</tt>
 </h3>
 
 
@@ -3043,7 +3415,7 @@ behaviour:</p>
 
 
 <h3 id="next">
-<span class="h3_num">2.11.3</span><tt>next()</tt>, <tt>prev()</tt>
+<span class="h3_num">2.12.3</span><tt>next()</tt>, <tt>prev()</tt>
 </h3>
 
 
@@ -3086,12 +3458,12 @@ void f(const Container &amp;c)
 
 
 <h2 id="logger.h">
-<span class="h2_num">2.12</span><tt>__vic/logger.h</tt>
+<span class="h2_num">2.13</span><tt>__vic/logger.h</tt>
 </h2>
 
 
 <h3 id="logger">
-<span class="h3_num">2.12.1</span><tt>logger</tt>
+<span class="h3_num">2.13.1</span><tt>logger</tt>
 </h3>
 
 
@@ -3132,6 +3504,9 @@ public:
     output &amp;reset_output(output &amp;out);
     output &amp;get_output();
     const output &amp;get_output() const;
+
+    static constexpr size_t min_buffer_size = ...;
+    void shrink_buffer(size_t limit);
 
     void message(severity_t severity, const char *msg, size_t msg_len);
     void message(severity_t severity, const char *msg);
@@ -3391,6 +3766,24 @@ must outlive the logger object!</p>
 </div>
 
 <div>
+<pre class="prototype">static constexpr size_t min_buffer_size</pre>
+<blockquote>
+
+<p>Minimal size of the internal buffer in bytes.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void shrink_buffer(size_t limit)</pre>
+<blockquote>
+
+<p>Sets the internal buffer size to <tt>min_buffer_size</tt> if it is more than
+<tt>limit</tt> bytes. Allows to restrict the buffer growth when long records
+are formed.</p>
+</blockquote>
+</div>
+
+<div>
 <pre class="prototype">void message(severity_t severity, const char *msg, size_t msg_len)</pre>
 <pre class="prototype">void message(severity_t severity, const char *msg)</pre>
 <pre class="prototype">void message(severity_t severity, const std::string &amp;msg)</pre>
@@ -3570,14 +3963,47 @@ WARNING: Application end
 
 
 
+<h2 id="memory.h">
+<span class="h2_num">2.14</span><tt>__vic/memory.h</tt>
+</h2>
+
+
+<p>Memory-related utilities.</p>
+
+
+<h3 id="load_unaligned">
+<span class="h3_num">2.14.1</span><tt>load_unaligned()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class T&gt;
+T load_unaligned(const void *p);
+</pre>
+
+<p>Load value from potentially unaligned address without causing bus error.</p>
+
+<div class="section">Example</div>
+<pre class="code">
+const void *p = ...;
+// int data = *static_cast&lt;const int *&gt;(p); // potential bus error
+int data = __vic::load_unaligned&lt;int&gt;(p);
+</pre>
+
+
+
+
+
+
+
 <h2 id="mutex.h">
-<span class="h2_num">2.13</span><tt>__vic/mutex.h</tt>
+<span class="h2_num">2.15</span><tt>__vic/mutex.h</tt>
 </h2>
 
 
 
 <h3 id="mutex">
-<span class="h3_num">2.13.1</span><tt>mutex</tt>
+<span class="h3_num">2.15.1</span><tt>mutex</tt>
 </h3>
 
 
@@ -3658,7 +4084,7 @@ in case of error, but in general error detection is not guaranteed.</p>
 
 
 <h3 id="mutex_lock">
-<span class="h3_num">2.13.2</span><tt>mutex_lock</tt>
+<span class="h3_num">2.15.2</span><tt>mutex_lock</tt>
 </h3>
 
 
@@ -3745,12 +4171,12 @@ else
 
 
 <h2 id="object_pool.h">
-<span class="h2_num">2.14</span><tt>__vic/object_pool.h</tt>
+<span class="h2_num">2.16</span><tt>__vic/object_pool.h</tt>
 </h2>
 
 
 <h3 id="object_pool">
-<span class="h3_num">2.14.1</span><tt>object_pool</tt>
+<span class="h3_num">2.16.1</span><tt>object_pool</tt>
 </h3>
 
 <pre class="code">
@@ -4073,7 +4499,7 @@ pool.emplace(...);
 
 
 <h2 id="packon.h">
-<span class="h2_num">2.15</span><tt>__vic/packon.h</tt> &amp; <tt>__vic/packoff.h</tt>
+<span class="h2_num">2.17</span><tt>__vic/packon.h</tt> &amp; <tt>__vic/packoff.h</tt>
 </h2>
 
 
@@ -4114,13 +4540,13 @@ static_assert(sizeof(packed) == sizeof(bool) + sizeof(int),
 
 
 <h2 id="readers">
-<span class="h2_num">2.16</span><tt>__vic/readers/</tt>
+<span class="h2_num">2.18</span><tt>__vic/readers/</tt>
 </h2>
 
 
 
 <h3 id="reader-concept">
-<span class="h3_num">2.16.1</span><tt>Reader</tt> concept</h3>
+<span class="h3_num">2.18.1</span><tt>Reader</tt> concept</h3>
 
 
 <pre class="code">
@@ -4165,7 +4591,7 @@ available (EOF). Throws an exception in other cases.</p>
 
 
 <h3 id="iterator_reader">
-<span class="h3_num">2.16.2</span><tt>iterator_reader</tt>
+<span class="h3_num">2.18.2</span><tt>iterator_reader</tt>
 </h3>
 
 
@@ -4201,7 +4627,7 @@ position.</p>
 
 
 <h3 id="iterator_reader_n">
-<span class="h3_num">2.16.3</span><tt>iterator_reader_n</tt>
+<span class="h3_num">2.18.3</span><tt>iterator_reader_n</tt>
 </h3>
 
 
@@ -4236,7 +4662,7 @@ position.</p>
 
 
 <h3 id="container_reader">
-<span class="h3_num">2.16.4</span><tt>container_reader</tt>
+<span class="h3_num">2.18.4</span><tt>container_reader</tt>
 </h3>
 
 
@@ -4271,7 +4697,7 @@ position.</p>
 
 
 <h3 id="cstring_reader">
-<span class="h3_num">2.16.5</span><tt>cstring_reader</tt>
+<span class="h3_num">2.18.5</span><tt>cstring_reader</tt>
 </h3>
 
 
@@ -4316,7 +4742,7 @@ well as <tt>Reader&lt;char&gt;</tt>.</p>
 
 
 <h3 id="string_reader">
-<span class="h3_num">2.16.6</span><tt>string_reader</tt>
+<span class="h3_num">2.18.6</span><tt>string_reader</tt>
 </h3>
 
 
@@ -4366,7 +4792,7 @@ well as <tt>Reader&lt;char&gt;</tt>.</p>
 
 
 <h3 id="cstream_reader">
-<span class="h3_num">2.16.7</span><tt>cstream_reader</tt>
+<span class="h3_num">2.18.7</span><tt>cstream_reader</tt>
 </h3>
 
 
@@ -4395,12 +4821,12 @@ cstream_reader make_cstream_reader(std::FILE *fp);
 
 
 <h2 id="readonly_cstring.h">
-<span class="h2_num">2.17</span><tt>__vic/readonly_cstring.h</tt>
+<span class="h2_num">2.19</span><tt>__vic/readonly_cstring.h</tt>
 </h2>
 
 
 <h3 id="readonly_cstring">
-<span class="h3_num">2.17.1</span><tt>readonly_cstring</tt>
+<span class="h3_num">2.19.1</span><tt>readonly_cstring</tt>
 </h3>
 
 
@@ -4655,12 +5081,12 @@ public:
 
 
 <h2 id="set_of_chars.h">
-<span class="h2_num">2.18</span><tt>__vic/set_of_chars.h</tt>
+<span class="h2_num">2.20</span><tt>__vic/set_of_chars.h</tt>
 </h2>
 
 
 <h3 id="set_of_chars">
-<span class="h3_num">2.18.1</span><tt>set_of_chars</tt>
+<span class="h3_num">2.20.1</span><tt>set_of_chars</tt>
 </h3>
 
 
@@ -4818,7 +5244,7 @@ NULL-terminator.</p>
 
 
 <h2 id="stdint.h">
-<span class="h2_num">2.19</span><tt>__vic/stdint.h</tt>
+<span class="h2_num">2.21</span><tt>__vic/stdint.h</tt>
 </h2>
 
 
@@ -4829,7 +5255,7 @@ NULL-terminator.</p>
 
 
 <h3 id="intN_t">
-<span class="h3_num">2.19.1</span>Exact-width integer types</h3>
+<span class="h3_num">2.21.1</span>Exact-width integer types</h3>
 
 
 <p>Following types are guaranteed to be available in the <b>global
@@ -4849,7 +5275,7 @@ namespace</b>:</p>
 
 
 <h3 id="int_leastN_t">
-<span class="h3_num">2.19.2</span>Minimum-width integer types</h3>
+<span class="h3_num">2.21.2</span>Minimum-width integer types</h3>
 
 
 <p>Following types are guaranteed to be available in the <b>global
@@ -4869,7 +5295,7 @@ namespace</b>:</p>
 
 
 <h3 id="int_fastN_t">
-<span class="h3_num">2.19.3</span>Fastest minimum-width integer types</h3>
+<span class="h3_num">2.21.3</span>Fastest minimum-width integer types</h3>
 
 
 <p>Following types are guaranteed to be available in the <b>global
@@ -4889,7 +5315,7 @@ namespace</b>:</p>
 
 
 <h3 id="intmax_t">
-<span class="h3_num">2.19.4</span>Greatest-width integer types</h3>
+<span class="h3_num">2.21.4</span>Greatest-width integer types</h3>
 
 
 <p>Following types are guaranteed to be available in the <b>global
@@ -4903,7 +5329,7 @@ namespace</b>:</p>
 
 
 <h3 id="intptr_t">
-<span class="h3_num">2.19.5</span>Integer types capable of holding object pointers</h3>
+<span class="h3_num">2.21.5</span>Integer types capable of holding object pointers</h3>
 
 
 <p>Following types are guaranteed to be available in the <b>global
@@ -4917,7 +5343,7 @@ namespace</b>:</p>
 
 
 <h3 id="int_exactly_bytes">
-<span class="h3_num">2.19.6</span><tt>int_exactly_bytes&lt;&gt;</tt>, <tt>uint_exactly_bytes&lt;&gt;</tt>
+<span class="h3_num">2.21.6</span><tt>int_exactly_bytes&lt;&gt;</tt>, <tt>uint_exactly_bytes&lt;&gt;</tt>
 </h3>
 
 
@@ -4963,7 +5389,7 @@ assert( sizeof(my_intptr) == sizeof(intptr_t) );
 
 
 <h2 id="stdio_file.h">
-<span class="h2_num">2.20</span><tt>__vic/stdio_file.h</tt>
+<span class="h2_num">2.22</span><tt>__vic/stdio_file.h</tt>
 </h2>
 
 
@@ -4971,7 +5397,7 @@ assert( sizeof(my_intptr) == sizeof(intptr_t) );
 
 
 <h3 id="stdio_file">
-<span class="h3_num">2.20.1</span><tt>stdio_file</tt>
+<span class="h3_num">2.22.1</span><tt>stdio_file</tt>
 </h3>
 
 
@@ -5160,7 +5586,7 @@ file.close();
 
 
 <h3 id="read-FILE-char">
-<span class="h3_num">2.20.2</span><tt>read(std::FILE, char&amp;)</tt>,
+<span class="h3_num">2.22.2</span><tt>read(std::FILE, char&amp;)</tt>,
     <tt>read(std::FILE, unsigned char&amp;)</tt>
 </h3>
 
@@ -5176,7 +5602,7 @@ bool read(std::FILE *fp, unsigned char &amp;ch);
 
 
 <h3 id="write-FILE-char">
-<span class="h3_num">2.20.3</span><tt>write(std::FILE, char)</tt>
+<span class="h3_num">2.22.3</span><tt>write(std::FILE, char)</tt>
 </h3>
 
 
@@ -5189,7 +5615,7 @@ void write(std::FILE *fp, char ch);
 
 
 <h3 id="getline-FILE">
-<span class="h3_num">2.20.4</span><tt>getline(std::FILE)</tt>
+<span class="h3_num">2.22.4</span><tt>getline(std::FILE)</tt>
 </h3>
 
 
@@ -5205,13 +5631,13 @@ bool getline(std::FILE *fp, std::string &amp;str, char delim = '\n');
 
 
 <h2 id="str2num.h">
-<span class="h2_num">2.21</span><tt>__vic/str2num.h</tt>
+<span class="h2_num">2.23</span><tt>__vic/str2num.h</tt>
 </h2>
 
 
 
 <h3 id="decimal_to_number">
-<span class="h3_num">2.21.1</span><tt>decimal_to_number()</tt>
+<span class="h3_num">2.23.1</span><tt>decimal_to_number()</tt>
 </h3>
 
 
@@ -5278,7 +5704,7 @@ by <tt>std::strtoul()</tt> by unknown reason.</p>
 
 
 <h3 id="decimal_to_number_range">
-<span class="h3_num">2.21.2</span><tt>decimal_to_number_range()</tt>
+<span class="h3_num">2.23.2</span><tt>decimal_to_number_range()</tt>
 </h3>
 
 
@@ -5297,7 +5723,7 @@ they work with generic ranges of characters instead of strings.</p>
 
 
 <h3 id="decimal_parser">
-<span class="h3_num">2.21.3</span><tt>decimal_parser</tt>
+<span class="h3_num">2.23.3</span><tt>decimal_parser</tt>
 </h3>
 
 
@@ -5394,7 +5820,7 @@ bool to_number(const std::string &amp;s, T &amp;result) noexcept
 
 
 <h3 id="number_parse_status">
-<span class="h3_num">2.21.4</span><tt>number_parse_status</tt>
+<span class="h3_num">2.23.4</span><tt>number_parse_status</tt>
 </h3>
 
 
@@ -5428,12 +5854,12 @@ using number_parse_status_t = number_parse_status; // for C++98
 
 
 <h2 id="string_buffer.h">
-<span class="h2_num">2.22</span><tt>__vic/string_buffer.h</tt>
+<span class="h2_num">2.24</span><tt>__vic/string_buffer.h</tt>
 </h2>
 
 
 <h3 id="string_buffer">
-<span class="h3_num">2.22.1</span><tt>string_buffer</tt>
+<span class="h3_num">2.24.1</span><tt>string_buffer</tt>
 </h3>
 
 
@@ -5799,12 +6225,12 @@ C++98.</p>
 
 
 <h2 id="string_ref.h">
-<span class="h2_num">2.23</span><tt>__vic/string_ref.h</tt>
+<span class="h2_num">2.25</span><tt>__vic/string_ref.h</tt>
 </h2>
 
 
 <h3 id="string_ref">
-<span class="h3_num">2.23.1</span><tt>string_ref</tt>
+<span class="h3_num">2.25.1</span><tt>string_ref</tt>
 </h3>
 
 
@@ -6146,7 +6572,7 @@ std::string ss = s;
 
 
 <h2 id="string_utils.h">
-<span class="h2_num">2.24</span><tt>__vic/string_utils.h</tt>
+<span class="h2_num">2.26</span><tt>__vic/string_utils.h</tt>
 </h2>
 
 
@@ -6154,7 +6580,7 @@ std::string ss = s;
 
 
 <h3 id="trim">
-<span class="h3_num">2.24.1</span><tt>trim</tt> functions</h3>
+<span class="h3_num">2.26.1</span><tt>trim</tt> functions</h3>
 
 
 <pre class="code">
@@ -6240,7 +6666,7 @@ __vic::trim_right(st1, "123456789"); // result: "...value"
 
 
 <h3 id="sift">
-<span class="h3_num">2.24.2</span><tt>sift()</tt>
+<span class="h3_num">2.26.2</span><tt>sift()</tt>
 </h3>
 
 
@@ -6264,7 +6690,7 @@ assert(std::strcmp(st, "abcde") == 0);
 
 
 <h3 id="sift_if">
-<span class="h3_num">2.24.3</span><tt>sift_if()</tt>
+<span class="h3_num">2.26.3</span><tt>sift_if()</tt>
 </h3>
 
 
@@ -6282,7 +6708,7 @@ std::string &amp;sift(std::string &amp;str, Pred pred);
 
 
 <h3 id="pad_left">
-<span class="h3_num">2.24.4</span><tt>pad_left()</tt>
+<span class="h3_num">2.26.4</span><tt>pad_left()</tt>
 </h3>
 
 
@@ -6300,7 +6726,7 @@ null. Returns <tt>str</tt>.</p>
 
 
 <h3 id="pad_right">
-<span class="h3_num">2.24.5</span><tt>pad_right()</tt>
+<span class="h3_num">2.26.5</span><tt>pad_right()</tt>
 </h3>
 
 
@@ -6319,7 +6745,7 @@ null. Returns
 
 
 <h3 id="starts_with">
-<span class="h3_num">2.24.6</span><tt>starts_with()</tt>
+<span class="h3_num">2.26.6</span><tt>starts_with()</tt>
 </h3>
 
 
@@ -6345,7 +6771,7 @@ prefix.</p>
 
 
 <h3 id="ends_with">
-<span class="h3_num">2.24.7</span><tt>ends_with()</tt>
+<span class="h3_num">2.26.7</span><tt>ends_with()</tt>
 </h3>
 
 
@@ -6373,7 +6799,7 @@ suffix.</p>
 
 
 <h2 id="tchar.h">
-<span class="h2_num">2.25</span><tt>__vic/tchar.h</tt>
+<span class="h2_num">2.27</span><tt>__vic/tchar.h</tt>
 </h2>
 
 
@@ -6404,7 +6830,7 @@ charT *generic_dup(const charT *st)
 
 
 <h3 id="tchar--length">
-<span class="h3_num">2.25.1</span><tt>tchar::length()</tt>
+<span class="h3_num">2.27.1</span><tt>tchar::length()</tt>
 </h3>
 
 
@@ -6418,8 +6844,23 @@ size_t tchar::length(const charT *str);
 
 
 
+<h3 id="tchar--empty">
+<span class="h3_num">2.27.2</span><tt>tchar::empty()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class charT&gt;
+bool tchar::empty(const charT *str);
+</pre>
+
+<p>Checks if <tt>str</tt> is <tt>nullptr</tt> or has no characters.</p>
+
+
+
+
 <h3 id="tchar--end">
-<span class="h3_num">2.25.2</span><tt>tchar::end()</tt>
+<span class="h3_num">2.27.3</span><tt>tchar::end()</tt>
 </h3>
 
 
@@ -6447,7 +6888,7 @@ this function can be used as a workaround in the similar use case.</div>
 
 
 <h3 id="tchar--compare">
-<span class="h3_num">2.25.3</span><tt>tchar::compare()</tt>
+<span class="h3_num">2.27.4</span><tt>tchar::compare()</tt>
 </h3>
 
 
@@ -6461,8 +6902,27 @@ int tchar::compare(const charT *str1, const charT *str2);
 
 
 
+<h3 id="tchar--equal">
+<span class="h3_num">2.27.5</span><tt>tchar::equal()</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class charT&gt;
+bool tchar::equal(const charT *str1, const charT *str2);
+</pre>
+
+<p>Checks if two strings are equal.</p>
+
+<div>
+<u>Precondition</u>: <tt>str1 != nullptr &amp;&amp; str2 != nullptr</tt>
+</div>
+
+
+
+
 <h3 id="tchar--copy">
-<span class="h3_num">2.25.4</span><tt>tchar::copy()</tt>
+<span class="h3_num">2.27.6</span><tt>tchar::copy()</tt>
 </h3>
 
 
@@ -6477,7 +6937,7 @@ charT *tchar::copy(charT *dest, const charT *src);
 
 
 <h3 id="tchar--move">
-<span class="h3_num">2.25.5</span><tt>tchar::move()</tt>
+<span class="h3_num">2.27.7</span><tt>tchar::move()</tt>
 </h3>
 
 
@@ -6492,7 +6952,7 @@ charT *tchar::move(charT *dest, const charT *src);
 
 
 <h3 id="tchar--concat">
-<span class="h3_num">2.25.6</span><tt>tchar::concat()</tt>
+<span class="h3_num">2.27.8</span><tt>tchar::concat()</tt>
 </h3>
 
 
@@ -6507,7 +6967,7 @@ charT *tchar::concat(charT *dest, const charT *src);
 
 
 <h3 id="tchar--find">
-<span class="h3_num">2.25.7</span><tt>tchar::find()</tt>
+<span class="h3_num">2.27.9</span><tt>tchar::find()</tt>
 </h3>
 
 
@@ -6536,7 +6996,7 @@ charT *find(charT *str, const charT *sub);
 
 
 <h3 id="tchar--rfind">
-<span class="h3_num">2.25.8</span><tt>tchar::rfind()</tt>
+<span class="h3_num">2.27.10</span><tt>tchar::rfind()</tt>
 </h3>
 
 
@@ -6559,7 +7019,7 @@ charT *rfind(charT *str, charT ch);
 
 
 <h3 id="tchar--find_if">
-<span class="h3_num">2.25.9</span><tt>tchar::find_if()</tt>
+<span class="h3_num">2.27.11</span><tt>tchar::find_if()</tt>
 </h3>
 
 
@@ -6582,7 +7042,7 @@ predicate.</p>
 
 
 <h3 id="tchar--find_if_not">
-<span class="h3_num">2.25.10</span><tt>tchar::find_if_not()</tt>
+<span class="h3_num">2.27.12</span><tt>tchar::find_if_not()</tt>
 </h3>
 
 
@@ -6605,7 +7065,7 @@ specified predicate.</p>
 
 
 <h3 id="tchar--rfind_if">
-<span class="h3_num">2.25.11</span><tt>tchar::rfind_if()</tt>
+<span class="h3_num">2.27.13</span><tt>tchar::rfind_if()</tt>
 </h3>
 
 
@@ -6628,7 +7088,7 @@ predicate.</p>
 
 
 <h3 id="tchar--rfind_if_not">
-<span class="h3_num">2.25.12</span><tt>tchar::rfind_if_not()</tt>
+<span class="h3_num">2.27.14</span><tt>tchar::rfind_if_not()</tt>
 </h3>
 
 
@@ -6651,7 +7111,7 @@ predicate.</p>
 
 
 <h3 id="tchar--find_first_of">
-<span class="h3_num">2.25.13</span><tt>tchar::find_first_of()</tt>
+<span class="h3_num">2.27.15</span><tt>tchar::find_first_of()</tt>
 </h3>
 
 
@@ -6674,7 +7134,7 @@ charT *find_first_of(charT *str, const charT *set);
 
 
 <h3 id="tchar--find_first_not_of">
-<span class="h3_num">2.25.14</span><tt>tchar::find_first_not_of()</tt>
+<span class="h3_num">2.27.16</span><tt>tchar::find_first_not_of()</tt>
 </h3>
 
 
@@ -6697,7 +7157,7 @@ Generic <tt>strspn</tt> / <tt>wcsspn</tt>.</p>
 
 
 <h3 id="tchar--find_last_of">
-<span class="h3_num">2.25.15</span><tt>tchar::find_last_of()</tt>
+<span class="h3_num">2.27.17</span><tt>tchar::find_last_of()</tt>
 </h3>
 
 
@@ -6719,7 +7179,7 @@ charT *find_last_of(charT *str, const charT *set);
 
 
 <h3 id="tchar--find_last_not_of">
-<span class="h3_num">2.25.16</span><tt>tchar::find_last_not_of()</tt>
+<span class="h3_num">2.27.18</span><tt>tchar::find_last_not_of()</tt>
 </h3>
 
 
@@ -6741,7 +7201,7 @@ charT *find_last_not_of(charT *str, const charT *set);
 
 
 <h3 id="tchar--skip">
-<span class="h3_num">2.25.17</span><tt>tchar::skip()</tt>
+<span class="h3_num">2.27.19</span><tt>tchar::skip()</tt>
 </h3>
 
 
@@ -6766,7 +7226,7 @@ Pointer to NULL-terminator is returned if no other characters is presented.</p>
 
 
 <h2 id="thread.h">
-<span class="h2_num">2.26</span><tt>__vic/thread.h</tt>
+<span class="h2_num">2.28</span><tt>__vic/thread.h</tt>
 </h2>
 
 
@@ -6774,7 +7234,7 @@ Pointer to NULL-terminator is returned if no other characters is presented.</p>
 
 
 <h3 id="thread">
-<span class="h3_num">2.26.1</span><tt>thread</tt>
+<span class="h3_num">2.28.1</span><tt>thread</tt>
 </h3>
 
 
@@ -6960,7 +7420,7 @@ precondition is not satisfied.</p>
 
 
 <h3 id="thread--id">
-<span class="h3_num">2.26.2</span><tt>thread::id</tt>
+<span class="h3_num">2.28.2</span><tt>thread::id</tt>
 </h3>
 
 
@@ -7030,7 +7490,7 @@ special distinct value not associated with any thread.</p>
 
 
 <h3 id="this_thread">
-<span class="h3_num">2.26.3</span><tt>this_thread</tt>
+<span class="h3_num">2.28.3</span><tt>this_thread</tt>
 </h3>
 
 
@@ -7067,7 +7527,7 @@ specified in milliseconds elapses.</p>
 
 
 <h2 id="to_text.h">
-<span class="h2_num">2.27</span><tt>__vic/to_text.h</tt>
+<span class="h2_num">2.29</span><tt>__vic/to_text.h</tt>
 </h2>
 
 
@@ -7075,7 +7535,7 @@ specified in milliseconds elapses.</p>
 
 
 <h3 id="to_text_append">
-<span class="h3_num">2.27.1</span><tt>to_text_append()</tt>
+<span class="h3_num">2.29.1</span><tt>to_text_append()</tt>
 </h3>
 
 
@@ -7171,7 +7631,7 @@ assert(st == "n = 5");
 
 
 <h2 id="type_traits.h">
-<span class="h2_num">2.28</span><tt>__vic/type_traits.h</tt>
+<span class="h2_num">2.30</span><tt>__vic/type_traits.h</tt>
 </h2>
 
 
@@ -7184,7 +7644,7 @@ containing the conversion result.</p>
 
 
 <h3 id="integral_constant">
-<span class="h3_num">2.28.1</span><tt>integral_constant</tt>
+<span class="h3_num">2.30.1</span><tt>integral_constant</tt>
 </h3>
 
 
@@ -7205,7 +7665,7 @@ struct integral_constant
 
 
 <h3 id="true_type">
-<span class="h3_num">2.28.2</span><tt>true_type</tt>
+<span class="h3_num">2.30.2</span><tt>true_type</tt>
 </h3>
 
 
@@ -7219,7 +7679,7 @@ using true_type = integral_constant&lt;bool, true&gt;;
 
 
 <h3 id="false_type">
-<span class="h3_num">2.28.3</span><tt>false_type</tt>
+<span class="h3_num">2.30.3</span><tt>false_type</tt>
 </h3>
 
 
@@ -7233,7 +7693,7 @@ using false_type = integral_constant&lt;bool, false&gt;;
 
 
 <h3 id="is_same">
-<span class="h3_num">2.28.4</span><tt>is_same</tt>
+<span class="h3_num">2.30.4</span><tt>is_same</tt>
 </h3>
 
 
@@ -7248,7 +7708,7 @@ type.</p>
 
 
 <h3 id="is_const">
-<span class="h3_num">2.28.5</span><tt>is_const</tt>
+<span class="h3_num">2.30.5</span><tt>is_const</tt>
 </h3>
 
 
@@ -7262,7 +7722,7 @@ template&lt;class T&gt; struct is_const;
 
 
 <h3 id="is_signed_integer">
-<span class="h3_num">2.28.6</span><tt>is_signed_integer</tt>
+<span class="h3_num">2.30.6</span><tt>is_signed_integer</tt>
 </h3>
 
 
@@ -7277,7 +7737,7 @@ types" (see the Standard).</p>
 
 
 <h3 id="is_unsigned_integer">
-<span class="h3_num">2.28.7</span><tt>is_unsigned_integer</tt>
+<span class="h3_num">2.30.7</span><tt>is_unsigned_integer</tt>
 </h3>
 
 
@@ -7292,7 +7752,7 @@ types" (see the Standard).</p>
 
 
 <h3 id="remove_const">
-<span class="h3_num">2.28.8</span><tt>remove_const</tt>
+<span class="h3_num">2.30.8</span><tt>remove_const</tt>
 </h3>
 
 
@@ -7308,7 +7768,7 @@ returns <tt>T</tt> if it doesn't have such qualifier.</p>
 
 
 <h3 id="remove_volatile">
-<span class="h3_num">2.28.9</span><tt>remove_volatile</tt>
+<span class="h3_num">2.30.9</span><tt>remove_volatile</tt>
 </h3>
 
 
@@ -7324,7 +7784,7 @@ returns <tt>T</tt> if it doesn't have such qualifier.</p>
 
 
 <h3 id="remove_cv">
-<span class="h3_num">2.28.10</span><tt>remove_cv</tt>
+<span class="h3_num">2.30.10</span><tt>remove_cv</tt>
 </h3>
 
 
@@ -7340,7 +7800,7 @@ template&lt;class T&gt; using remove_cv_t = typename remove_cv&lt;T&gt;::type;
 
 
 <h3 id="remove_reference">
-<span class="h3_num">2.28.11</span><tt>remove_reference</tt>
+<span class="h3_num">2.30.11</span><tt>remove_reference</tt>
 </h3>
 
 
@@ -7356,7 +7816,7 @@ template&lt;class T&gt; using remove_reference_t = typename remove_reference&lt;
 
 
 <h3 id="remove_cvref">
-<span class="h3_num">2.28.12</span><tt>remove_cvref</tt>
+<span class="h3_num">2.30.12</span><tt>remove_cvref</tt>
 </h3>
 
 
@@ -7372,7 +7832,7 @@ to <tt>T</tt>.</p>
 
 
 <h3 id="remove_pointer">
-<span class="h3_num">2.28.13</span><tt>remove_pointer</tt>
+<span class="h3_num">2.30.13</span><tt>remove_pointer</tt>
 </h3>
 
 
@@ -7388,7 +7848,7 @@ template&lt;class T&gt; using remove_pointer_t = typename remove_pointer&lt;T&gt
 
 
 <h3 id="enable_if">
-<span class="h3_num">2.28.14</span><tt>enable_if</tt>, <tt>disable_if</tt>
+<span class="h3_num">2.30.14</span><tt>enable_if</tt>, <tt>disable_if</tt>
 </h3>
 
 
@@ -7411,7 +7871,7 @@ struct disable_if : enable_if&lt;!Test, T&gt; {};
 
 
 <h3 id="index_sequence">
-<span class="h3_num">2.28.15</span><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="sign">[C++11]</span>
+<span class="h3_num">2.30.15</span><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="sign">[C++11]</span>
 </h3>
 
 
@@ -7438,7 +7898,7 @@ of <tt>std::integer_sequence</tt>.</div>
 
 
 <h2 id="unicode.h">
-<span class="h2_num">2.29</span><tt>__vic/unicode.h</tt>
+<span class="h2_num">2.31</span><tt>__vic/unicode.h</tt>
 </h2>
 
 
@@ -7446,7 +7906,7 @@ of <tt>std::integer_sequence</tt>.</div>
 
 
 <h3 id="unicode_t">
-<span class="h3_num">2.29.1</span><tt>unicode_t</tt>
+<span class="h3_num">2.31.1</span><tt>unicode_t</tt>
 </h3>
 
 
@@ -7463,7 +7923,7 @@ using unicode_t = uint_least32_t; // C++98
 
 
 <h3 id="utf_transcode">
-<span class="h3_num">2.29.2</span><tt>utf_transcode()</tt>
+<span class="h3_num">2.31.2</span><tt>utf_transcode()</tt>
 </h3>
 
 
@@ -7480,7 +7940,7 @@ using <tt>w.write()</tt>.</p>
 
 
 <h3 id="unicode_code_point_constants">
-<span class="h3_num">2.29.3</span><tt>Code point constants</tt>
+<span class="h3_num">2.31.3</span><tt>Code point constants</tt>
 </h3>
 
 
@@ -7498,13 +7958,13 @@ constexpr unicode_t unicode_replacement_char = 0xFFFD;
 
 
 <h2 id="utf8.status.h">
-<span class="h2_num">2.30</span><tt>__vic/utf8/status.h</tt>
+<span class="h2_num">2.32</span><tt>__vic/utf8/status.h</tt>
 </h2>
 
 
 
 <h3 id="utf8--status">
-<span class="h3_num">2.30.1</span><tt>utf8::status</tt>
+<span class="h3_num">2.32.1</span><tt>utf8::status</tt>
 </h3>
 
 
@@ -7543,7 +8003,7 @@ using utf8::status_t = utf8::status; // for C++98
 
 
 <h3 id="utf8--is_error">
-<span class="h3_num">2.30.2</span><tt>utf8::is_error()</tt>
+<span class="h3_num">2.32.2</span><tt>utf8::is_error()</tt>
 </h3>
 
 
@@ -7558,7 +8018,7 @@ constexpr bool utf8::is_error(utf8::status s);
 
 
 <h3 id="utf8--throw_if_error">
-<span class="h3_num">2.30.3</span><tt>utf8::throw_if_error()</tt>
+<span class="h3_num">2.32.3</span><tt>utf8::throw_if_error()</tt>
 </h3>
 
 
@@ -7576,7 +8036,7 @@ or <tt>false</tt> for <tt>utf8::status::eof</tt>.</p>
 
 
 <h2 id="utf8.exceptions.h">
-<span class="h2_num">2.31</span><tt>__vic/utf8/exceptions.h</tt>
+<span class="h2_num">2.33</span><tt>__vic/utf8/exceptions.h</tt>
 </h2>
 
 
@@ -7600,12 +8060,12 @@ status codes.</p>
 
 
 <h2 id="utf8.reader.h">
-<span class="h2_num">2.32</span><tt>__vic/utf8/reader.h</tt>
+<span class="h2_num">2.34</span><tt>__vic/utf8/reader.h</tt>
 </h2>
 
 
 <h3 id="utf8--reader">
-<span class="h3_num">2.32.1</span><tt>utf8::reader</tt>
+<span class="h3_num">2.34.1</span><tt>utf8::reader</tt>
 </h3>
 
 
@@ -7740,12 +8200,12 @@ void print_utf8_code_points(const string &amp;s)
 
 
 <h2 id="utf8.writer.h">
-<span class="h2_num">2.33</span><tt>__vic/utf8/writer.h</tt>
+<span class="h2_num">2.35</span><tt>__vic/utf8/writer.h</tt>
 </h2>
 
 
 <h3 id="utf8--writer">
-<span class="h3_num">2.33.1</span><tt>utf8::writer</tt>
+<span class="h3_num">2.35.1</span><tt>utf8::writer</tt>
 </h3>
 
 
@@ -7862,12 +8322,12 @@ std::string encode_utf8(const std::vector&lt;__vic::unicode_t&gt; &amp;code_poin
 
 
 <h2 id="utf16.defs.h">
-<span class="h2_num">2.34</span><tt>__vic/utf16/defs.h</tt>
+<span class="h2_num">2.36</span><tt>__vic/utf16/defs.h</tt>
 </h2>
 
 
 <h3 id="utf16--code_unit_t">
-<span class="h3_num">2.34.1</span><tt>utf16::code_unit_t</tt>
+<span class="h3_num">2.36.1</span><tt>utf16::code_unit_t</tt>
 </h3>
 
 
@@ -7889,13 +8349,13 @@ type.</p>
 
 
 <h2 id="utf16.status.h">
-<span class="h2_num">2.35</span><tt>__vic/utf16/status.h</tt>
+<span class="h2_num">2.37</span><tt>__vic/utf16/status.h</tt>
 </h2>
 
 
 
 <h3 id="utf16--status">
-<span class="h3_num">2.35.1</span><tt>utf16::status</tt>
+<span class="h3_num">2.37.1</span><tt>utf16::status</tt>
 </h3>
 
 
@@ -7932,7 +8392,7 @@ using utf16::status_t = utf16::status; // for C++98
 
 
 <h3 id="utf16--is_error">
-<span class="h3_num">2.35.2</span><tt>utf16::is_error()</tt>
+<span class="h3_num">2.37.2</span><tt>utf16::is_error()</tt>
 </h3>
 
 
@@ -7947,7 +8407,7 @@ constexpr bool utf16::is_error(utf16::status s);
 
 
 <h3 id="utf16--throw_if_error">
-<span class="h3_num">2.35.3</span><tt>utf16::throw_if_error()</tt>
+<span class="h3_num">2.37.3</span><tt>utf16::throw_if_error()</tt>
 </h3>
 
 
@@ -7965,7 +8425,7 @@ or <tt>false</tt> for <tt>utf16::status::eof</tt>.</p>
 
 
 <h2 id="utf16.exceptions.h">
-<span class="h2_num">2.36</span><tt>__vic/utf16/exceptions.h</tt>
+<span class="h2_num">2.38</span><tt>__vic/utf16/exceptions.h</tt>
 </h2>
 
 
@@ -7988,12 +8448,12 @@ status codes.</p>
 
 
 <h2 id="utf16.reader.h">
-<span class="h2_num">2.37</span><tt>__vic/utf16/reader.h</tt>
+<span class="h2_num">2.39</span><tt>__vic/utf16/reader.h</tt>
 </h2>
 
 
 <h3 id="utf16--reader">
-<span class="h3_num">2.37.1</span><tt>utf16::reader</tt>
+<span class="h3_num">2.39.1</span><tt>utf16::reader</tt>
 </h3>
 
 
@@ -8150,12 +8610,12 @@ void print_utf16_code_points(const std::u16string &amp;s)
 
 
 <h2 id="utf16.writer.h">
-<span class="h2_num">2.38</span><tt>__vic/utf16/writer.h</tt>
+<span class="h2_num">2.40</span><tt>__vic/utf16/writer.h</tt>
 </h2>
 
 
 <h3 id="utf16--writer">
-<span class="h3_num">2.38.1</span><tt>utf16::writer</tt>
+<span class="h3_num">2.40.1</span><tt>utf16::writer</tt>
 </h3>
 
 
@@ -8262,12 +8722,12 @@ std::u16string encode_utf16(const std::vector&lt;__vic::unicode_t&gt; &amp;code_
 
 
 <h2 id="waitable_event.h">
-<span class="h2_num">2.39</span><tt>__vic/waitable_event.h</tt>
+<span class="h2_num">2.41</span><tt>__vic/waitable_event.h</tt>
 </h2>
 
 
 <h3 id="waitable_event">
-<span class="h3_num">2.39.1</span><tt>waitable_event</tt>
+<span class="h3_num">2.41.1</span><tt>waitable_event</tt>
 </h3>
 
 
@@ -8384,13 +8844,13 @@ bool wait_until(const std::chrono::time_point&lt;Clock,Duration&gt; &amp;t) <spa
 
 
 <h2 id="writers">
-<span class="h2_num">2.40</span><tt>__vic/writers/</tt>
+<span class="h2_num">2.42</span><tt>__vic/writers/</tt>
 </h2>
 
 
 
 <h3 id="writer-concept">
-<span class="h3_num">2.40.1</span><tt>Writer</tt> concept</h3>
+<span class="h3_num">2.42.1</span><tt>Writer</tt> concept</h3>
 
 
 <pre class="code">
@@ -8433,7 +8893,7 @@ concept.</p>
 
 
 <h3 id="null_writer">
-<span class="h3_num">2.40.2</span><tt>null_writer</tt>
+<span class="h3_num">2.42.2</span><tt>null_writer</tt>
 </h3>
 
 
@@ -8456,7 +8916,7 @@ null_writer make_null_writer();
 
 
 <h3 id="push_back_writer">
-<span class="h3_num">2.40.3</span><tt>push_back_writer</tt>
+<span class="h3_num">2.42.3</span><tt>push_back_writer</tt>
 </h3>
 
 
@@ -8485,7 +8945,7 @@ Can be created using constructor or one of <tt>make_...</tt> functions.</p>
 
 
 <h3 id="iterator_writer">
-<span class="h3_num">2.40.4</span><tt>iterator_writer</tt>
+<span class="h3_num">2.42.4</span><tt>iterator_writer</tt>
 </h3>
 
 
@@ -8515,7 +8975,7 @@ iterator_writer&lt;OutputIterator,T&gt; make_iterator_writer_for(OutputIterator 
 
 
 <h3 id="string_writer">
-<span class="h3_num">2.40.5</span><tt>string_writer</tt>
+<span class="h3_num">2.42.5</span><tt>string_writer</tt>
 </h3>
 
 
@@ -8548,7 +9008,7 @@ or <tt>make_...</tt> function.</p>
 
 
 <h3 id="cstream_writer">
-<span class="h3_num">2.40.6</span><tt>cstream_writer</tt>
+<span class="h3_num">2.42.6</span><tt>cstream_writer</tt>
 </h3>
 
 
@@ -8574,12 +9034,12 @@ constructor or <tt>make_...</tt> function.</p>
 
 
 <h2 id="posix.cond_variable.h">
-<span class="h2_num">2.41</span><tt>__vic/posix/cond_variable.h</tt>
+<span class="h2_num">2.43</span><tt>__vic/posix/cond_variable.h</tt>
 </h2>
 
 
 <h3 id="posix--cond_variable">
-<span class="h3_num">2.41.1</span><tt>posix::cond_variable</tt>
+<span class="h3_num">2.43.1</span><tt>posix::cond_variable</tt>
 </h3>
 
 
@@ -8680,13 +9140,137 @@ expired.</p>
 
 
 
+<h2 id="posix.daemon_control.h">
+<span class="h2_num">2.44</span><tt>__vic/posix/daemon_control.h</tt>
+</h2>
+
+
+<h3 id="posix--daemon_control">
+<span class="h3_num">2.44.1</span><tt>posix::daemon_control</tt>
+</h3>
+
+
+<pre class="code">
+class posix::daemon_control : private non_copyable
+{
+public:
+    class already_running; // public std::exception
+
+    explicit daemon_control(std::string pid_file_name);
+    ~daemon_control();
+
+    void daemonize();
+
+    static int control(const char *cmd, const char *pid_file_name);
+    static void stop_and_wait(const char *pid_file_name);
+};
+</pre>
+
+<p>A class that implements start, stop, restart, status check and protection
+against multiple daemon-process instances launch. It is recommended to
+private-inherit this class by some sort of <tt>application</tt> class in
+your application.</p>
+
+<div>
+<u><b>Note</b></u>: PID-file is used to find the process instance. It is created in CWD
+during process launch. If one removes this file all functions will assume
+that the process is not running despite the actual status! Therefore only
+read access to the PID-file by another tools is safe. It can be removed
+only if it is known for sure that the process is not running at the moment.
+</div>
+
+<div class="section">Class members</div>
+
+<div>
+<pre class="prototype">class already_running</pre>
+<blockquote>
+
+<p>An exception thrown by the constructor if the daemon already running at
+the moment.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">explicit daemon_control(std::string pid_file_name)</pre>
+<blockquote>
+
+<p>Starts the application and creates PID-file named <tt>pid_file_name</tt>
+in CWD. <tt>already_running</tt> is thrown if the process is already running.
+</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">~daemon_control()</pre>
+<blockquote>
+
+<p>Deletes PID-file created by the constructor.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void daemonize()</pre>
+<blockquote>
+
+<p>Makes the calling process a daemon and updates PID in the PID-file.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">static int control(const char *cmd, const char *pid_file_name)</pre>
+<blockquote>
+
+<p>Executes one of the commands specified by the first parameter and returns
+a status:</p>
+<ul>
+<li>
+        <tt>stop</tt> - send <tt>SIGTERM</tt> to the running process and
+        return a success/unsuccess status (<tt>0</tt>/<tt>1</tt>),
+    </li>
+<li>
+        <tt>kill</tt> - kill the process with <tt>SIGKILL</tt> signal and
+        return a success/unsuccess status (<tt>0</tt>/<tt>1</tt>),
+    </li>
+<li>
+        <tt>status</tt> - check the current process status:
+        <ul>
+<li>print "Running" to <tt>stdout</tt> and return <tt>0</tt>
+                if the process is running,</li>
+<li>print "Not running" and return <tt>1</tt> if not,</li>
+<li>print error message to <tt>stderr</tt> and return status
+                <tt>&gt;1</tt> on failure.</li>
+</ul>
+    </li>
+</ul>
+<p>If any other command is passed exception is thrown. The second parameter
+is the PID-file name passed to the constructor on start.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">static void stop_and_wait(const char *pid_file_name)</pre>
+<blockquote>
+
+<p>Sends <tt>SIGTERM</tt> and waits while process is running. If the process
+is not running at the moment just returns. This function is used to restart
+the application, after the call new instance of <tt>daemon_control</tt> can be
+created and the application can start its work.</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+
 <h2 id="posix.dir_entries.h">
-<span class="h2_num">2.42</span><tt>__vic/posix/dir_entries.h</tt>
+<span class="h2_num">2.45</span><tt>__vic/posix/dir_entries.h</tt>
 </h2>
 
 
 <h3 id="posix--dir_entries">
-<span class="h3_num">2.42.1</span><tt>posix::dir_entries</tt>
+<span class="h3_num">2.45.1</span><tt>posix::dir_entries</tt>
 </h3>
 
 
@@ -8703,7 +9287,7 @@ public:
     dir_entries &amp;operator=(dir_entries &amp;&amp;o) noexcept;
     // END C++11 only
 
-    void reopen(const char *dir);
+    bool reopen(const char *dir);
     void close();
     bool is_open() const;
 
@@ -8736,10 +9320,9 @@ set.</p>
 <pre class="prototype">explicit dir_entries(const char *dir)</pre>
 <blockquote>
 
-<p>Opens the directory <tt>dir</tt> for listing. Throws on errors.</p>
-<div>
-<u>Postcondition</u>: <tt>is_open() == true</tt>
-</div>
+<p>Tries to open <tt>dir</tt> directory for listing. The result should be
+checked using subsequent <tt>is_open()</tt> call!. On error <tt>errno</tt> is
+set appropriately.</p>
 </blockquote>
 </div>
 
@@ -8762,13 +9345,11 @@ set.</p>
 </div>
 
 <div>
-<pre class="prototype">void reopen(const char *dir)</pre>
+<pre class="prototype">bool reopen(const char *dir)</pre>
 <blockquote>
 
-<p>Initializes new listing. Calls <tt>close()</tt> before as needed.</p>
-<div>
-<u>Postcondition</u>: <tt>is_open() == true</tt>
-</div>
+<p>Initializes new listing. Calls <tt>close()</tt> before as needed. Returns
+<tt>true</tt> on success. On error <tt>errno</tt> is set appropriately.</p>
 </blockquote>
 </div>
 
@@ -8836,6 +9417,8 @@ to the <tt>stat()</tt> call!</p>
 <pre class="code">
 // Prints the listing of the current directory
 __vic::posix::dir_entries list(".");
+if(!list.is_open())
+    throw __vic::libc_error("Can't open directory for listing");
 while(const char *entry = list.next())
     std::cout &lt;&lt; entry &lt;&lt; '\n';
 </pre>
@@ -8846,12 +9429,12 @@ while(const char *entry = list.next())
 
 
 <h2 id="posix.dir_files.h">
-<span class="h2_num">2.43</span><tt>__vic/posix/dir_files.h</tt>
+<span class="h2_num">2.46</span><tt>__vic/posix/dir_files.h</tt>
 </h2>
 
 
 <h3 id="posix--dir_files">
-<span class="h3_num">2.43.1</span><tt>posix::dir_files</tt>
+<span class="h3_num">2.46.1</span><tt>posix::dir_files</tt>
 </h3>
 
 
@@ -8868,7 +9451,7 @@ public:
     dir_files &amp;operator=(dir_files &amp;&amp;o);
     // END C++11 only
 
-    void reopen(const char *dir, const char *pattern = nullptr);
+    bool reopen(const char *dir, const char *pattern = nullptr);
     void close();
     bool is_open() const;
 
@@ -8885,6 +9468,8 @@ mask using <tt>pattern</tt> parameter.</p>
 <pre class="code">
 // Prints the listing of the cpp-files in the current directory
 __vic::posix::dir_files files(".", "*.cpp");
+if(!files.is_open())
+    throw __vic::libc_error("Can't open directory for listing");
 while(const char *file = files.next())
     std::cout &lt;&lt; file &lt;&lt; '\n';
 </pre>
@@ -8895,14 +9480,14 @@ while(const char *file = files.next())
 
 
 <h2 id="posix.error.h">
-<span class="h2_num">2.44</span><tt>__vic/posix/error.h</tt>
+<span class="h2_num">2.47</span><tt>__vic/posix/error.h</tt>
 </h2>
 
 
 <p>POSIX-specific error handling tools.</p>
 
 <h3 id="posix--is_EAGAIN">
-<span class="h3_num">2.44.1</span><tt>posix::is_EAGAIN()</tt>, <tt>posix::is_ENOENT()</tt>
+<span class="h3_num">2.47.1</span><tt>posix::is_EAGAIN()</tt>, <tt>posix::is_ENOENT()</tt>
 </h3>
 
 
@@ -8946,12 +9531,12 @@ switch(errno)
 
 
 <h2 id="posix.file.h">
-<span class="h2_num">2.45</span><tt>__vic/posix/file.h</tt>
+<span class="h2_num">2.48</span><tt>__vic/posix/file.h</tt>
 </h2>
 
 
 <h3 id="posix--file">
-<span class="h3_num">2.45.1</span><tt>posix::file</tt>
+<span class="h3_num">2.48.1</span><tt>posix::file</tt>
 </h3>
 
 
@@ -9209,12 +9794,12 @@ file.close();
 
 
 <h2 id="posix.file_stat.h">
-<span class="h2_num">2.46</span><tt>__vic/posix/file_stat.h</tt>
+<span class="h2_num">2.49</span><tt>__vic/posix/file_stat.h</tt>
 </h2>
 
 
 <h3 id="posix--file_stat">
-<span class="h3_num">2.46.1</span><tt>posix::file_stat</tt>
+<span class="h3_num">2.49.1</span><tt>posix::file_stat</tt>
 </h3>
 
 
@@ -9440,7 +10025,7 @@ file is not found instead of throwing. Throws on other errors.</p>
 
 
 <h2 id="posix.fs.h">
-<span class="h2_num">2.47</span><tt>__vic/posix/fs.h</tt>
+<span class="h2_num">2.50</span><tt>__vic/posix/fs.h</tt>
 </h2>
 
 
@@ -9448,7 +10033,7 @@ file is not found instead of throwing. Throws on other errors.</p>
 
 
 <h3 id="posix--basename">
-<span class="h3_num">2.47.1</span><tt>posix::basename()</tt>, <tt>posix::dirname()</tt>
+<span class="h3_num">2.50.1</span><tt>posix::basename()</tt>, <tt>posix::dirname()</tt>
 </h3>
 
 
@@ -9493,7 +10078,7 @@ std::cout &lt;&lt; __vic::posix::basename("") &lt;&lt; '\n';          // ""
 
 
 <h3 id="posix--add_trailing_slash">
-<span class="h3_num">2.47.2</span><tt>posix::add_trailing_slash()</tt>,
+<span class="h3_num">2.50.2</span><tt>posix::add_trailing_slash()</tt>,
     <tt>posix::with_trailing_slash()</tt>
 </h3>
 
@@ -9526,7 +10111,7 @@ create_file(path);
 
 
 <h2 id="posix.iov.h">
-<span class="h2_num">2.48</span><tt>__vic/posix/iov.h</tt>
+<span class="h2_num">2.51</span><tt>__vic/posix/iov.h</tt>
 </h2>
 
 
@@ -9534,7 +10119,7 @@ create_file(path);
 
 
 <h3 id="posix--ovectors">
-<span class="h3_num">2.48.1</span><tt>posix::ovectors</tt>
+<span class="h3_num">2.51.1</span><tt>posix::ovectors</tt>
 </h3>
 
 
@@ -9640,7 +10225,7 @@ __vic::posix::writev_all(1, v); // ::writev(1, v.ptr(), v.size());
 
 
 <h3 id="posix--total-iovec">
-<span class="h3_num">2.48.2</span><tt>posix::total(iovec[])</tt>
+<span class="h3_num">2.51.2</span><tt>posix::total(iovec[])</tt>
 </h3>
 
 
@@ -9659,7 +10244,7 @@ template&lt;unsigned vsize&gt; size_t total(const ::iovec (&amp;vec)[vsize]);
 
 
 <h3 id="posix--cut_prefix-iovec">
-<span class="h3_num">2.48.3</span><tt>posix::cut_prefix(iovec[])</tt>
+<span class="h3_num">2.51.3</span><tt>posix::cut_prefix(iovec[])</tt>
 </h3>
 
 
@@ -9679,7 +10264,7 @@ only part of data was written.</p>
 
 
 <h3 id="posix--writev_all">
-<span class="h3_num">2.48.4</span><tt>posix::writev_all()</tt>
+<span class="h3_num">2.51.4</span><tt>posix::writev_all()</tt>
 </h3>
 
 
@@ -9706,13 +10291,13 @@ interrupted by signals. Exceptions are thrown on errors.</p>
 
 
 <h2 id="posix.mutex.h">
-<span class="h2_num">2.49</span><tt>__vic/posix/mutex.h</tt>
+<span class="h2_num">2.52</span><tt>__vic/posix/mutex.h</tt>
 </h2>
 
 
 
 <h3 id="posix--mutex">
-<span class="h3_num">2.49.1</span><tt>posix::mutex</tt>
+<span class="h3_num">2.52.1</span><tt>posix::mutex</tt>
 </h3>
 
 
@@ -9804,7 +10389,7 @@ in case of error, but in general error detection is not guaranteed.</p>
 
 
 <h3 id="posix--mutex_lock">
-<span class="h3_num">2.49.2</span><tt>posix::mutex_lock</tt>
+<span class="h3_num">2.52.2</span><tt>posix::mutex_lock</tt>
 </h3>
 
 
@@ -9882,7 +10467,7 @@ void reentrant_function()
 
 // Usage of non-acquiring constructor
 __vic::posix::mutex mtx;
-if(mtx.try_lock()) // Try to lock the mutex
+if(mtx.try_lock()) // Try to acquire the mutex
 {
     // The mutex has been successfully acquired
     using __vic::posix::mutex_lock;
@@ -9903,8 +10488,96 @@ else
 
 
 
+<h2 id="posix.pidfile.h">
+<span class="h2_num">2.53</span><tt>__vic/posix/pidfile.h</tt>
+</h2>
+
+
+<h3 id="posix--pidfile">
+<span class="h3_num">2.53.1</span><tt>posix::pidfile</tt>
+</h3>
+
+
+<pre class="code">
+class posix::pidfile : private non_copyable
+{
+public:
+    class already_exists; // : public std::exception
+
+    explicit pidfile(std::string file_name);
+    ~pidfile();
+
+    void create();
+    void prepare_to_daemon();
+    void rewrite_pid();
+};
+</pre>
+
+<p>A class to operate PID-files, i.e. files contain a PID of a process
+(usually daemon-process). Used to stop the daemon and to protect against
+running multiple simultaneous daemon instances.</p>
+
+<div class="section">Class members</div>
+
+<div>
+<pre class="prototype">class already_exists</pre>
+<blockquote>
+
+<p>An exception. See <tt>create()</tt> description.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">explicit pidfile(std::string file_name)</pre>
+<blockquote>
+
+<p>Sets PID-file name.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">~pidfile()</pre>
+<blockquote>
+
+<p>Deletes PID-file.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void create()</pre>
+<blockquote>
+
+<p>Creates PID-file with a name specified in the constructor. Throws
+<tt>already_exists</tt> if such PID-file is already created by another
+process instance.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void prepare_to_daemon()</pre>
+<blockquote>
+
+<p>This function must be called before <tt>daemon()</tt> syscall.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void rewrite_pid()</pre>
+<blockquote>
+
+<p>Updates PID in the PID-file. PID is changed after <tt>daemon()</tt> syscall.
+</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+
 <h2 id="posix.process.h">
-<span class="h2_num">2.50</span><tt>__vic/posix/process.h</tt>
+<span class="h2_num">2.54</span><tt>__vic/posix/process.h</tt>
 </h2>
 
 
@@ -9912,7 +10585,7 @@ else
 
 
 <h3 id="posix--daemon">
-<span class="h3_num">2.50.1</span><tt>posix::daemon()</tt>
+<span class="h3_num">2.54.1</span><tt>posix::daemon()</tt>
 </h3>
 
 
@@ -9928,7 +10601,7 @@ throws on errors.</p>
 
 
 <h3 id="posix--ignore_signals">
-<span class="h3_num">2.50.2</span><tt>posix::ignore_signals()</tt>
+<span class="h3_num">2.54.2</span><tt>posix::ignore_signals()</tt>
 </h3>
 
 
@@ -9960,7 +10633,7 @@ __vic::posix::ignore_signals({SIGINT, SIGQUIT, SIGTERM});
 
 
 <h3 id="posix--process_alive">
-<span class="h3_num">2.50.3</span><tt>posix::process_alive()</tt>
+<span class="h3_num">2.54.3</span><tt>posix::process_alive()</tt>
 </h3>
 
 
@@ -9977,12 +10650,12 @@ zombie.</p>
 
 
 <h2 id="posix.sigset.h">
-<span class="h2_num">2.51</span><tt>__vic/posix/sigset.h</tt>
+<span class="h2_num">2.55</span><tt>__vic/posix/sigset.h</tt>
 </h2>
 
 
 <h3 id="posix--sigset">
-<span class="h3_num">2.51.1</span><tt>posix::sigset</tt>
+<span class="h3_num">2.55.1</span><tt>posix::sigset</tt>
 </h3>
 
 
@@ -9992,9 +10665,15 @@ class posix::sigset
 public:
     sigset() = default;
     sigset(const ::sigset_t &amp;set);
+    template&lt;size_t Size&gt; sigset(const int (&amp;sigs)[Size]);
     // BEGIN C++11 only
     sigset(std::initializer_list&lt;int&gt; sigs);
+    sigset &amp;operator=(std::initializer_list&lt;int&gt; sigs)
     // END C++11 only
+
+    sigset &amp;assign(const int *sigs, size_t n);
+    template&lt;size_t Size&gt;
+    sigset &amp;operator=(const int (&amp;sigs)[Size]);
 
     sigset &amp;add(int signo);
     sigset &amp;del(int signo);
@@ -10044,9 +10723,23 @@ defined as C++-operators and member-functions.</p>
 
 <div>
 <pre class="prototype">sigset(std::initializer_list&lt;int&gt; sigs) <span class="sign">[C++11]</span></pre>
+<pre class="prototype">template&lt;size_t Size&gt; sigset(const int (&amp;sigs)[Size])</pre>
 <blockquote>
 
+
 <p>Creates the set filled with signals from <tt>sigs</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">sigset &amp;operator=(std::initializer_list&lt;int&gt; sigs) <span class="sign">[C++11]</span></pre>
+<pre class="prototype">template&lt;size_t Size&gt; sigset &amp;operator=(const int (&amp;sigs)[Size])</pre>
+<pre class="prototype">sigset &amp;assign(const int *sigs, size_t n)</pre>
+<blockquote>
+
+
+
+<p>Calls <tt>clear()</tt> and fills the set with signals from <tt>sigs</tt>.</p>
 </blockquote>
 </div>
 
@@ -10142,7 +10835,7 @@ defined as C++-operators and member-functions.</p>
 <div class="section">Example</div>
 <pre class="code">
 using __vic::posix::sigset;
-using namespace __vic::posix::this_thread;
+namespace this_thread = __vic::posix::this_thread;
 
 // Waiting for all but SIGTERM and SIGQUIT
 int sig = this_thread::sigwait( sigset::full() &gt;&gt; SIGTERM &gt;&gt; SIGQUIT );
@@ -10159,7 +10852,7 @@ this_thread::sigwait( sigset{ SIGINT } );
 
 
 <h2 id="posix.thread.h">
-<span class="h2_num">2.52</span><tt>__vic/posix/thread.h</tt>
+<span class="h2_num">2.56</span><tt>__vic/posix/thread.h</tt>
 </h2>
 
 
@@ -10167,7 +10860,22 @@ this_thread::sigwait( sigset{ SIGINT } );
 
 
 <h3 id="posix--this_thread">
-<span class="h3_num">2.52.1</span><tt>posix::this_thread</tt>
+<span class="h3_num">2.56.1</span><tt>posix::this_thread</tt>
+</h3>
+
+
+<pre class="code">
+namespace posix::this_thread { ... }
+</pre>
+
+<p>Set of the functions to control the current thread.</p>
+
+
+
+
+<h3 id="posix--this_thread--sigwait">
+<span class="h3_num">2.56.2</span><tt>posix::this_thread::sigwait()</tt>,
+       <tt>posix::this_thread::sigwait_at_most()</tt>
 </h3>
 
 
@@ -10175,8 +10883,68 @@ this_thread::sigwait( sigset{ SIGINT } );
 namespace posix::this_thread
 {
     int sigwait(const ::sigset_t &amp;set);
+
+    int sigwait_at_most(const ::sigset_t &amp;set, const ::timespec &amp;timeout);
+}
+</pre>
+
+<p><tt>sigwait()</tt> suspends the current thread until the signal from
+<tt>set</tt> is received. Received signal is returned as a result.</p>
+
+<p><tt>sigwait_at_most()</tt> is the same but waits no longer than the specified
+timeout. Returns <tt>0</tt> on timeout or when interrupted by signal other than
+one of those in set.</p>
+
+
+
+
+<h3 id="posix--this_thread--sigwaitinfo">
+<span class="h3_num">2.56.3</span><tt>posix::this_thread::sigwaitinfo()</tt>,
+       <tt>posix::this_thread::sigwaitinfo_at_most()</tt>
+</h3>
+
+
+<pre class="code">
+namespace posix::this_thread
+{
     ::siginfo_t sigwaitinfo(const ::sigset_t &amp;set);
 
+    bool sigwaitinfo_at_most(const ::sigset_t &amp;set,
+        const ::timespec &amp;timeout, ::siginfo_t &amp;res);
+}
+</pre>
+
+<p><tt>sigwaitinfo()</tt> is a counterpart of <tt>sigwait()</tt> but returns
+an additional information about the received signal. The signal is returned in
+<tt>si_signo</tt> field.</p>
+<div>
+<u><b>Note</b></u>: The function is not interrupted by signal handlers as opposed to the
+system call of the same name.</div>
+
+<p><tt>sigwaitinfo_at_most()</tt> is the same but waits no longer than the
+specified timeout. Returns <tt>false</tt> on timeout or when interrupted by
+signal other than one of those in set. If <tt>true</tt> is returned <tt>res</tt>
+contains filled <tt>siginfo_t</tt>.</p>
+
+<div>
+<u><b>Note</b></u>: <tt>::sigaction()</tt> with <tt>sa_flags</tt> containing
+<tt>SA_SIGINFO</tt> has to be called for each signal from <tt>set</tt> before
+usage of any of these functions! Otherwise the returned <tt>siginfo_t</tt>
+value will contain garbage!</div>
+
+
+
+
+<h3 id="posix--this_thread--block_signals">
+<span class="h3_num">2.56.4</span><tt>posix::this_thread::block_signals()</tt>,
+       <tt>posix::this_thread::unblock_signals()</tt>,
+       <tt>posix::this_thread::set_sigmask()</tt>
+</h3>
+
+
+<pre class="code">
+namespace posix::this_thread
+{
     void block_signals(const ::sigset_t &amp;mask,
                                 ::sigset_t *oldmask = nullptr);
     void unblock_signals(const ::sigset_t &amp;mask,
@@ -10185,58 +10953,14 @@ namespace posix::this_thread
 }
 </pre>
 
-<p>Set of the functions to control the current thread.</p>
+<p><tt>block_signals()</tt> adds signals from the set to the blocked ones in
+the calling thread.</p>
 
-<div>
-<pre class="prototype">int sigwait(const ::sigset_t &amp;set)</pre>
-<blockquote>
+<p><tt>unblock_signals()</tt> removes the signals from the set from the blocked
+ones in the calling thread.</p>
 
-<p>Suspends the current thread until the signal from <tt>set</tt> is received.
-Received signal is returned as a result.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">::siginfo_t sigwaitinfo(const ::sigset_t &amp;set)</pre>
-<blockquote>
-
-<p>Counterpart of <tt>sigwait()</tt> but returns additional information about
-the received signal. The signal is returned in <tt>si_signo</tt> field.</p>
-<div>
-<u>Note</u>: The function is not interrupted by signal handlers as opposed to the
-system call of the same name.</div>
-<div>
-<u>Note</u>: <tt>::sigaction()</tt> with <tt>sa_flags</tt> containing
-<tt>SA_SIGINFO</tt> has to be called for each signal from <tt>set</tt> before
-usage! Otherwise the returned value will contain garbage!</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void block_signals(const ::sigset_t &amp;mask, ::sigset_t *oldmask = nullptr)</pre>
-<blockquote>
-
-<p>Adds the signals from the set to the blocked ones in the calling thread.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void unblock_signals(const ::sigset_t &amp;mask, ::sigset_t *oldmask = nullptr)</pre>
-<blockquote>
-
-<p>Removes the signals from the set from the blocked ones in the calling
-thread.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void set_sigmask(const ::sigset_t &amp;mask, ::sigset_t *oldmask = nullptr)</pre>
-<blockquote>
-
-<p>Sets the mask of blocked signals for the calling thread. All signals from
-the set are blocked, others - aren't.</p>
-</blockquote>
-</div>
+<p><tt>set_sigmask()</tt> sets the mask of blocked signals for the calling
+thread. All signals from the set are blocked, others - aren't.</p>
 
 
 
@@ -10244,7 +10968,7 @@ the set are blocked, others - aren't.</p>
 
 
 <h2 id="posix.time.h">
-<span class="h2_num">2.53</span><tt>__vic/posix/time.h</tt>
+<span class="h2_num">2.57</span><tt>__vic/posix/time.h</tt>
 </h2>
 
 
@@ -10252,7 +10976,7 @@ the set are blocked, others - aren't.</p>
 
 
 <h3 id="posix--time_spec">
-<span class="h3_num">2.53.1</span><tt>posix::time_spec</tt>
+<span class="h3_num">2.57.1</span><tt>posix::time_spec</tt>
 </h3>
 
 
@@ -10428,7 +11152,7 @@ __vic::posix::time_spec t(5, __vic::posix::time_spec::sec);
 
 
 <h3 id="posix--nanoseconds_since_epoch">
-<span class="h3_num">2.53.2</span><tt>posix::nanoseconds_since_epoch()</tt>
+<span class="h3_num">2.57.2</span><tt>posix::nanoseconds_since_epoch()</tt>
 </h3>
 
 
@@ -10444,7 +11168,7 @@ result when available. The actual precision depends on the used platform.</p>
 
 
 <h3 id="posix--realtime_clock">
-<span class="h3_num">2.53.3</span><tt>posix::realtime_clock</tt>, <tt>posix::monotonic_clock</tt>
+<span class="h3_num">2.57.3</span><tt>posix::realtime_clock</tt>, <tt>posix::monotonic_clock</tt>
 </h3>
 
 

@@ -245,10 +245,18 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.4.8</td>
-<td style="padding-left:4ex"><a href="#base16--decode"><tt>base16::decode()</tt></a></td>
+<td style="padding-left:4ex"><a href="#base16--encode_byte_lower"><tt>base16::encode_byte_lower()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.4.9</td>
+<td style="padding-left:4ex"><a href="#base16--encode_byte_upper"><tt>base16::encode_byte_upper()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.4.10</td>
+<td style="padding-left:4ex"><a href="#base16--decode"><tt>base16::decode()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.4.11</td>
 <td style="padding-left:4ex"><a href="#base16--try_decode"><tt>base16::try_decode()</tt></a></td>
 </tr>
 <tr>
@@ -1219,7 +1227,7 @@ $ g++ -std=c++14 prog.cpp -l__vic14
 </pre>
 
 <p>Библиотека может быть собрана с использованием одного из стандартов ISO C++:
-C++98, C++11, C++14 или C++17. Суффикс стандарта используется в качестве
+C++98, C++11, C++14, C++17 или C++20. Суффикс стандарта используется в качестве
 суффикса файла библиотеки (архива).</p>
 
 <p>Некоторые компоненты библиотеки требуют какую-то минимальную версию
@@ -1465,6 +1473,11 @@ constexpr bool isupper(char c);
 constexpr bool isalpha(char c);
 constexpr bool isalnum(char c);
 constexpr bool isspace(char c);
+constexpr bool isblank(char c);
+constexpr bool isprint(char c);
+constexpr bool isgraph(char c);
+constexpr bool ispunct(char c);
+constexpr bool iscntrl(char c);
 constexpr bool isascii(char c);
 
 }
@@ -1840,8 +1853,42 @@ void base16::encode_lower(ByteReader reader, CharWriter writer);
 
 
 
+<h3 id="base16--encode_byte_lower">
+<span class="h3_num">2.4.8</span><tt>base16::encode_byte_lower()</tt>
+</h3>
+
+
+<pre class="code">
+// Byte -&gt; Text
+template&lt;class CharWriter&gt;
+void base16::encode_byte_lower(unsigned char byte, CharWriter writer);
+</pre>
+
+<p>То же самое, что <a href="#base16--encode_lower"><tt>base16::encode_lower()</tt></a>, но кодирует
+единственный байт.</p>
+
+
+
+
+<h3 id="base16--encode_byte_upper">
+<span class="h3_num">2.4.9</span><tt>base16::encode_byte_upper()</tt>
+</h3>
+
+
+<pre class="code">
+// Byte -&gt; Text
+template&lt;class CharWriter&gt;
+void base16::encode_byte_upper(unsigned char byte, CharWriter writer);
+</pre>
+
+<p>То же самое, что <a href="#base16--encode_upper"><tt>base16::encode_upper()</tt></a>, но кодирует
+единственный байт.</p>
+
+
+
+
 <h3 id="base16--decode">
-<span class="h3_num">2.4.8</span><tt>base16::decode()</tt>
+<span class="h3_num">2.4.10</span><tt>base16::decode()</tt>
 </h3>
 
 
@@ -1883,7 +1930,7 @@ bytes decode_base16(const std::string &amp;s)
 
 
 <h3 id="base16--try_decode">
-<span class="h3_num">2.4.9</span><tt>base16::try_decode()</tt>
+<span class="h3_num">2.4.11</span><tt>base16::try_decode()</tt>
 </h3>
 
 
@@ -3178,7 +3225,7 @@ void swap(fixed_vector&lt;T&gt; &amp;o1, fixed_vector&lt;T&gt; &amp;o2) noexcept
 
 <p>При создании задаётся максимальная ёмкость контейнера. Изменить в будущем
 её можно, но только разрушив содержащиеся в нём объекты, то есть пересоздав
-контейнер.</p>
+контейнер (функция <tt>recreate()</tt>).</p>
 
 <p>Всегда следует использовать функцию <tt>emplace_back()</tt> для создания
 элементов, когда она доступна. Если же нет, то использовать небезопасный
@@ -3190,6 +3237,15 @@ void swap(fixed_vector&lt;T&gt; &amp;o1, fixed_vector&lt;T&gt; &amp;o2) noexcept
 объектов в куче с последующим хранением в контейнере указателей на них, даже
 если нам доступен <tt>std::unique_ptr</tt> для управления временем жизни
 объектов.</p>
+
+<p>Принципиальные отличия от <tt>std::vector</tt>:</p>
+<ol>
+<li>Элементы могут быть некопируемыми и неперемещаемыми
+        (<tt>std::vector</tt> требует как минимум noexcept-перемещаемости);</li>
+<li>Адреса элементов стабильны при добавлении новых;</li>
+<li>
+<tt>emplace_back()</tt> имеет предусловие (<tt>!full()</tt>).</li>
+</ol>
 
 <div class="section">Члены класса</div>
 
@@ -11431,7 +11487,7 @@ $ gmake
 $ gmake std=98
 </pre>
 
-<p>Доступные значения включают: 98, 11, 14 и 17.</p>
+<p>Доступные значения включают: 98, 11, 14, 17 и 20.</p>
 
 <p>Также можно вручную выбрать используемый компилятор:</p>
 <pre class="code">

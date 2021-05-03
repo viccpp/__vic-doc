@@ -9533,8 +9533,8 @@ public:
     ~dir_files();
 
     // BEGIN C++11
-    dir_files(dir_files &amp;&amp;o);
-    dir_files &amp;operator=(dir_files &amp;&amp;o);
+    dir_files(dir_files &amp;&amp;o) noexcept;
+    dir_files &amp;operator=(dir_files &amp;&amp;o) noexcept;
     // END C++11
 
     bool reopen(const char *dir, const char *pattern = nullptr);

@@ -3939,7 +3939,7 @@ public:
 
     void message(severity_t severity, const char *msg, size_t msg_len);
 #if __cpp_lib_string_view // C++17
-    void message(severity s, std::string_view msg);
+    void message(severity_t severity, std::string_view msg);
 
     void trace(std::string_view msg);
     void debug(std::string_view msg);
@@ -4236,9 +4236,9 @@ are formed.</p>
 
 <div>
 <pre class="prototype">void message(severity_t severity, const char *msg, size_t msg_len)</pre>
-<pre class="prototype">void message(severity sev, std::string_view msg) <span class="sign">[C++17]</span></pre>
-<pre class="prototype">void message(severity sev, const char *msg) <span class="sign">[until C++17]</span></pre>
-<pre class="prototype">void message(severity sev, const std::string &amp;msg) <span class="sign">[until C++17]</span></pre>
+<pre class="prototype">void message(severity_t severity, std::string_view msg) <span class="sign">[C++17]</span></pre>
+<pre class="prototype">void message(severity_t severity, const char *msg) <span class="sign">[until C++17]</span></pre>
+<pre class="prototype">void message(severity_t severity, const std::string &amp;msg) <span class="sign">[until C++17]</span></pre>
 <blockquote>
 
 
@@ -4489,7 +4489,7 @@ void store_unaligned(void *p, T v);
 <pre class="code">
 void *p = ...;
 // *static_cast&lt;int *&gt;(p) = 123; // potential bus error
-__vic::store_unaligned&lt;int&gt;(p, 123);
+__vic::store_unaligned(p, 123);
 </pre>
 
 
@@ -5025,13 +5025,11 @@ public:
     readonly_cstring &amp;assign(const char *begin, const char *end);
     readonly_cstring &amp;assign(const char *chars, size_t n);
 
-    char *reserve(size_t n);
-
-    int compare(const char *str) const;
     bool empty() const;
     const char *c_str() const;
     operator const char*() const;
 
+    char *reserve(size_t n);
     void swap(readonly_cstring &amp;str) noexcept;
 };
 
@@ -5154,26 +5152,6 @@ for such purposes.</p>
 </div>
 
 <div>
-<pre class="prototype">char *reserve(size_t n)</pre>
-<blockquote>
-
-<p>Allocates internal buffer for <tt>n</tt> chars and returns the pointer to
-it. Can be useful in conjunction with functions like <tt>std::sprintf()</tt>.</p>
-<div>
-<u>Note</u>: Try to avoid this unsafe function!</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">int compare(const char *str) const</pre>
-<blockquote>
-
-<p>Compares the string with <tt>str</tt>. Return values are similar to
-<tt>std::strcmp</tt>.</p>
-</blockquote>
-</div>
-
-<div>
 <pre class="prototype">bool empty() const</pre>
 <blockquote>
 
@@ -5188,6 +5166,17 @@ it. Can be useful in conjunction with functions like <tt>std::sprintf()</tt>.</p
 
 
 <p>Returns a pointer to the stored string. The pointer is never null.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">char *reserve(size_t n)</pre>
+<blockquote>
+
+<p>Allocates internal buffer for <tt>n</tt> chars and returns the pointer to
+it. Can be useful in conjunction with functions like <tt>std::sprintf()</tt>.</p>
+<div>
+<u>Note</u>: Try to avoid this unsafe function!</div>
 </blockquote>
 </div>
 
@@ -6139,6 +6128,9 @@ string_buffer operator+(const char *s1, const string_buffer &amp;s2);
 string_buffer operator+(const string_buffer &amp;s, char ch);
 string_buffer operator+(char ch, const string_buffer &amp;s);
 
+template&lt;class T&gt;
+string_buffer &amp;operator&lt;&lt;(string_buffer &amp;&amp;s, const T &amp;v); // C++11
+
 using msg = string_buffer;
 </pre>
 
@@ -6416,6 +6408,15 @@ C++98.</p>
 
 
 <p>Concatenation of strings and characters.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">template&lt;class T&gt;
+string_buffer &amp;operator&lt;&lt;(string_buffer &amp;&amp;s, const T &amp;v) <span class="sign">[C++11]</span></pre>
+<blockquote>
+
+<p>Calls <tt>operator&lt;&lt;(string_buffer &amp;s, const T &amp;v)</tt>.</p>
 </blockquote>
 </div>
 
@@ -7791,26 +7792,19 @@ used. Just create cpp-file with the following content in your project:</p>
 <pre class="code">
 #include&lt;__vic/throw_errno.h&gt;
 #include&lt;system_error&gt;
-#include&lt;cerrno&gt;
-
-namespace __vic {
 
 //----------------------------------------------------------------------------
 // Override library functions to throw std::system_error
 //----------------------------------------------------------------------------
-void throw_errno(const char *prompt, int err_no)
+void __vic::throw_errno(const char *prompt, int err_no)
 {
     throw std::system_error(err_no, std::system_category(), prompt);
 }
 //----------------------------------------------------------------------------
-void throw_errno(const char *prompt)
-{
-    throw_errno(prompt, errno);
-}
-//----------------------------------------------------------------------------
-
-} // namespace
 </pre>
+
+<p>It's enough to override only one functions because the second one just calls
+<tt>throw_errno(prompt, errno)</tt>.</p>
 
 <div class="section">Example</div>
 <pre class="code">
@@ -7844,7 +7838,7 @@ void to_text_append(int n, std::string &amp;str);
 void to_text_append(short n, std::string &amp;str);
 void to_text_append(signed char n, std::string &amp;str);
 
-void to_text_append(unsigned long long , std::string &amp;str);
+void to_text_append(unsigned long long n, std::string &amp;str);
 void to_text_append(unsigned long n, std::string &amp;str);
 void to_text_append(unsigned n, std::string &amp;str);
 void to_text_append(unsigned short n, std::string &amp;str);

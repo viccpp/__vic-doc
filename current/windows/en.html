@@ -853,34 +853,50 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.8</td>
-<td style="padding-left:4ex"><a href="#remove_const"><tt>remove_const</tt></a></td>
+<td style="padding-left:4ex"><a href="#conjunction"><tt>conjunction</tt> <span class="sign">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.9</td>
-<td style="padding-left:4ex"><a href="#remove_volatile"><tt>remove_volatile</tt></a></td>
+<td style="padding-left:4ex"><a href="#disjunction"><tt>disjunction</tt> <span class="sign">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.10</td>
-<td style="padding-left:4ex"><a href="#remove_cv"><tt>remove_cv</tt></a></td>
+<td style="padding-left:4ex"><a href="#negation"><tt>negation</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.11</td>
-<td style="padding-left:4ex"><a href="#remove_reference"><tt>remove_reference</tt></a></td>
+<td style="padding-left:4ex"><a href="#remove_const"><tt>remove_const</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.12</td>
-<td style="padding-left:4ex"><a href="#remove_cvref"><tt>remove_cvref</tt></a></td>
+<td style="padding-left:4ex"><a href="#remove_volatile"><tt>remove_volatile</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.13</td>
-<td style="padding-left:4ex"><a href="#remove_pointer"><tt>remove_pointer</tt></a></td>
+<td style="padding-left:4ex"><a href="#remove_cv"><tt>remove_cv</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.14</td>
-<td style="padding-left:4ex"><a href="#enable_if"><tt>enable_if</tt>, <tt>disable_if</tt></a></td>
+<td style="padding-left:4ex"><a href="#remove_reference"><tt>remove_reference</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.15</td>
+<td style="padding-left:4ex"><a href="#remove_cvref"><tt>remove_cvref</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.32.16</td>
+<td style="padding-left:4ex"><a href="#remove_pointer"><tt>remove_pointer</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.32.17</td>
+<td style="padding-left:4ex"><a href="#conditional"><tt>conditional</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.32.18</td>
+<td style="padding-left:4ex"><a href="#enable_if"><tt>enable_if</tt>, <tt>disable_if</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.32.19</td>
 <td style="padding-left:4ex"><a href="#index_sequence"><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="sign">[C++11]</span></a></td>
 </tr>
 <tr>
@@ -3935,6 +3951,35 @@ public:
     void error(const std::string &amp;msg);
     void fatal(const std::string &amp;msg);
 #endif
+
+#if __cpp_lib_format &gt;= 202106L // C++20 + P2508
+    template&lt;class... Args&gt;
+    void format(severity_t s,
+        std::format_string&lt;Args...&gt; fmt, Args&amp;&amp;... args);
+
+    template&lt;class Arg1, class... Args&gt;
+    void trace(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    template&lt;class Arg1, class... Args&gt;
+    void debug(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    template&lt;class Arg1, class... Args&gt;
+    void info(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    template&lt;class Arg1, class... Args&gt;
+    void notice(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    template&lt;class Arg1, class... Args&gt;
+    void warning(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    template&lt;class Arg1, class... Args&gt;
+    void error(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    template&lt;class Arg1, class... Args&gt;
+    void fatal(
+        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+#endif
+
     record trace();
     record debug();
     record info();
@@ -4260,6 +4305,45 @@ are formed.</p>
 
 
 <p>Writes the message with the corresponding severity.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">template&lt;class... Args&gt;
+void format(severity_t s,
+    std::format_string&lt;Args...&gt; fmt, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<blockquote>
+
+<p>Formats the message using the specified format string and arguments (like
+<tt>std::format</tt> does) then writes it with the specified severity.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void trace(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void debug(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void info(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void notice(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void warning(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void error(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<pre class="prototype">template&lt;class Arg1, class... Args&gt;
+void fatal(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args) <span class="sign">[C++20]</span></pre>
+<blockquote>
+
+
+
+
+
+
+
+<p>Formats the message using the specified format string and arguments (like
+<tt>std::format</tt> does) then writes it with the corresponding severity.</p>
 </blockquote>
 </div>
 
@@ -4989,8 +5073,9 @@ public:
 
     readonly_cstring &amp;operator=(const char *str);
     readonly_cstring &amp;operator=(const readonly_cstring &amp;str);
-    readonly_cstring &amp;assign(const char *begin, const char *end);
+    readonly_cstring &amp;assign(const char *str);
     readonly_cstring &amp;assign(const char *chars, size_t n);
+    readonly_cstring &amp;assign(const char *begin, const char *end);
 
     bool empty() const;
     const char *c_str() const;
@@ -5079,8 +5164,8 @@ for such purposes.</p>
 </div>
 
 <div>
-<pre class="prototype">readonly_cstring(const char *begin, const char *end)</pre>
 <pre class="prototype">readonly_cstring(const char *chars, size_t n)</pre>
+<pre class="prototype">readonly_cstring(const char *begin, const char *end)</pre>
 <blockquote>
 
 
@@ -5091,7 +5176,9 @@ for such purposes.</p>
 <div>
 <pre class="prototype">readonly_cstring &amp;operator=(const char *str)</pre>
 <pre class="prototype">readonly_cstring &amp;operator=(const readonly_cstring &amp;str)</pre>
+<pre class="prototype">readonly_cstring &amp;assign(const char *str)</pre>
 <blockquote>
+
 
 
 <p>Assigns <tt>str</tt>.</p>
@@ -7998,8 +8085,52 @@ types" (see the Standard).</p>
 
 
 
+<h3 id="conjunction">
+<span class="h3_num">2.32.8</span><tt>conjunction</tt> <span class="sign">[C++11]</span>
+</h3>
+
+
+<pre class="code">
+template&lt;class... B&gt; struct conjunction;
+</pre>
+
+<p>A predicate. The logical conjunction of the predicates <tt>B...</tt>.
+False iff one of the <tt>B...</tt> is false.</p>
+
+
+
+
+<h3 id="disjunction">
+<span class="h3_num">2.32.9</span><tt>disjunction</tt> <span class="sign">[C++11]</span>
+</h3>
+
+
+<pre class="code">
+template&lt;class... B&gt; struct disjunction;
+</pre>
+
+<p>A predicate. The logical disjunction of the predicates <tt>B...</tt>.
+True iff one of the <tt>B...</tt> is true.</p>
+
+
+
+
+<h3 id="negation">
+<span class="h3_num">2.32.10</span><tt>negation</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class B&gt; struct negation;
+</pre>
+
+<p>A predicate. The logical negation of the predicate <tt>B</tt>.</p>
+
+
+
+
 <h3 id="remove_const">
-<span class="h3_num">2.32.8</span><tt>remove_const</tt>
+<span class="h3_num">2.32.11</span><tt>remove_const</tt>
 </h3>
 
 
@@ -8015,7 +8146,7 @@ returns <tt>T</tt> if it doesn't have such qualifier.</p>
 
 
 <h3 id="remove_volatile">
-<span class="h3_num">2.32.9</span><tt>remove_volatile</tt>
+<span class="h3_num">2.32.12</span><tt>remove_volatile</tt>
 </h3>
 
 
@@ -8031,7 +8162,7 @@ returns <tt>T</tt> if it doesn't have such qualifier.</p>
 
 
 <h3 id="remove_cv">
-<span class="h3_num">2.32.10</span><tt>remove_cv</tt>
+<span class="h3_num">2.32.13</span><tt>remove_cv</tt>
 </h3>
 
 
@@ -8047,7 +8178,7 @@ template&lt;class T&gt; using remove_cv_t = typename remove_cv&lt;T&gt;::type;
 
 
 <h3 id="remove_reference">
-<span class="h3_num">2.32.11</span><tt>remove_reference</tt>
+<span class="h3_num">2.32.14</span><tt>remove_reference</tt>
 </h3>
 
 
@@ -8063,7 +8194,7 @@ template&lt;class T&gt; using remove_reference_t = typename remove_reference&lt;
 
 
 <h3 id="remove_cvref">
-<span class="h3_num">2.32.12</span><tt>remove_cvref</tt>
+<span class="h3_num">2.32.15</span><tt>remove_cvref</tt>
 </h3>
 
 
@@ -8079,7 +8210,7 @@ to <tt>T</tt>.</p>
 
 
 <h3 id="remove_pointer">
-<span class="h3_num">2.32.13</span><tt>remove_pointer</tt>
+<span class="h3_num">2.32.16</span><tt>remove_pointer</tt>
 </h3>
 
 
@@ -8094,8 +8225,26 @@ template&lt;class T&gt; using remove_pointer_t = typename remove_pointer&lt;T&gt
 
 
 
+<h3 id="conditional">
+<span class="h3_num">2.32.17</span><tt>conditional</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;bool Cond, class Then, class Else&gt; struct conditional;
+
+template&lt;bool Cond, class Then, class Else&gt;
+using conditional_t = typename conditional&lt;Cond, Then, Else&gt;;
+</pre>
+
+<p>A type transformer. Returns <tt>Then</tt> if <tt>Cond == true</tt>.
+<tt>Else</tt> is returned otherwise.</p>
+
+
+
+
 <h3 id="enable_if">
-<span class="h3_num">2.32.14</span><tt>enable_if</tt>, <tt>disable_if</tt>
+<span class="h3_num">2.32.18</span><tt>enable_if</tt>, <tt>disable_if</tt>
 </h3>
 
 
@@ -8118,7 +8267,7 @@ struct disable_if : enable_if&lt;!Test, T&gt; {};
 
 
 <h3 id="index_sequence">
-<span class="h3_num">2.32.15</span><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="sign">[C++11]</span>
+<span class="h3_num">2.32.19</span><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="sign">[C++11]</span>
 </h3>
 
 

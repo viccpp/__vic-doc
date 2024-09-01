@@ -381,68 +381,68 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9</td>
-<td><a href="#date_time.h"><tt>__vic/date_time.h</tt></a></td>
+<td><a href="#bounded_vector.h"><tt>__vic/bounded_vector.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9.1</td>
+<td style="padding-left:4ex"><a href="#bounded_vector"><tt>bounded_vector</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.10</td>
+<td><a href="#date_time.h"><tt>__vic/date_time.h</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.10.1</td>
 <td style="padding-left:4ex"><a href="#is_leap_year"><tt>is_leap_year()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.9.2</td>
+<td class="toc-chapter-no">2.10.2</td>
 <td style="padding-left:4ex"><a href="#days_in_month"><tt>days_in_month()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.9.3</td>
+<td class="toc-chapter-no">2.10.3</td>
 <td style="padding-left:4ex"><a href="#days_between_years"><tt>days_between_years()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.9.4</td>
+<td class="toc-chapter-no">2.10.4</td>
 <td style="padding-left:4ex"><a href="#invalid_date"><tt>invalid_date</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.9.5</td>
+<td class="toc-chapter-no">2.10.5</td>
 <td style="padding-left:4ex"><a href="#validate_date_time"><tt>validate_date()</tt>, <tt>validate_time()</tt>,
 <tt>validate_date_time()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10</td>
+<td class="toc-chapter-no">2.11</td>
 <td><a href="#endian.h"><tt>__vic/endian.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.1</td>
+<td class="toc-chapter-no">2.11.1</td>
 <td style="padding-left:4ex"><a href="#endianness"><tt>endianness</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.2</td>
+<td class="toc-chapter-no">2.11.2</td>
 <td style="padding-left:4ex"><a href="#endian--from"><tt>endian::from_...()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.3</td>
+<td class="toc-chapter-no">2.11.3</td>
 <td style="padding-left:4ex"><a href="#endian--to"><tt>endian::to_...()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.10.4</td>
+<td class="toc-chapter-no">2.11.4</td>
 <td style="padding-left:4ex"><a href="#swab"><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11</td>
+<td class="toc-chapter-no">2.12</td>
 <td><a href="#error.h"><tt>__vic/error.h</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11.1</td>
+<td class="toc-chapter-no">2.12.1</td>
 <td style="padding-left:4ex"><a href="#exception"><tt>exception</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">2.11.2</td>
+<td class="toc-chapter-no">2.12.2</td>
 <td style="padding-left:4ex"><a href="#libc_error"><tt>libc_error</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.12</td>
-<td><a href="#fixed_vector.h"><tt>__vic/fixed_vector.h</tt></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">2.12.1</td>
-<td style="padding-left:4ex"><a href="#fixed_vector"><tt>fixed_vector</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13</td>
@@ -2735,8 +2735,352 @@ constexpr uint8_t swapped_nibbles(uint8_t b);
 
 
 
+<h2 id="bounded_vector.h">
+<span class="h2_num">2.9</span><tt>__vic/bounded_vector.h</tt>
+</h2>
+
+
+<h3 id="bounded_vector">
+<span class="h3_num">2.9.1</span><tt>bounded_vector</tt>
+</h3>
+
+<pre class="code">
+template&lt;class T&gt;
+class bounded_vector : private non_copyable
+{
+public:
+    using value_type     = T;
+    using iterator       = <span class="nonterminal">&lt;implementation-defined&gt;</span>;
+    using const_iterator = <span class="nonterminal">&lt;implementation-defined&gt;</span>;
+
+    bounded_vector();
+    explicit bounded_vector(size_t max_size);
+    ~bounded_vector();
+
+    // BEGIN C++11
+    bounded_vector(bounded_vector &amp;&amp;o) noexcept;
+    bounded_vector &amp;operator=(bounded_vector &amp;&amp;o) noexcept;
+    template&lt;class... Args&gt; T &amp;emplace_back(Args &amp;&amp;... args)
+    // END C++11
+
+    // size in objects
+    size_t size() const;
+    size_t capacity() const;
+    bool full() const;
+    bool empty() const;
+
+    void recreate(size_t new_max_size, bool size_exact = false);
+    void *alloc(); // returns pointer to memory for object allocation
+    void push_allocated(); // adds last allocated object to the container
+    void pop_back();
+    void clear();
+    void swap(bounded_vector &amp;o) noexcept;
+
+    // element access
+    T &amp;operator[](size_t i);
+    iterator begin();
+    iterator end();
+    T &amp;front();
+    T &amp;back();
+
+    const T &amp;operator[](size_t i) const;
+    const_iterator begin() const;
+    const_iterator end() const;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
+    const T &amp;front() const;
+    const T &amp;back() const;
+};
+template&lt;class T&gt;
+void swap(bounded_vector&lt;T&gt; &amp;o1, bounded_vector&lt;T&gt; &amp;o2) noexcept;
+</pre>
+
+<p>Стандартные контейнеры в C++98 не позволяют хранить в себе объекты, которые
+нельзя копировать (недоступны копирующий конструктор и копирующее присваивание).
+Даже в C++11 элементы контейнера, вроде <tt>std::vector</tt>, должны быть как
+минимум noexcept-перемещаемыми. Данный класс решает эту проблему и представляет
+собой массив некопируемых объектов, или <tt>std::vector</tt>,
+<tt>capacity()</tt> которого не растёт автоматически.</p>
+
+<p>Без использования <tt>emplace_back()</tt> невозможно создать произвольный
+новый объект непосредственно в памяти контейнера. В C++98 forwarding ссылки
+вообще отсутствуют, делая почти невозможным передачу произвольных параметров в
+конструктор элемента. В <tt>bounded_vector</tt> это ограничение обходится с
+использованием следующего механизма. Создание элемента происходит в несколько
+фаз:</p>
+<ol>
+<li>Запрос в контейнере блока памяти, достаточного для размешения
+        объекта - <tt>alloc()</tt>,</li>
+<li>Создание объекта в полученной памяти с помощью placement new -
+        <tt>new(ptr) type(...)</tt>,</li>
+<li>Фиксация успешно созданного объекта в контейнере -
+        <tt>push_allocated()</tt>.</li>
+</ol>
+<p>Пример кода смотрите в конце статьи.</p>
+
+<p>При создании задаётся максимальная ёмкость контейнера. Изменить в будущем
+её можно, но только разрушив содержащиеся в нём объекты, то есть пересоздав
+контейнер (функция <tt>recreate()</tt>).</p>
+
+<p>Всегда следует использовать функцию <tt>emplace_back()</tt> для создания
+элементов, когда она доступна. Если же нет, то использовать небезопасный
+интерфейс, описанный выше, с большой осторожностью. Он достаточно страшный и
+подверженный ошибкам, но выполняет свою функцию. После того, как элемент
+размещён в контейнере, работать с ним также удобно, как и с любым другим
+копируемым объектом в стандартных контейнерах. В любом случае, в целом это
+гораздо удобнее и эффективнее использования альтернатив, таких как создание
+объектов в куче с последующим хранением в контейнере указателей на них, даже
+если нам доступен <tt>std::unique_ptr</tt> для управления временем жизни
+объектов.</p>
+
+<p>Принципиальные отличия от <tt>std::vector</tt>:</p>
+<ol>
+<li>Элементы могут быть некопируемыми и неперемещаемыми
+        (<tt>std::vector</tt> требует как минимум noexcept-перемещаемости);</li>
+<li>Адреса элементов стабильны при добавлении новых;</li>
+<li>
+<tt>emplace_back()</tt> имеет предусловие (<tt>!full()</tt>).</li>
+</ol>
+
+<div class="section">Члены класса</div>
+
+<div>
+<pre class="prototype">typename value_type</pre>
+<blockquote>
+
+<p>Тип элементов.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">typename iterator</pre>
+<pre class="prototype">typename const_iterator</pre>
+<blockquote>
+
+
+<p>Итераторы.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">bounded_vector()</pre>
+<blockquote>
+
+<p>Создаёт объект без выделения памяти под элементы.</p>
+<div>
+<u>Постусловие</u>: <tt>capacity() == 0</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">explicit bounded_vector(size_t max_size)</pre>
+<blockquote>
+
+<p>Создаёт контейнер ёмкости <tt>max_size</tt> элементов.</p>
+<div>
+<u>Постусловие</u>: <tt>capacity() == max_size</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">~bounded_vector()</pre>
+<blockquote>
+
+<p>Вызывает <tt>clear()</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">bounded_vector(bounded_vector &amp;&amp;o) noexcept <span class="sign">[C++11]</span></pre>
+<pre class="prototype">bounded_vector &amp;operator=(bounded_vector &amp;&amp;o) noexcept <span class="sign">[C++11]</span></pre>
+<blockquote>
+
+
+<p>Операции перемещения для режима C++11.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">size_t size() const</pre>
+<pre class="prototype">size_t capacity() const</pre>
+<blockquote>
+
+
+<p>Текущее и максимальное количество элементов в данном экземпляре контейнера.
+</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">bool empty() const</pre>
+<blockquote>
+
+<p>Возвращает <tt>size() == 0</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">bool full() const</pre>
+<blockquote>
+
+<p>Возвращает <tt>size() == capacity()</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void recreate(size_t new_max_size, bool size_exact = false)</pre>
+<blockquote>
+
+<p>Пересоздаёт контейнер. Сначала вызывается <tt>clear()</tt>, затем
+перевыделяется буфер, если <tt>new_max_size &gt; capacity()</tt> или <tt>size_exact
+== true</tt> и <tt>new_max_size != capacity()</tt>.</p>
+<div>
+<u>Постусловие</u>: <tt>capacity() &gt;= new_max_size &amp;&amp; empty() == true</tt>
+(если <tt>size_exact == true</tt>, то <tt>capacity() == new_max_size &amp;&amp;
+empty() == true</tt>)</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void *alloc()</pre>
+<blockquote>
+
+<p>Возвращает указатель на блок памяти, достаточный для размещения экземпляра
+<tt>value_type</tt>.</p>
+<div>
+<u>Предусловие</u>: <tt>!full()</tt>
+</div>
+<div>
+<u>Замечание</u>: Используйте <tt>emplace_back()</tt> в режиме C++11.</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void push_allocated()</pre>
+<blockquote>
+
+<p>Фиксирует успешно созданный объект в контейнере, увеличивая <tt>size()</tt>
+на единицу.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">template&lt;class... Args&gt; T &amp;emplace_back(Args &amp;&amp;... args) <span class="sign">[C++11]</span></pre>
+<blockquote>
+
+<p>Конструирует новый объект в контейнере с помощью переданных аргументов и
+увеличивает <tt>size()</tt> на единицу (<tt>alloc()</tt> + <tt>new</tt> +
+<tt>push_allocated()</tt> одним вызовом). Возвращает ссылку на новый элемент.
+</p>
+<div>
+<u>Предусловие</u>: <tt>!full()</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void pop_back()</pre>
+<blockquote>
+
+<p>Удаляет из контейнера последний элемент.</p>
+<div>
+<u>Предусловие</u>: <tt>!empty()</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void clear()</pre>
+<blockquote>
+
+<p>Разрушает все элементы контейнера в порядке обратном порядку создания.</p>
+<div>
+<u>Постусловие</u>: <tt>size() == 0</tt> (<tt>empty() == true</tt>)</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void swap(bounded_vector &amp;o)</pre>
+<pre class="prototype">template&lt;class T&gt; void swap(bounded_vector&lt;T&gt; &amp;o1, bounded_vector&lt;T&gt; &amp;o2) noexcept</pre>
+<blockquote>
+
+
+<p>Обменивается значением с <tt>o</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">T &amp;operator[](size_t i)</pre>
+<pre class="prototype">const T &amp;operator[](size_t i) const</pre>
+<blockquote>
+
+
+<p>Доступ к элементам контейнера по индексу.</p>
+<div>
+<u>Предусловие</u>: <tt>i &lt; size()</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">T &amp;front()</pre>
+<pre class="prototype">const T &amp;front() const</pre>
+<pre class="prototype">T &amp;back()</pre>
+<pre class="prototype">const T &amp;back() const</pre>
+<blockquote>
+
+
+
+
+<p>Доступ к первому и последнему элементу контейнера.</p>
+<div>
+<u>Предусловие</u>: <tt>!empty()</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">iterator begin()</pre>
+<pre class="prototype">const_iterator begin() const</pre>
+<pre class="prototype">const_iterator cbegin() const</pre>
+<pre class="prototype">iterator end()</pre>
+<pre class="prototype">const_iterator end() const</pre>
+<pre class="prototype">const_iterator cend() const</pre>
+<blockquote>
+
+
+
+
+
+
+<p>Доступ к элементам через итераторы.</p>
+</blockquote>
+</div>
+
+
+
+<div class="section">Пример</div>
+<pre class="code">
+// Создаём вектор на два объекта класса C
+__vic::bounded_vector&lt;C&gt; v(2);
+
+// Создание элемента в режиме C++98:
+new(v.alloc()) C(...); // Запрашиваем блок памяти и создаём в нём объект
+v.push_allocated();    // Фиксируем в контейнере успешно созданный объект
+
+// Создание элемента в режиме C++11:
+v.emplace_back(...);
+</pre>
+
+
+
+
+
+
 <h2 id="date_time.h">
-<span class="h2_num">2.9</span><tt>__vic/date_time.h</tt>
+<span class="h2_num">2.10</span><tt>__vic/date_time.h</tt>
 </h2>
 
 
@@ -2744,7 +3088,7 @@ constexpr uint8_t swapped_nibbles(uint8_t b);
 
 
 <h3 id="is_leap_year">
-<span class="h3_num">2.9.1</span><tt>is_leap_year()</tt>
+<span class="h3_num">2.10.1</span><tt>is_leap_year()</tt>
 </h3>
 
 
@@ -2759,7 +3103,7 @@ constexpr bool is_leap_year(int year);
 
 
 <h3 id="days_in_month">
-<span class="h3_num">2.9.2</span><tt>days_in_month()</tt>
+<span class="h3_num">2.10.2</span><tt>days_in_month()</tt>
 </h3>
 
 
@@ -2775,7 +3119,7 @@ int days_in_month(int month, int year);
 
 
 <h3 id="days_between_years">
-<span class="h3_num">2.9.3</span><tt>days_between_years()</tt>
+<span class="h3_num">2.10.3</span><tt>days_between_years()</tt>
 </h3>
 
 
@@ -2790,7 +3134,7 @@ long days_between_years(unsigned year1, unsigned year2);
 
 
 <h3 id="invalid_date">
-<span class="h3_num">2.9.4</span><tt>invalid_date</tt>
+<span class="h3_num">2.10.4</span><tt>invalid_date</tt>
 </h3>
 
 
@@ -2804,7 +3148,7 @@ class invalid_date; // : public std::exception
 
 
 <h3 id="validate_date_time">
-<span class="h3_num">2.9.5</span><tt>validate_date()</tt>, <tt>validate_time()</tt>,
+<span class="h3_num">2.10.5</span><tt>validate_date()</tt>, <tt>validate_time()</tt>,
 <tt>validate_date_time()</tt>
 </h3>
 
@@ -2845,7 +3189,7 @@ void validate_date_time(int yy, int mm, int dd, int hh, int mi, int ss);
 
 
 <h2 id="endian.h">
-<span class="h2_num">2.10</span><tt>__vic/endian.h</tt>
+<span class="h2_num">2.11</span><tt>__vic/endian.h</tt>
 </h2>
 
 
@@ -2853,7 +3197,7 @@ void validate_date_time(int yy, int mm, int dd, int hh, int mi, int ss);
 
 
 <h3 id="endianness">
-<span class="h3_num">2.10.1</span><tt>endianness</tt>
+<span class="h3_num">2.11.1</span><tt>endianness</tt>
 </h3>
 
 
@@ -2908,7 +3252,7 @@ static_assert(__vic::endian::native == __vic::endian:little,
 
 
 <h3 id="endian--from">
-<span class="h3_num">2.10.2</span><tt>endian::from_...()</tt>
+<span class="h3_num">2.11.2</span><tt>endian::from_...()</tt>
 </h3>
 
 
@@ -2935,7 +3279,7 @@ std::cout &lt;&lt; "The value is " &lt;&lt; __vic::endian::from_big(v) &lt;&lt; 
 
 
 <h3 id="endian--to">
-<span class="h3_num">2.10.3</span><tt>endian::to_...()</tt>
+<span class="h3_num">2.11.3</span><tt>endian::to_...()</tt>
 </h3>
 
 
@@ -2960,7 +3304,7 @@ write_bytes(&amp;v, 2); // serialize as big endian
 
 
 <h3 id="swab">
-<span class="h3_num">2.10.4</span><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt>
+<span class="h3_num">2.11.4</span><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt>
 </h3>
 
 
@@ -2985,7 +3329,7 @@ static_assert(__vic::swab32(0x01020304) == 0x04030201);
 
 
 <h2 id="error.h">
-<span class="h2_num">2.11</span><tt>__vic/error.h</tt>
+<span class="h2_num">2.12</span><tt>__vic/error.h</tt>
 </h2>
 
 
@@ -2993,7 +3337,7 @@ static_assert(__vic::swab32(0x01020304) == 0x04030201);
 
 
 <h3 id="exception">
-<span class="h3_num">2.11.1</span><tt>exception</tt>
+<span class="h3_num">2.12.1</span><tt>exception</tt>
 </h3>
 
 
@@ -3067,7 +3411,7 @@ throw custom_exception("Error condition description");
 
 
 <h3 id="libc_error">
-<span class="h3_num">2.11.2</span><tt>libc_error</tt>
+<span class="h3_num">2.12.2</span><tt>libc_error</tt>
 </h3>
 
 
@@ -3189,350 +3533,6 @@ catch(const __vic::libc_error &amp;ex)
 </div>
 
 
-
-
-
-
-
-
-<h2 id="fixed_vector.h">
-<span class="h2_num">2.12</span><tt>__vic/fixed_vector.h</tt>
-</h2>
-
-
-<h3 id="fixed_vector">
-<span class="h3_num">2.12.1</span><tt>fixed_vector</tt>
-</h3>
-
-<pre class="code">
-template&lt;class T&gt;
-class fixed_vector : private non_copyable
-{
-public:
-    using value_type     = T;
-    using iterator       = <span class="nonterminal">&lt;implementation-defined&gt;</span>;
-    using const_iterator = <span class="nonterminal">&lt;implementation-defined&gt;</span>;
-
-    fixed_vector();
-    explicit fixed_vector(size_t max_size);
-    ~fixed_vector();
-
-    // BEGIN C++11
-    fixed_vector(fixed_vector &amp;&amp;o) noexcept;
-    fixed_vector &amp;operator=(fixed_vector &amp;&amp;o) noexcept;
-    template&lt;class... Args&gt; T &amp;emplace_back(Args &amp;&amp;... args)
-    // END C++11
-
-    // size in objects
-    size_t size() const;
-    size_t capacity() const;
-    bool full() const;
-    bool empty() const;
-
-    void recreate(size_t new_max_size, bool size_exact = false);
-    void *alloc(); // returns pointer to memory for object allocation
-    void push_allocated(); // adds last allocated object to the container
-    void pop_back();
-    void clear();
-    void swap(fixed_vector &amp;o) noexcept;
-
-    // element access
-    T &amp;operator[](size_t i);
-    iterator begin();
-    iterator end();
-    T &amp;front();
-    T &amp;back();
-
-    const T &amp;operator[](size_t i) const;
-    const_iterator begin() const;
-    const_iterator end() const;
-    const_iterator cbegin() const;
-    const_iterator cend() const;
-    const T &amp;front() const;
-    const T &amp;back() const;
-};
-template&lt;class T&gt;
-void swap(fixed_vector&lt;T&gt; &amp;o1, fixed_vector&lt;T&gt; &amp;o2) noexcept;
-</pre>
-
-<p>Стандартные контейнеры в C++98 не позволяют хранить в себе объекты, которые
-нельзя копировать (недоступны копирующий конструктор и копирующее присваивание).
-Даже в C++11 элементы контейнера, вроде <tt>std::vector</tt>, должны быть как
-минимум noexcept-перемещаемыми. Данный класс решает эту проблему и представляет
-собой массив некопируемых объектов, или <tt>std::vector</tt>,
-<tt>capacity()</tt> которого не растёт автоматически.</p>
-
-<p>Без использования <tt>emplace_back()</tt> невозможно создать произвольный
-новый объект непосредственно в памяти контейнера. В C++98 forwarding ссылки
-вообще отсутствуют, делая почти невозможным передачу произвольных параметров в
-конструктор элемента. В <tt>fixed_vector</tt> это ограничение обходится с
-использованием следующего механизма. Создание элемента происходит в несколько
-фаз:</p>
-<ol>
-<li>Запрос в контейнере блока памяти, достаточного для размешения
-        объекта - <tt>alloc()</tt>,</li>
-<li>Создание объекта в полученной памяти с помощью placement new -
-        <tt>new(ptr) type(...)</tt>,</li>
-<li>Фиксация успешно созданного объекта в контейнере -
-        <tt>push_allocated()</tt>.</li>
-</ol>
-<p>Пример кода смотрите в конце статьи.</p>
-
-<p>При создании задаётся максимальная ёмкость контейнера. Изменить в будущем
-её можно, но только разрушив содержащиеся в нём объекты, то есть пересоздав
-контейнер (функция <tt>recreate()</tt>).</p>
-
-<p>Всегда следует использовать функцию <tt>emplace_back()</tt> для создания
-элементов, когда она доступна. Если же нет, то использовать небезопасный
-интерфейс, описанный выше, с большой осторожностью. Он достаточно страшный и
-подверженный ошибкам, но выполняет свою функцию. После того, как элемент
-размещён в контейнере, работать с ним также удобно, как и с любым другим
-копируемым объектом в стандартных контейнерах. В любом случае, в целом это
-гораздо удобнее и эффективнее использования альтернатив, таких как создание
-объектов в куче с последующим хранением в контейнере указателей на них, даже
-если нам доступен <tt>std::unique_ptr</tt> для управления временем жизни
-объектов.</p>
-
-<p>Принципиальные отличия от <tt>std::vector</tt>:</p>
-<ol>
-<li>Элементы могут быть некопируемыми и неперемещаемыми
-        (<tt>std::vector</tt> требует как минимум noexcept-перемещаемости);</li>
-<li>Адреса элементов стабильны при добавлении новых;</li>
-<li>
-<tt>emplace_back()</tt> имеет предусловие (<tt>!full()</tt>).</li>
-</ol>
-
-<div class="section">Члены класса</div>
-
-<div>
-<pre class="prototype">typename value_type</pre>
-<blockquote>
-
-<p>Тип элементов.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">typename iterator</pre>
-<pre class="prototype">typename const_iterator</pre>
-<blockquote>
-
-
-<p>Итераторы.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">fixed_vector()</pre>
-<blockquote>
-
-<p>Создаёт объект без выделения памяти под элементы.</p>
-<div>
-<u>Постусловие</u>: <tt>capacity() == 0</tt>
-</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">explicit fixed_vector(size_t max_size)</pre>
-<blockquote>
-
-<p>Создаёт контейнер ёмкости <tt>max_size</tt> элементов.</p>
-<div>
-<u>Постусловие</u>: <tt>capacity() == max_size</tt>
-</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">~fixed_vector()</pre>
-<blockquote>
-
-<p>Вызывает <tt>clear()</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">fixed_vector(fixed_vector &amp;&amp;o) noexcept <span class="sign">[C++11]</span></pre>
-<pre class="prototype">fixed_vector &amp;operator=(fixed_vector &amp;&amp;o) noexcept <span class="sign">[C++11]</span></pre>
-<blockquote>
-
-
-<p>Операции перемещения для режима C++11.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">size_t size() const</pre>
-<pre class="prototype">size_t capacity() const</pre>
-<blockquote>
-
-
-<p>Текущее и максимальное количество элементов в данном экземпляре контейнера.
-</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">bool empty() const</pre>
-<blockquote>
-
-<p>Возвращает <tt>size() == 0</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">bool full() const</pre>
-<blockquote>
-
-<p>Возвращает <tt>size() == capacity()</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void recreate(size_t new_max_size, bool size_exact = false)</pre>
-<blockquote>
-
-<p>Пересоздаёт контейнер. Сначала вызывается <tt>clear()</tt>, затем
-перевыделяется буфер, если <tt>new_max_size &gt; capacity()</tt> или <tt>size_exact
-== true</tt> и <tt>new_max_size != capacity()</tt>.</p>
-<div>
-<u>Постусловие</u>: <tt>capacity() &gt;= new_max_size &amp;&amp; empty() == true</tt>
-(если <tt>size_exact == true</tt>, то <tt>capacity() == new_max_size &amp;&amp;
-empty() == true</tt>)</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void *alloc()</pre>
-<blockquote>
-
-<p>Возвращает указатель на блок памяти, достаточный для размещения экземпляра
-<tt>value_type</tt>.</p>
-<div>
-<u>Предусловие</u>: <tt>!full()</tt>
-</div>
-<div>
-<u>Замечание</u>: Используйте <tt>emplace_back()</tt> в режиме C++11.</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void push_allocated()</pre>
-<blockquote>
-
-<p>Фиксирует успешно созданный объект в контейнере, увеличивая <tt>size()</tt>
-на единицу.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">template&lt;class... Args&gt; T &amp;emplace_back(Args &amp;&amp;... args) <span class="sign">[C++11]</span></pre>
-<blockquote>
-
-<p>Конструирует новый объект в контейнере с помощью переданных аргументов и
-увеличивает <tt>size()</tt> на единицу (<tt>alloc()</tt> + <tt>new</tt> +
-<tt>push_allocated()</tt> одним вызовом). Возвращает ссылку на новый элемент.
-</p>
-<div>
-<u>Предусловие</u>: <tt>!full()</tt>
-</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void pop_back()</pre>
-<blockquote>
-
-<p>Удаляет из контейнера последний элемент.</p>
-<div>
-<u>Предусловие</u>: <tt>!empty()</tt>
-</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void clear()</pre>
-<blockquote>
-
-<p>Разрушает все элементы контейнера в порядке обратном порядку создания.</p>
-<div>
-<u>Постусловие</u>: <tt>size() == 0</tt> (<tt>empty() == true</tt>)</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">void swap(fixed_vector &amp;o)</pre>
-<pre class="prototype">template&lt;class T&gt; void swap(fixed_vector&lt;T&gt; &amp;o1, fixed_vector&lt;T&gt; &amp;o2) noexcept</pre>
-<blockquote>
-
-
-<p>Обменивается значением с <tt>o</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">T &amp;operator[](size_t i)</pre>
-<pre class="prototype">const T &amp;operator[](size_t i) const</pre>
-<blockquote>
-
-
-<p>Доступ к элементам контейнера по индексу.</p>
-<div>
-<u>Предусловие</u>: <tt>i &lt; size()</tt>
-</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">T &amp;front()</pre>
-<pre class="prototype">const T &amp;front() const</pre>
-<pre class="prototype">T &amp;back()</pre>
-<pre class="prototype">const T &amp;back() const</pre>
-<blockquote>
-
-
-
-
-<p>Доступ к первому и последнему элементу контейнера.</p>
-<div>
-<u>Предусловие</u>: <tt>!empty()</tt>
-</div>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">iterator begin()</pre>
-<pre class="prototype">const_iterator begin() const</pre>
-<pre class="prototype">const_iterator cbegin() const</pre>
-<pre class="prototype">iterator end()</pre>
-<pre class="prototype">const_iterator end() const</pre>
-<pre class="prototype">const_iterator cend() const</pre>
-<blockquote>
-
-
-
-
-
-
-<p>Доступ к элементам через итераторы.</p>
-</blockquote>
-</div>
-
-
-
-<div class="section">Пример</div>
-<pre class="code">
-// Создаём вектор на два объекта класса C
-__vic::fixed_vector&lt;C&gt; v(2);
-
-// Создание элемента в режиме C++98:
-new(v.alloc()) C(...); // Запрашиваем блок памяти и создаём в нём объект
-v.push_allocated();    // Фиксируем в контейнере успешно созданный объект
-
-// Создание элемента в режиме C++11:
-v.emplace_back(...);
-</pre>
 
 
 
@@ -3980,26 +3980,26 @@ public:
         std::format_string&lt;Args...&gt; fmt, Args&amp;&amp;... args);
 
     template&lt;class Arg1, class... Args&gt;
-    void trace(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void trace(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
     template&lt;class Arg1, class... Args&gt;
-    void debug(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void debug(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
     template&lt;class Arg1, class... Args&gt;
-    void info(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void info(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
     template&lt;class Arg1, class... Args&gt;
-    void notice(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void notice(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
     template&lt;class Arg1, class... Args&gt;
-    void warning(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void warning(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
     template&lt;class Arg1, class... Args&gt;
-    void error(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void error(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
     template&lt;class Arg1, class... Args&gt;
-    void fatal(
-        std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
+    void fatal(std::format_string&lt;Arg1,Args...&gt; fmt,
+                                        Arg1 &amp;&amp;arg1, Args&amp;&amp;... args);
 #endif
 
     record trace();
@@ -4027,6 +4027,10 @@ public:
     record append(const char *str, size_t str_len);
 
     template&lt;class T&gt; record operator&lt;&lt;(const T &amp;v);
+};
+template&lt;class T&gt; struct log_value
+{
+    static void to_text(const T &amp;v, std::string &amp;s);
 };
 const char *to_string(logger::severity_t s);
 #if __cpp_lib_string_view // C++17
@@ -4445,8 +4449,25 @@ void fatal(std::format_string&lt;Arg1,Args...&gt; fmt, Arg1 &amp;&amp;arg1, Args
 <pre class="prototype">template&lt;class T&gt; record record::operator&lt;&lt;(const T &amp;v)</pre>
 <blockquote>
 
-<p>Набор инсертеров для различных типов данных. Вызывают <tt>sb &lt;&lt; v</tt>,
-где <tt>sb</tt> имеет тип <tt>__vic::string_buffer</tt>.</p>
+<p>Набор инсертеров для различных типов данных. Указанное значение преобразуется
+в текст с использованием вызова <tt>log_value&lt;T&gt;::to_text()</tt>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="section">Преобразователи значений в текст</div>
+
+<div>
+<pre class="prototype">template&lt;class T&gt; void log_value&lt;T&gt;::to_text(const T &amp;v, std::string &amp;s)</pre>
+<blockquote>
+
+<p>Преобразует значение типа <tt>T</tt> в текст, используя unqualified вызов
+<a href="#to_text_append"><tt>to_text_append()</tt></a>.</p>
+<div>
+<u>Замечание</u>: Данная функция (точнее класс со статической функцией) может быть
+спецализирована для Вашего <tt>T</tt>. Однако, обычно, Вам следует просто
+определить <tt>to_text_append(const T &amp;, std::string &amp;)</tt>.</div>
 </blockquote>
 </div>
 
@@ -6164,29 +6185,7 @@ public:
     template&lt;class InputIterator&gt;
     string_buffer(InputIterator begin, InputIterator end);
 
-    string_buffer &amp;operator&lt;&lt;(const char *str);
-    string_buffer &amp;operator&lt;&lt;(const std::string &amp;str);
-    string_buffer &amp;operator&lt;&lt;(string_ref sr);
-    string_buffer &amp;operator&lt;&lt;(char ch);
-
-    string_buffer &amp;operator&lt;&lt;(long long n);
-    string_buffer &amp;operator&lt;&lt;(long n);
-    string_buffer &amp;operator&lt;&lt;(int n);
-    string_buffer &amp;operator&lt;&lt;(short n);
-    string_buffer &amp;operator&lt;&lt;(signed char ch);
-
-    string_buffer &amp;operator&lt;&lt;(unsigned long long n);
-    string_buffer &amp;operator&lt;&lt;(unsigned long n);
-    string_buffer &amp;operator&lt;&lt;(unsigned n);
-    string_buffer &amp;operator&lt;&lt;(unsigned short n);
-    string_buffer &amp;operator&lt;&lt;(unsigned char ch);
-
-    string_buffer &amp;operator&lt;&lt;(long double n);
-    string_buffer &amp;operator&lt;&lt;(double n);
-    string_buffer &amp;operator&lt;&lt;(float n);
-
-    string_buffer &amp;operator&lt;&lt;(bool flag);
-    string_buffer &amp;operator&lt;&lt;(const void *p);
+    template&lt;class T&gt; string_buffer &amp;operator&lt;&lt;(const T &amp;v);
 
     string_buffer &amp;operator=(string_ref sr);
     string_buffer &amp;operator+=(string_ref sr);
@@ -6224,9 +6223,6 @@ string_buffer operator+(const char *s1, const string_buffer &amp;s2);
 string_buffer operator+(const string_buffer &amp;s, char ch);
 string_buffer operator+(char ch, const string_buffer &amp;s);
 
-template&lt;class T&gt;
-string_buffer &amp;operator&lt;&lt;(string_buffer &amp;&amp;s, const T &amp;v); // C++11
-
 using msg = string_buffer;
 </pre>
 
@@ -6254,7 +6250,8 @@ st.reserve(4096);
 </pre>
 </li>
 <li>Оператор <tt>&lt;&lt;</tt> воспринимает все фундаментальные типы:
-числа, символы, указатели, <tt>bool</tt>.
+числа, символы, указатели, <tt>bool</tt> и другие типы, к которым применима
+<a href="#to_text_append"><tt>to_text_append()</tt></a>.
 <pre class="code">
 for(int i=0; i&lt;10; i++)
     str &lt;&lt; "i = " &lt;&lt; i &lt;&lt; '\n';
@@ -6379,65 +6376,10 @@ string_buffer(InputIterator begin, InputIterator end)</pre>
 </div>
 
 <div>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(const char *str)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(const std::string &amp;str)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(string_ref sr)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(char ch)</pre>
+<pre class="prototype">template&lt;class T&gt; string_buffer &amp;operator&lt;&lt;(const T &amp;v)</pre>
 <blockquote>
 
-
-
-
-<p>Вызывает <tt>std::string::append()</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(long long n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(long n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(int n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(short n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(signed char ch)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(unsigned long long n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(unsigned long n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(unsigned n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(unsigned short n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(unsigned char ch)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(long double n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(double n)</pre>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(float n)</pre>
-<blockquote>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p>Добавляет к строке десятичное представление <tt>n</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(const void *p)</pre>
-<blockquote>
-
-<p>Добавляет к строке значение указателя в формате <tt>std::printf</tt>.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">string_buffer &amp;operator&lt;&lt;(bool flag)</pre>
-<blockquote>
-
-<p>Добавляет к строке <tt>1</tt> (для <tt>true</tt>) или <tt>0</tt> (для
-<tt>false</tt>).</p>
+<p>Вызывает <tt>to_text_append(v, *this)</tt>.</p>
 </blockquote>
 </div>
 
@@ -6507,15 +6449,6 @@ string_buffer(InputIterator begin, InputIterator end)</pre>
 
 
 <p>Конкатенация строк и символов.</p>
-</blockquote>
-</div>
-
-<div>
-<pre class="prototype">template&lt;class T&gt;
-string_buffer &amp;operator&lt;&lt;(string_buffer &amp;&amp;s, const T &amp;v) <span class="sign">[C++11]</span></pre>
-<blockquote>
-
-<p>Вызывает <tt>operator&lt;&lt;(string_buffer &amp;s, const T &amp;v)</tt>.</p>
 </blockquote>
 </div>
 
@@ -7902,7 +7835,7 @@ if(written &lt; 0) __vic::throw_errno("write");
 </h2>
 
 
-<p>Преобразователи типов в текстовое представление.</p>
+<p>Generic преобразователи в текстовое представление.</p>
 
 
 <h3 id="to_text_append">
@@ -7930,11 +7863,31 @@ void to_text_append(float n, std::string &amp;str);
 void to_text_append(bool f, std::string &amp;str);
 
 void to_text_append(const void *p, std::string &amp;str);
+
+void to_text_append(const std::string &amp;st, std::string &amp;s);
+void to_text_append(const char *st, std::string &amp;s);
+void to_text_append(char ch, std::string &amp;s);
+
+#if __cpp_lib_string_view // C++17
+void to_text_append(std::string_view sv, std::string &amp;s);
+#endif
 </pre>
 
-<p>Преобразователи несимвольных типов C++ в некоторое текстовое представление.
-Второй параметр <tt>str</tt> - выходной параметр, к нему добавляется результат.
-</p>
+<p>Преобразует первый аргумент в некоторое текстовое представление и добавляет
+его ко второму аргументу.</p>
+
+<p>Данная функция являет собой customization point (подобно <tt>std::swap</tt>)
+для библиотеки. Пользователи могут определять перегрузки для своих типов (в том
+же самом namespace, где определён тип), чтобы "научить" библиотеку как создавать
+текст из значения указанного типа.</p>
+
+<div>
+<u><b>Замечание</b></u>: Это не замена таким имеющим богатые возможности инструментам, как
+<tt>std::format</tt> или <tt>std::sprintf</tt>. К примеру, нет возможности
+представить целочисленное значение в HEX или выровнять его по правому краю при
+указанной ширине. Главное назначение - это возможность представить значение в
+виде текста в понятной человеку форме в отладочных сообщениях, логах, сообщениях
+об ошибках.</div>
 
 <div>
 <u><b>Замечание</b></u>: Типы <tt>signed char</tt> и <tt>unsigned char</tt> воспринимаются как
@@ -7985,6 +7938,23 @@ void to_text_append(const void *p, std::string &amp;str);
 <blockquote>
 
 <p>Преобразует указатель в некоторое платформо-специфичное представление.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">void to_text_append(const std::string &amp;st, std::string &amp;s)</pre>
+<pre class="prototype">void to_text_append(const char *st, std::string &amp;s)</pre>
+<pre class="prototype">void to_text_append(char ch, std::string &amp;s)</pre>
+<pre class="prototype">void to_text_append(std::string_view sv, std::string &amp;s) <span class="sign">[C++17]</span></pre>
+<blockquote>
+
+
+
+
+<p>Добавляет указанную строку или символ к выходной строке.</p>
+<div>
+<u>Замечание</u>: Значение <tt>nullptr</tt> в перегрузке, принимающей <tt>const char *</tt>,
+считается пустой строкой.</div>
 </blockquote>
 </div>
 

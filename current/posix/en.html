@@ -634,11 +634,19 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.3</td>
-<td style="padding-left:4ex"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
+<td style="padding-left:4ex"><a href="#parse_decimal"><tt>parse_decimal()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.4</td>
+<td style="padding-left:4ex"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.23.5</td>
 <td style="padding-left:4ex"><a href="#number_parse_status"><tt>number_parse_status</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.23.6</td>
+<td style="padding-left:4ex"><a href="#number_parse_result"><tt>number_parse_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24</td>
@@ -5818,8 +5826,52 @@ they work with generic ranges of characters instead of strings.</p>
 
 
 
+<h3 id="parse_decimal">
+<a class="self-link" href="#parse_decimal"></a><span class="h3_num">2.23.3</span><tt>parse_decimal()</tt>
+</h3>
+
+
+<pre class="code">
+#if __cpp_lib_string_view // since C++17
+
+template&lt;class T&gt;
+[[nodiscard]] number_parse_result&lt;T&gt; parse_decimal(std::string_view s);
+
+#else // until C++17
+
+template&lt;class T&gt;
+[[nodiscard]] number_parse_result&lt;T&gt; parse_decimal(const std::string &amp;s);
+template&lt;class T&gt;
+[[nodiscard]] number_parse_result&lt;T&gt; parse_decimal(const char *s);
+
+#endif
+
+template&lt;class T, class InputIterator&gt;
+[[nodiscard]]
+number_parse_result&lt;T&gt; parse_decimal(InputIterator begin, InputIterator end);
+</pre>
+
+<p>A counterpart of <tt>decimal_to_number()</tt> functions but doesn't throw
+exceptions. The returned object is boolean-testable and indicates the success
+of the operation. Also it contains the resulting number in case of success, or
+an error code otherwise. See <a href="#number_parse_result"><tt>number_parse_result</tt></a> for more
+information.</p>
+
+<div class="section">Example</div>
+<pre class="code">
+if(auto res = __vic::parse_decimal&lt;int&gt;("123"))
+{
+    int num = res.value();
+    // Use num
+}
+</pre>
+
+
+
+
+
 <h3 id="decimal_parser">
-<a class="self-link" href="#decimal_parser"></a><span class="h3_num">2.23.3</span><tt>decimal_parser</tt>
+<a class="self-link" href="#decimal_parser"></a><span class="h3_num">2.23.4</span><tt>decimal_parser</tt>
 </h3>
 
 
@@ -5922,12 +5974,12 @@ bool to_number(const std::string &amp;s, T &amp;result) noexcept
 
 
 <h3 id="number_parse_status">
-<a class="self-link" href="#number_parse_status"></a><span class="h3_num">2.23.4</span><tt>number_parse_status</tt>
+<a class="self-link" href="#number_parse_status"></a><span class="h3_num">2.23.5</span><tt>number_parse_status</tt>
 </h3>
 
 
 <pre class="code">
-enum class number_parse_status
+enum class number_parse_status : unsigned char
 {
     ok,
     invalid_number,
@@ -5945,6 +5997,90 @@ using number_parse_status_t = number_parse_status; // for C++98
 <blockquote>
 
 <p>Use this as a name of type if your code has to be C++98-compatible.</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+<h3 id="number_parse_result">
+<a class="self-link" href="#number_parse_result"></a><span class="h3_num">2.23.6</span><tt>number_parse_result</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class T&gt;
+class number_parse_result
+{
+public:
+    typedef T value_type;
+
+    number_parse_result(number_parse_status_t s);
+    explicit number_parse_result(T n);
+
+    number_parse_status_t status() const;
+    explicit operator bool() const;
+    bool has_value() const;
+
+    T value() const;
+};
+</pre>
+
+<p><tt>number_parse_status</tt> + the resulting value in case of success.</p>
+
+<div class="section">Class members</div>
+
+<div>
+<pre class="prototype">number_parse_result(number_parse_status_t s)</pre>
+<blockquote>
+
+<div>
+<u>Precondition</u>: <tt>s != number_parse_status::ok</tt>
+</div>
+<div>
+<u>Postcondition</u>: <tt>status() == s</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">explicit number_parse_result(T n)</pre>
+<blockquote>
+
+<div>
+<u>Postcondition</u>: <tt>has_value() &amp;&amp; value() == n</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">number_parse_status_t status() const</pre>
+<blockquote>
+
+<p>A status of the number parsing operation.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">bool has_value() const</pre>
+<pre class="prototype">explicit operator bool() const</pre>
+<blockquote>
+
+
+<p>Returns <tt>status() == number_parse_status::ok</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">T value() const</pre>
+<blockquote>
+
+<p>The resulting number.</p>
+<div>
+<u>Precondition</u>: <tt>has_value() == true</tt>
+</div>
 </blockquote>
 </div>
 
@@ -11765,7 +11901,7 @@ unsigned char uchar_value(ByteSReaderResult r);
 <p>Returns the resulting byte value – <tt>r.value()</tt> – as an
 <tt>unsigned char</tt>.</p>
 
-<p>This function is defined only if 
+<p>This function is defined only if
 <tt>is_byte&lt;sreader_value_t&lt;ByteSReaderResult&gt;&gt;::value == true</tt>.</p>
 
 <div>

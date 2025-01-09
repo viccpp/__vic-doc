@@ -634,11 +634,19 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.3</td>
-<td style="padding-left:4ex"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
+<td style="padding-left:4ex"><a href="#parse_decimal"><tt>parse_decimal()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.4</td>
+<td style="padding-left:4ex"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.23.5</td>
 <td style="padding-left:4ex"><a href="#number_parse_status"><tt>number_parse_status</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.23.6</td>
+<td style="padding-left:4ex"><a href="#number_parse_result"><tt>number_parse_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24</td>
@@ -1123,6 +1131,10 @@ blockquote * {
 <tr>
 <td class="toc-chapter-no">2.55.3</td>
 <td style="padding-left:4ex"><a href="#windows--utf16to8"><tt>windows::utf16to8()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.55.4</td>
+<td style="padding-left:4ex"><a href="#windows--utf16to8_append"><tt>windows::utf16to8_append()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.56</td>
@@ -2330,6 +2342,9 @@ public:
     bin_file(const char *fname, in_t);
     bin_file(const char *fname, out_t);
     bin_file(const char *fname, append_t);
+    bin_file(const wchar_t *fname, in_t);
+    bin_file(const wchar_t *fname, out_t);
+    bin_file(const wchar_t *fname, append_t);
     ~bin_file();
 
     // BEGIN C++11
@@ -2340,6 +2355,10 @@ public:
     bool open_in(const char *fname);
     bool open_out(const char *fname);
     bool open_append(const char *fname);
+
+    bool open_in(const wchar_t *fname);
+    bool open_out(const wchar_t *fname);
+    bool open_append(const wchar_t *fname);
 
     size_t read_max(void *buf, size_t n);
     size_t read_some(void *buf, size_t n);
@@ -2398,7 +2417,13 @@ public:
 <pre class="prototype">bin_file(const char *fname, in_t)</pre>
 <pre class="prototype">bin_file(const char *fname, out_t)</pre>
 <pre class="prototype">bin_file(const char *fname, append_t)</pre>
+<pre class="prototype">bin_file(const wchar_t *fname, in_t)</pre>
+<pre class="prototype">bin_file(const wchar_t *fname, out_t)</pre>
+<pre class="prototype">bin_file(const wchar_t *fname, append_t)</pre>
 <blockquote>
+
+
+
 
 
 
@@ -2430,7 +2455,13 @@ public:
 <pre class="prototype">bool open_in(const char *fname)</pre>
 <pre class="prototype">bool open_out(const char *fname)</pre>
 <pre class="prototype">bool open_append(const char *fname)</pre>
+<pre class="prototype">bool open_in(const wchar_t *fname)</pre>
+<pre class="prototype">bool open_out(const wchar_t *fname)</pre>
+<pre class="prototype">bool open_append(const wchar_t *fname)</pre>
 <blockquote>
+
+
+
 
 
 
@@ -3613,7 +3644,7 @@ meaning as the parameter of <tt>std::perror()</tt>.</p>
 <p>Filesystem utilities.</p>
 
 <div>
-<u><b>Note</b></u>: All paths are expected to be UTF-8 encoded!</div>
+<u><b>Note</b></u>: All <tt>char</tt>-encoded paths are expected to be UTF-8!</div>
 
 
 <h3 id="path_exists">
@@ -3623,13 +3654,19 @@ meaning as the parameter of <tt>std::perror()</tt>.</p>
 
 <pre class="code">
 bool path_exists(const char *path);
+bool path_exists(const wchar_t *path);
 bool path_exists(const std::string &amp;path);
+bool path_exists(const std::wstring &amp;path);
 
 bool file_exists(const char *path);
+bool file_exists(const wchar_t *path);
 bool file_exists(const std::string &amp;path);
+bool file_exists(const std::wstring &amp;path);
 
 bool dir_exists(const char *path);
+bool dir_exists(const wchar_t *path);
 bool dir_exists(const std::string &amp;path);
+bool dir_exists(const std::wstring &amp;path);
 </pre>
 
 <p><tt>path_exists()</tt> checks whether the path exists in the system. Second
@@ -3646,10 +3683,14 @@ references to a regular file or to a directory, respectively.</p>
 
 <pre class="code">
 void mkdir(const char *path);
+void mkdir(const wchar_t *path);
 void mkdir(const std::string &amp;path);
+void mkdir(const std::wstring &amp;path);
 
 bool mkdir_if_absent(const char *path);
+bool mkdir_if_absent(const wchar_t *path);
 bool mkdir_if_absent(const std::string &amp;path);
+bool mkdir_if_absent(const std::wstring &amp;path);
 </pre>
 
 <p>Creates a directory. Throws exception in case of failure.
@@ -3666,10 +3707,14 @@ the directory already exists.</p>
 
 <pre class="code">
 void rmdir(const char *path);
+void rmdir(const wchar_t *path);
 void rmdir(const std::string &amp;path);
+void rmdir(const std::wstring &amp;path);
 
 bool rmdir_if_exists(const char *path);
+bool rmdir_if_exists(const wchar_t *path);
 bool rmdir_if_exists(const std::string &amp;path);
+bool rmdir_if_exists(const std::wstring &amp;path);
 </pre>
 
 <p>Deletes an empty directory. Throws exception in case of failure.
@@ -3701,13 +3746,19 @@ std::string get_current_dir();
 
 <pre class="code">
 void remove_file(const char *path);
+void remove_file(const wchar_t *path);
 void remove_file(const std::string &amp;path);
+void remove_file(const std::wstring &amp;path);
 
 bool remove_file_if_exists(const char *path);
+bool remove_file_if_exists(const wchar_t *path);
 bool remove_file_if_exists(const std::string &amp;path);
+bool remove_file_if_exists(const std::wstring &amp;path);
 
 bool remove_file_nt(const char *path) noexcept;
+bool remove_file_nt(const wchar_t *path) noexcept;
 bool remove_file_nt(const std::string &amp;path) noexcept;
+bool remove_file_nt(const std::wstring &amp;path) noexcept;
 </pre>
 
 <p>Deletes the file. Throws exception in case of failure.</p>
@@ -3731,24 +3782,42 @@ if the file doesn't exist.</p>
 void copy_file(
     const char *src_path, const char *dest_path, bool replace = false);
 void copy_file(
+    const wchar_t *src_path, const wchar_t *dest_path, bool replace = false);
+void copy_file(
     const std::string &amp;src_path, const std::string &amp;dest_path,
+    bool replace = false);
+void copy_file(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path,
     bool replace = false);
 
 bool copy_file_if_exists(
     const char *src_path, const char *dest_path, bool replace = false);
 bool copy_file_if_exists(
+    const wchar_t *src_path, const wchar_t *dest_path, bool replace = false);
+bool copy_file_if_exists(
     const std::string &amp;src_path, const std::string &amp;dest_path,
+    bool replace = false);
+bool copy_file_if_exists(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path,
     bool replace = false);
 
 void copy_file_replace(
     const char *src_path, const char *dest_path);
 void copy_file_replace(
+    const wchar_t *src_path, const wchar_t *dest_path);
+void copy_file_replace(
     const std::string &amp;src_path, const std::string &amp;dest_path);
+void copy_file_replace(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path);
 
 bool copy_file_replace_if_exists(
     const char *src_path, const char *dest_path);
 bool copy_file_replace_if_exists(
+    const wchar_t *src_path, const wchar_t *dest_path);
+bool copy_file_replace_if_exists(
     const std::string &amp;src_path, const std::string &amp;dest_path);
+bool copy_file_replace_if_exists(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path);
 </pre>
 
 <p>Creates a new file <tt>dest_path</tt> which is a copy of a file
@@ -3775,20 +3844,32 @@ if <tt>src_path</tt> doesn't exist.</p>
 
 <pre class="code">
 void move_file(const char *src_path, const char *dest_path);
+void move_file(const wchar_t *src_path, const wchar_t *dest_path);
 void move_file(const std::string &amp;src_path, const std::string &amp;dest_path);
+void move_file(const std::wstring &amp;src_path, const std::wstring &amp;dest_path);
 
 bool move_file_if_exists(const char *src_path, const char *dest_path);
+bool move_file_if_exists(const wchar_t *src_path, const wchar_t *dest_path);
 bool move_file_if_exists(
     const std::string &amp;src_path, const std::string &amp;dest_path);
+bool move_file_if_exists(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path);
 
 void move_file_replace(const char *src_path, const char *dest_path);
+void move_file_replace(const wchar_t *src_path, const wchar_t *dest_path);
 void move_file_replace(
     const std::string &amp;src_path, const std::string &amp;dest_path);
+void move_file_replace(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path);
 
 bool move_file_replace_if_exists(
     const char *src_path, const char *dest_path);
 bool move_file_replace_if_exists(
+    const wchar_t *src_path, const wchar_t *dest_path);
+bool move_file_replace_if_exists(
     const std::string &amp;src_path, const std::string &amp;dest_path);
+bool move_file_replace_if_exists(
+    const std::wstring &amp;src_path, const std::wstring &amp;dest_path);
 </pre>
 
 <p>Moves a file <tt>src_path</tt> to new location specified by
@@ -3811,20 +3892,32 @@ if <tt>src_path</tt> doesn't exist.</p>
 
 <pre class="code">
 void rename_file(const char *src_name, const char *dest_name);
+void rename_file(const wchar_t *src_name, const wchar_t *dest_name);
 void rename_file(const std::string &amp;src_name, const std::string &amp;dest_name);
+void rename_file(const std::wstring &amp;src_name, const std::wstring &amp;dest_name);
 
 bool rename_file_if_exists(const char *src_name, const char *dest_name);
+bool rename_file_if_exists(const wchar_t *src_name, const wchar_t *dest_name);
 bool rename_file_if_exists(
     const std::string &amp;src_name, const std::string &amp;dest_name);
+bool rename_file_if_exists(
+    const std::wstring &amp;src_name, const std::wstring &amp;dest_name);
 
 void rename_file_replace(const char *src_name, const char *dest_name);
+void rename_file_replace(const wchar_t *src_name, const wchar_t *dest_name);
 void rename_file_replace(
     const std::string &amp;src_name, const std::string &amp;dest_name);
+void rename_file_replace(
+    const std::wstring &amp;src_name, const std::wstring &amp;dest_name);
 
 bool rename_file_replace_if_exists(
     const char *src_name, const char *dest_name);
 bool rename_file_replace_if_exists(
+    const wchar_t *src_name, const wchar_t *dest_name);
+bool rename_file_replace_if_exists(
     const std::string &amp;src_name, const std::string &amp;dest_name);
+bool rename_file_replace_if_exists(
+    const std::wstring &amp;src_name, const std::wstring &amp;dest_name);
 </pre>
 
 <p>Renames a file <tt>src_path</tt> to <tt>dest_path</tt>. The new path
@@ -3846,7 +3939,9 @@ if <tt>src_path</tt> doesn't exist.</p>
 
 <pre class="code">
 uintmax_t file_size(const char *path);
+uintmax_t file_size(const wchar_t *path);
 uintmax_t file_size(const std::string &amp;path);
+uintmax_t file_size(const std::wstring &amp;path);
 </pre>
 
 <p>Returns file size in bytes.</p>
@@ -5785,8 +5880,52 @@ they work with generic ranges of characters instead of strings.</p>
 
 
 
+<h3 id="parse_decimal">
+<a class="self-link" href="#parse_decimal"></a><span class="h3_num">2.23.3</span><tt>parse_decimal()</tt>
+</h3>
+
+
+<pre class="code">
+#if __cpp_lib_string_view // since C++17
+
+template&lt;class T&gt;
+[[nodiscard]] number_parse_result&lt;T&gt; parse_decimal(std::string_view s);
+
+#else // until C++17
+
+template&lt;class T&gt;
+[[nodiscard]] number_parse_result&lt;T&gt; parse_decimal(const std::string &amp;s);
+template&lt;class T&gt;
+[[nodiscard]] number_parse_result&lt;T&gt; parse_decimal(const char *s);
+
+#endif
+
+template&lt;class T, class InputIterator&gt;
+[[nodiscard]]
+number_parse_result&lt;T&gt; parse_decimal(InputIterator begin, InputIterator end);
+</pre>
+
+<p>A counterpart of <tt>decimal_to_number()</tt> functions but doesn't throw
+exceptions. The returned object is boolean-testable and indicates the success
+of the operation. Also it contains the resulting number in case of success, or
+an error code otherwise. See <a href="#number_parse_result"><tt>number_parse_result</tt></a> for more
+information.</p>
+
+<div class="section">Example</div>
+<pre class="code">
+if(auto res = __vic::parse_decimal&lt;int&gt;("123"))
+{
+    int num = res.value();
+    // Use num
+}
+</pre>
+
+
+
+
+
 <h3 id="decimal_parser">
-<a class="self-link" href="#decimal_parser"></a><span class="h3_num">2.23.3</span><tt>decimal_parser</tt>
+<a class="self-link" href="#decimal_parser"></a><span class="h3_num">2.23.4</span><tt>decimal_parser</tt>
 </h3>
 
 
@@ -5889,12 +6028,12 @@ bool to_number(const std::string &amp;s, T &amp;result) noexcept
 
 
 <h3 id="number_parse_status">
-<a class="self-link" href="#number_parse_status"></a><span class="h3_num">2.23.4</span><tt>number_parse_status</tt>
+<a class="self-link" href="#number_parse_status"></a><span class="h3_num">2.23.5</span><tt>number_parse_status</tt>
 </h3>
 
 
 <pre class="code">
-enum class number_parse_status
+enum class number_parse_status : unsigned char
 {
     ok,
     invalid_number,
@@ -5912,6 +6051,90 @@ using number_parse_status_t = number_parse_status; // for C++98
 <blockquote>
 
 <p>Use this as a name of type if your code has to be C++98-compatible.</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+<h3 id="number_parse_result">
+<a class="self-link" href="#number_parse_result"></a><span class="h3_num">2.23.6</span><tt>number_parse_result</tt>
+</h3>
+
+
+<pre class="code">
+template&lt;class T&gt;
+class number_parse_result
+{
+public:
+    typedef T value_type;
+
+    number_parse_result(number_parse_status_t s);
+    explicit number_parse_result(T n);
+
+    number_parse_status_t status() const;
+    explicit operator bool() const;
+    bool has_value() const;
+
+    T value() const;
+};
+</pre>
+
+<p><tt>number_parse_status</tt> + the resulting value in case of success.</p>
+
+<div class="section">Class members</div>
+
+<div>
+<pre class="prototype">number_parse_result(number_parse_status_t s)</pre>
+<blockquote>
+
+<div>
+<u>Precondition</u>: <tt>s != number_parse_status::ok</tt>
+</div>
+<div>
+<u>Postcondition</u>: <tt>status() == s</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">explicit number_parse_result(T n)</pre>
+<blockquote>
+
+<div>
+<u>Postcondition</u>: <tt>has_value() &amp;&amp; value() == n</tt>
+</div>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">number_parse_status_t status() const</pre>
+<blockquote>
+
+<p>A status of the number parsing operation.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">bool has_value() const</pre>
+<pre class="prototype">explicit operator bool() const</pre>
+<blockquote>
+
+
+<p>Returns <tt>status() == number_parse_status::ok</tt>.</p>
+</blockquote>
+</div>
+
+<div>
+<pre class="prototype">T value() const</pre>
+<blockquote>
+
+<p>The resulting number.</p>
+<div>
+<u>Precondition</u>: <tt>has_value() == true</tt>
+</div>
 </blockquote>
 </div>
 
@@ -10493,7 +10716,12 @@ public:
 
 <pre class="code">
 windows::wstring windows::utf8to16(const char *s, size_t len);
+#if __cpp_lib_string_view // C++17
+windows::wstring windows::utf8to16(std::string_view s);
+#else
 windows::wstring windows::utf8to16(const char *s);
+windows::wstring windows::utf8to16(const std::string &amp;s);
+#endif
 </pre>
 
 <p>UTF-8 to UTF-16 converter.</p>
@@ -10508,10 +10736,37 @@ windows::wstring windows::utf8to16(const char *s);
 
 <pre class="code">
 std::string windows::utf16to8(const wchar_t *s, size_t len);
+#if __cpp_lib_string_view // C++17
+std::string windows::utf16to8(std::wstring_view s);
+#else
 std::string windows::utf16to8(const wchar_t *s);
+std::string windows::utf16to8(const std::wstring &amp;s);
+#endif
 </pre>
 
 <p>UTF-16 to UTF-8 converter.</p>
+
+
+
+
+<h3 id="windows--utf16to8_append">
+<a class="self-link" href="#windows--utf16to8_append"></a><span class="h3_num">2.55.4</span><tt>windows::utf16to8_append()</tt>
+</h3>
+
+
+<pre class="code">
+std::string &amp;windows::utf16to8_append(
+                            const wchar_t *s, size_t len, std::string &amp;res);
+#if __cpp_lib_string_view // C++17
+std::string &amp;windows::utf16to8_append(std::wstring_view s, std::string &amp;res);
+#else
+std::string &amp;windows::utf16to8_append(const wchar_t *s, std::string &amp;res);
+std::string &amp;windows::utf16to8_append(const std::wstring &amp;s, std::string &amp;res);
+#endif
+</pre>
+
+<p>Same as <a href="#windows--utf16to8"><tt>windows::utf16to8()</tt></a> but appends the result to
+<tt>res</tt>. Returns a reference to <tt>res</tt>.</p>
 
 
 
@@ -11216,7 +11471,7 @@ unsigned char uchar_value(ByteSReaderResult r);
 <p>Returns the resulting byte value – <tt>r.value()</tt> – as an
 <tt>unsigned char</tt>.</p>
 
-<p>This function is defined only if 
+<p>This function is defined only if
 <tt>is_byte&lt;sreader_value_t&lt;ByteSReaderResult&gt;&gt;::value == true</tt>.</p>
 
 <div>

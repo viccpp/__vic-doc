@@ -1313,46 +1313,50 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">5.5</td>
-<td><a href="#config.value.h"><tt>__vic/config/value.h</tt> <span class="badge">[C++11]</span></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">5.5.1</td>
-<td style="padding-left:4ex"><a href="#config--value"><tt>config::value</tt> <span class="badge">[C++11]</span></a></td>
-</tr>
-<tr>
-<td class="toc-chapter-no">5.5.2</td>
-<td style="padding-left:4ex"><a href="#config--list_traits"><tt>config::list_traits</tt> <span class="badge">[C++11]</span></a></td>
+<td><a href="#config.parser.macros.h"><tt>__vic/config/parser.macros.h</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.6</td>
-<td><a href="#config-value-parsers"><tt>Дополнительные парсеры значений</tt></a></td>
+<td><a href="#config.value.h"><tt>__vic/config/value.h</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.6.1</td>
-<td style="padding-left:4ex"><a href="#config--value-std--optional"><tt>config::value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
+<td style="padding-left:4ex"><a href="#config--value"><tt>config::value</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.6.2</td>
+<td style="padding-left:4ex"><a href="#config--list_traits"><tt>config::list_traits</tt> <span class="badge">[C++11]</span></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">5.7</td>
+<td><a href="#config-value-parsers"><tt>Дополнительные парсеры значений</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">5.7.1</td>
+<td style="padding-left:4ex"><a href="#config--value-std--optional"><tt>config::value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">5.7.2</td>
 <td style="padding-left:4ex"><a href="#config--complex_value-std--optional"><tt>config::complex_value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">5.6.3</td>
+<td class="toc-chapter-no">5.7.3</td>
 <td style="padding-left:4ex"><a href="#config--value-__vic--ipv4_addr"><tt>config::value&lt;__vic::ipv4_addr&gt;</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">5.6.4</td>
+<td class="toc-chapter-no">5.7.4</td>
 <td style="padding-left:4ex"><a href="#config--list_traits-std--vector"><tt>config::list_traits&lt;std::vector&lt;T&gt;&gt;</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">5.6.5</td>
+<td class="toc-chapter-no">5.7.5</td>
 <td style="padding-left:4ex"><a href="#config--list_traits-std--list"><tt>config::list_traits&lt;std::list&lt;T&gt;&gt;</tt></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">5.6.6</td>
+<td class="toc-chapter-no">5.7.6</td>
 <td style="padding-left:4ex"><a href="#config--list_traits-std--forward_list"><tt>config::list_traits&lt;std::forward_list&lt;T&gt;&gt;</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
-<td class="toc-chapter-no">5.6.7</td>
+<td class="toc-chapter-no">5.7.7</td>
 <td style="padding-left:4ex"><a href="#config--bytes_value_parser"><tt>config::bytes_value_parser</tt></a></td>
 </tr>
 <tr><td colspan="2" style="font-size:5pt;"> </td></tr>
@@ -4091,13 +4095,19 @@ public:
 constexpr ipv4_addr operator&amp;(ipv4_addr a1, ipv4_addr a2);
 
 constexpr bool operator==(ipv4_addr a1, ipv4_addr a2);
+constexpr bool operator==(ipv4_addr a1, ::in_addr a2);
+
+// BEGIN C++20
+constexpr auto operator&lt;=&gt;(ipv4_addr a1, ipv4_addr a2);
+constexpr auto operator&lt;=&gt;(ipv4_addr a1, ::in_addr a2);
+
+// ELSE
 constexpr bool operator!=(ipv4_addr a1, ipv4_addr a2);
 constexpr bool operator&lt; (ipv4_addr a1, ipv4_addr a2);
 constexpr bool operator&gt; (ipv4_addr a1, ipv4_addr a2);
 constexpr bool operator&lt;=(ipv4_addr a1, ipv4_addr a2);
 constexpr bool operator&gt;=(ipv4_addr a1, ipv4_addr a2);
 
-constexpr bool operator==(ipv4_addr a1, ::in_addr a2);
 constexpr bool operator!=(ipv4_addr a1, ::in_addr a2);
 constexpr bool operator&lt; (ipv4_addr a1, ::in_addr a2);
 constexpr bool operator&gt; (ipv4_addr a1, ::in_addr a2);
@@ -4110,6 +4120,7 @@ constexpr bool operator&lt; (::in_addr a1, ipv4_addr a2);
 constexpr bool operator&gt; (::in_addr a1, ipv4_addr a2);
 constexpr bool operator&lt;=(::in_addr a1, ipv4_addr a2);
 constexpr bool operator&gt;=(::in_addr a1, ipv4_addr a2);
+// END C++20
 
 void to_text_append(::in_addr ip, std::string &amp;res);
 
@@ -4224,11 +4235,11 @@ template&lt;&gt; struct std::hash&lt;ipv4_addr&gt;;
 
 <div>
 <pre class="prototype">constexpr bool operator==(ipv4_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator!=(ipv4_addr a1, ipv4_addr a2)</pre>
 <pre class="prototype">constexpr bool operator==(ipv4_addr a1, ::in_addr a2)</pre>
-<pre class="prototype">constexpr bool operator!=(ipv4_addr a1, ::in_addr a2)</pre>
-<pre class="prototype">constexpr bool operator==(::in_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator!=(::in_addr a1, ipv4_addr a2)</pre>
+<pre class="prototype">constexpr bool operator==(::in_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator!=(ipv4_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator!=(ipv4_addr a1, ::in_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator!=(::in_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
 <blockquote>
 
 
@@ -4241,19 +4252,23 @@ template&lt;&gt; struct std::hash&lt;ipv4_addr&gt;;
 </div>
 
 <div>
-<pre class="prototype">constexpr bool operator&lt; (ipv4_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&gt; (ipv4_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&lt;=(ipv4_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&gt;=(ipv4_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&lt; (ipv4_addr a1, ::in_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&gt; (ipv4_addr a1, ::in_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&lt;=(ipv4_addr a1, ::in_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&gt;=(ipv4_addr a1, ::in_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&lt; (::in_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&gt; (::in_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&lt;=(::in_addr a1, ipv4_addr a2)</pre>
-<pre class="prototype">constexpr bool operator&gt;=(::in_addr a1, ipv4_addr a2)</pre>
+<pre class="prototype">constexpr auto operator&lt;=&gt;(ipv4_addr a1, ipv4_addr a2) <span class="badge">[C++20]</span></pre>
+<pre class="prototype">constexpr auto operator&lt;=&gt;(ipv4_addr a1, ::in_addr a2) <span class="badge">[C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&lt; (ipv4_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&gt; (ipv4_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&lt;=(ipv4_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&gt;=(ipv4_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&lt; (ipv4_addr a1, ::in_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&gt; (ipv4_addr a1, ::in_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&lt;=(ipv4_addr a1, ::in_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&gt;=(ipv4_addr a1, ::in_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&lt; (::in_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&gt; (::in_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&lt;=(::in_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">constexpr bool operator&gt;=(::in_addr a1, ipv4_addr a2) <span class="badge">[until C++20]</span></pre>
 <blockquote>
+
+
 
 
 
@@ -4343,14 +4358,17 @@ public:
 
 ipv6_addr operator&amp;(const ipv6_addr &amp;a1, const ipv6_addr &amp;a2);
 
+// BEGIN C++20
 constexpr bool operator==(ipv6_addr a1, ipv6_addr a2);
+constexpr bool operator==(ipv6_addr a1, ::in6_addr a2);
+
+// ELSE
 constexpr bool operator!=(ipv6_addr a1, ipv6_addr a2);
 constexpr bool operator&lt; (ipv6_addr a1, ipv6_addr a2);
 constexpr bool operator&gt; (ipv6_addr a1, ipv6_addr a2);
 constexpr bool operator&lt;=(ipv6_addr a1, ipv6_addr a2);
 constexpr bool operator&gt;=(ipv6_addr a1, ipv6_addr a2);
 
-constexpr bool operator==(ipv6_addr a1, ::in6_addr a2);
 constexpr bool operator!=(ipv6_addr a1, ::in6_addr a2);
 constexpr bool operator&lt; (ipv6_addr a1, ::in6_addr a2);
 constexpr bool operator&gt; (ipv6_addr a1, ::in6_addr a2);
@@ -4363,6 +4381,7 @@ constexpr bool operator&lt; (::in6_addr a1, ipv6_addr a2);
 constexpr bool operator&gt; (::in6_addr a1, ipv6_addr a2);
 constexpr bool operator&lt;=(::in6_addr a1, ipv6_addr a2);
 constexpr bool operator&gt;=(::in6_addr a1, ipv6_addr a2);
+// END C++20
 
 void to_text_append(::in6_addr ip, std::string &amp;res);
 string_buffer &amp;operator&lt;&lt;(string_buffer &amp;s, ::in6_addr ip);
@@ -5511,13 +5530,19 @@ int compare(const readonly_cstring &amp;s1, const char *s2);
 int compare(const char *s1, const readonly_cstring &amp;s2);
 
 bool operator==(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
+bool operator==(const readonly_cstring &amp;s1, const char *s2);
+
+// BEGIN C++20
+auto operator&lt;=&gt;(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
+auto operator&lt;=&gt;(const readonly_cstring &amp;s1, const char *s2);
+
+// ELSE
 bool operator!=(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
 bool operator&lt;(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
 bool operator&gt;(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
 bool operator&lt;=(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
 bool operator&gt;=(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2);
 
-bool operator==(const readonly_cstring &amp;s1, const char *s2);
 bool operator!=(const readonly_cstring &amp;s1, const char *s2);
 bool operator&lt;(const readonly_cstring &amp;s1, const char *s2);
 bool operator&gt;(const readonly_cstring &amp;s1, const char *s2);
@@ -5530,6 +5555,7 @@ bool operator&lt;(const char *s1, const readonly_cstring &amp;s2);
 bool operator&gt;(const char *s1, const readonly_cstring &amp;s2);
 bool operator&lt;=(const char *s1, const readonly_cstring &amp;s2);
 bool operator&gt;=(const char *s1, const readonly_cstring &amp;s2);
+// END C++20
 
 void swap(readonly_cstring &amp;s1, readonly_cstring &amp;s2) noexcept;
 </pre>
@@ -5685,9 +5711,15 @@ void swap(readonly_cstring &amp;s1, readonly_cstring &amp;s2) noexcept;
 
 <div>
 <pre class="prototype">bool operator==(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2)</pre>
+<pre class="prototype">bool operator==(const readonly_cstring &amp;s1, const char *s2)</pre>
+<pre class="prototype">auto operator&lt;=&gt;(const readonly_cstring &amp;s1, const readonly_cstring &amp;s2) <span class="badge">[C++20]</span></pre>
+<pre class="prototype">auto operator&lt;=&gt;(const readonly_cstring &amp;s1, const char *s2) <span class="badge">[C++20]</span></pre>
 <pre class="prototype">...</pre>
-<pre class="prototype">bool operator&gt;=(const char *s1, const readonly_cstring &amp;s2)</pre>
+<pre class="prototype">bool operator&gt;=(const char *s1, const readonly_cstring &amp;s2) <span class="badge">[until C++20]</span></pre>
 <blockquote>
+
+
+
 
 
 
@@ -5892,7 +5924,7 @@ public:
 
 
 <p><tt>&lt;stdint.h&gt;</tt> из ISO C99 для C++98. Начиная с C++11 - просто
-перенаправление на <tt>&lt;cstdint&gt;</tt>.</p>
+перенаправление на <tt>&lt;stdint.h&gt;</tt>.</p>
 <p>Дополнительно содержит некоторые метафункции для шаблонного
 метапрограммирования.</p>
 
@@ -5904,14 +5936,14 @@ public:
 <p>Гарантируется, что следующие типы доступны в <b>глобальном пространстве
 имён</b>:</p>
 <ul>
-<li><tt>int8_t</tt></li>
-<li><tt>int16_t</tt></li>
-<li><tt>int32_t</tt></li>
-<li><tt>int64_t</tt></li>
-<li><tt>uint8_t</tt></li>
-<li><tt>uint16_t</tt></li>
-<li><tt>uint32_t</tt></li>
-<li><tt>uint64_t</tt></li>
+<li><tt>::int8_t</tt></li>
+<li><tt>::int16_t</tt></li>
+<li><tt>::int32_t</tt></li>
+<li><tt>::int64_t</tt></li>
+<li><tt>::uint8_t</tt></li>
+<li><tt>::uint16_t</tt></li>
+<li><tt>::uint32_t</tt></li>
+<li><tt>::uint64_t</tt></li>
 </ul>
 
 
@@ -5924,14 +5956,14 @@ public:
 <p>Гарантируется, что следующие типы доступны в <b>глобальном пространстве
 имён</b>:</p>
 <ul>
-<li><tt>int_least8_t</tt></li>
-<li><tt>int_least16_t</tt></li>
-<li><tt>int_least32_t</tt></li>
-<li><tt>int_least64_t</tt></li>
-<li><tt>uint_least8_t</tt></li>
-<li><tt>uint_least16_t</tt></li>
-<li><tt>uint_least32_t</tt></li>
-<li><tt>uint_least64_t</tt></li>
+<li><tt>::int_least8_t</tt></li>
+<li><tt>::int_least16_t</tt></li>
+<li><tt>::int_least32_t</tt></li>
+<li><tt>::int_least64_t</tt></li>
+<li><tt>::uint_least8_t</tt></li>
+<li><tt>::uint_least16_t</tt></li>
+<li><tt>::uint_least32_t</tt></li>
+<li><tt>::uint_least64_t</tt></li>
 </ul>
 
 
@@ -5944,14 +5976,14 @@ public:
 <p>Гарантируется, что следующие типы доступны в <b>глобальном пространстве
 имён</b>:</p>
 <ul>
-<li><tt>int_fast8_t</tt></li>
-<li><tt>int_fast16_t</tt></li>
-<li><tt>int_fast32_t</tt></li>
-<li><tt>int_fast64_t</tt></li>
-<li><tt>uint_fast8_t</tt></li>
-<li><tt>uint_fast16_t</tt></li>
-<li><tt>uint_fast32_t</tt></li>
-<li><tt>uint_fast64_t</tt></li>
+<li><tt>::int_fast8_t</tt></li>
+<li><tt>::int_fast16_t</tt></li>
+<li><tt>::int_fast32_t</tt></li>
+<li><tt>::int_fast64_t</tt></li>
+<li><tt>::uint_fast8_t</tt></li>
+<li><tt>::uint_fast16_t</tt></li>
+<li><tt>::uint_fast32_t</tt></li>
+<li><tt>::uint_fast64_t</tt></li>
 </ul>
 
 
@@ -5964,8 +5996,8 @@ public:
 <p>Гарантируется, что следующие типы доступны в <b>глобальном пространстве
 имён</b>:</p>
 <ul>
-<li><tt>intmax_t</tt></li>
-<li><tt>uintmax_t</tt></li>
+<li><tt>::intmax_t</tt></li>
+<li><tt>::uintmax_t</tt></li>
 </ul>
 
 
@@ -5978,8 +6010,8 @@ public:
 <p>Гарантируется, что следующие типы доступны в <b>глобальном пространстве
 имён</b>:</p>
 <ul>
-<li><tt>intptr_t</tt></li>
-<li><tt>uintptr_t</tt></li>
+<li><tt>::intptr_t</tt></li>
+<li><tt>::uintptr_t</tt></li>
 </ul>
 
 
@@ -7023,6 +7055,10 @@ using string_ref = basic_string_ref&lt;char&gt; ;
 
 template&lt;class charT&gt;
 bool operator==(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2);
+// BEGIN C++20
+template&lt;class charT&gt;
+auto operator&lt;=&gt;(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2);
+// ELSE
 template&lt;class charT&gt;
 bool operator!=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2);
 template&lt;class charT&gt;
@@ -7033,11 +7069,12 @@ template&lt;class charT&gt;
 bool operator&lt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2);
 template&lt;class charT&gt;
 bool operator&gt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2);
+// END C++20
 
 #ifdef __VIC_DEFINE_OSTREAM_INSERTERS
 template&lt;class charT, class Traits&gt;
 std::basic_ostream&lt;charT,Traits&gt; &amp;operator&lt;&lt;(
-    std::basic_ostream&lt;charT,Traits&gt; &amp;os, const basic_string_ref&lt;charT&gt; &amp;sr);
+    std::basic_ostream&lt;charT,Traits&gt; &amp;os, basic_string_ref&lt;charT&gt; sr);
 #endif
 </pre>
 
@@ -7260,16 +7297,19 @@ std::basic_string&lt;charT,Traits,Alloc&gt; str(const Alloc &amp;a = Alloc()) co
 <pre class="prototype">template&lt;class charT&gt;
 bool operator==(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2)</pre>
 <pre class="prototype">template&lt;class charT&gt;
-bool operator!=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2)</pre>
+auto operator&lt;=&gt;(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2) <span class="badge">[C++20]</span></pre>
 <pre class="prototype">template&lt;class charT&gt;
-bool operator&lt;(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2)</pre>
+bool operator!=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2) <span class="badge">[until C++20]</span></pre>
 <pre class="prototype">template&lt;class charT&gt;
-bool operator&gt;(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2)</pre>
+bool operator&lt;(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2) <span class="badge">[until C++20]</span></pre>
 <pre class="prototype">template&lt;class charT&gt;
-bool operator&lt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2)</pre>
+bool operator&gt;(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2) <span class="badge">[until C++20]</span></pre>
 <pre class="prototype">template&lt;class charT&gt;
-bool operator&gt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2)</pre>
+bool operator&lt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2) <span class="badge">[until C++20]</span></pre>
+<pre class="prototype">template&lt;class charT&gt;
+bool operator&gt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&gt; s2) <span class="badge">[until C++20]</span></pre>
 <blockquote>
+
 
 
 
@@ -7283,7 +7323,7 @@ bool operator&gt;=(basic_string_ref&lt;charT&gt; s1, basic_string_ref&lt;charT&g
 <div>
 <pre class="prototype">template&lt;class charT, class Traits&gt;
 std::basic_ostream&lt;charT,Traits&gt; &amp;operator&lt;&lt;(
-    std::basic_ostream&lt;charT,Traits&gt; &amp;os, const basic_string_ref&lt;charT&gt; &amp;sr)</pre>
+    std::basic_ostream&lt;charT,Traits&gt; &amp;os, basic_string_ref&lt;charT&gt; sr)</pre>
 <blockquote>
 
 <p>Инсертер в стандартный выходной поток. Определён (а также
@@ -8299,14 +8339,18 @@ namespace this_thread
 #include&lt;__vic/throw_errno.h&gt;
 #include&lt;system_error&gt;
 
+namespace __vic {
+
 //----------------------------------------------------------------------------
-// Override library functions to throw std::system_error
+// Override the library functions to throw std::system_error
 //----------------------------------------------------------------------------
-void __vic::throw_errno(const char *prompt, int err_no)
+void throw_errno(const char *prompt, int err_no)
 {
     throw std::system_error(err_no, std::system_category(), prompt);
 }
 //----------------------------------------------------------------------------
+
+} // namespace
 </pre>
 
 <p>Переопределения одной функции достаточно, так как вторая просто вызывает
@@ -13234,13 +13278,25 @@ void register_complex_param(T &amp;v, const char *name)</pre>
 
 
 
+<h2 id="config.parser.macros.h">
+<a class="self-link" href="#config.parser.macros.h"></a><span class="h2_num">5.5</span><tt>__vic/config/parser.macros.h</tt>
+</h2>
+
+
+<p>Данный заголовочный файл содержит только макросы из
+<a href="#config.parser.h"><tt>__vic/config/parser.h</tt> <span class="badge">[C++11]</span></a>. Это позволяет использовать их в случаях, когда
+данная библиотека подключается как C++-модуль.</p>
+
+
+
+
 <h2 id="config.value.h">
-<a class="self-link" href="#config.value.h"></a><span class="h2_num">5.5</span><tt>__vic/config/value.h</tt> <span class="badge">[C++11]</span>
+<a class="self-link" href="#config.value.h"></a><span class="h2_num">5.6</span><tt>__vic/config/value.h</tt> <span class="badge">[C++11]</span>
 </h2>
 
 
 <h3 id="config--value">
-<a class="self-link" href="#config--value"></a><span class="h3_num">5.5.1</span><tt>config::value</tt> <span class="badge">[C++11]</span>
+<a class="self-link" href="#config--value"></a><span class="h3_num">5.6.1</span><tt>config::value</tt> <span class="badge">[C++11]</span>
 </h3>
 
 
@@ -13281,7 +13337,7 @@ template&lt;&gt; class config::value&lt;__vic::string_buffer&gt;;
 
 
 <h3 id="config--list_traits">
-<a class="self-link" href="#config--list_traits"></a><span class="h3_num">5.5.2</span><tt>config::list_traits</tt> <span class="badge">[C++11]</span>
+<a class="self-link" href="#config--list_traits"></a><span class="h3_num">5.6.2</span><tt>config::list_traits</tt> <span class="badge">[C++11]</span>
 </h3>
 
 
@@ -13323,13 +13379,13 @@ struct config::list_traits
 
 
 <h2 id="config-value-parsers">
-<a class="self-link" href="#config-value-parsers"></a><span class="h2_num">5.6</span><tt>Дополнительные парсеры значений</tt>
+<a class="self-link" href="#config-value-parsers"></a><span class="h2_num">5.7</span><tt>Дополнительные парсеры значений</tt>
 </h2>
 
 
 
 <h3 id="config--value-std--optional">
-<a class="self-link" href="#config--value-std--optional"></a><span class="h3_num">5.6.1</span><tt>config::value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span>
+<a class="self-link" href="#config--value-std--optional"></a><span class="h3_num">5.7.1</span><tt>config::value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span>
 </h3>
 
 
@@ -13344,7 +13400,7 @@ class config::value&lt;std::optional&lt;T&gt;&gt;;
 
 
 <h3 id="config--complex_value-std--optional">
-<a class="self-link" href="#config--complex_value-std--optional"></a><span class="h3_num">5.6.2</span><tt>config::complex_value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span>
+<a class="self-link" href="#config--complex_value-std--optional"></a><span class="h3_num">5.7.2</span><tt>config::complex_value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span>
 </h3>
 
 
@@ -13359,7 +13415,7 @@ class config::complex_value&lt;std::optional&lt;T&gt;, Parser, false&gt;;
 
 
 <h3 id="config--value-__vic--ipv4_addr">
-<a class="self-link" href="#config--value-__vic--ipv4_addr"></a><span class="h3_num">5.6.3</span><tt>config::value&lt;__vic::ipv4_addr&gt;</tt>
+<a class="self-link" href="#config--value-__vic--ipv4_addr"></a><span class="h3_num">5.7.3</span><tt>config::value&lt;__vic::ipv4_addr&gt;</tt>
 </h3>
 
 
@@ -13373,7 +13429,7 @@ template&lt;&gt; class config::value&lt;__vic::ipv4_addr&gt;;
 
 
 <h3 id="config--list_traits-std--vector">
-<a class="self-link" href="#config--list_traits-std--vector"></a><span class="h3_num">5.6.4</span><tt>config::list_traits&lt;std::vector&lt;T&gt;&gt;</tt>
+<a class="self-link" href="#config--list_traits-std--vector"></a><span class="h3_num">5.7.4</span><tt>config::list_traits&lt;std::vector&lt;T&gt;&gt;</tt>
 </h3>
 
 
@@ -13388,7 +13444,7 @@ struct config::list_traits&lt;std::vector&lt;T&gt;&gt;;
 
 
 <h3 id="config--list_traits-std--list">
-<a class="self-link" href="#config--list_traits-std--list"></a><span class="h3_num">5.6.5</span><tt>config::list_traits&lt;std::list&lt;T&gt;&gt;</tt>
+<a class="self-link" href="#config--list_traits-std--list"></a><span class="h3_num">5.7.5</span><tt>config::list_traits&lt;std::list&lt;T&gt;&gt;</tt>
 </h3>
 
 
@@ -13403,7 +13459,7 @@ struct config::list_traits&lt;std::list&lt;T&gt;&gt;;
 
 
 <h3 id="config--list_traits-std--forward_list">
-<a class="self-link" href="#config--list_traits-std--forward_list"></a><span class="h3_num">5.6.6</span><tt>config::list_traits&lt;std::forward_list&lt;T&gt;&gt;</tt> <span class="badge">[C++11]</span>
+<a class="self-link" href="#config--list_traits-std--forward_list"></a><span class="h3_num">5.7.6</span><tt>config::list_traits&lt;std::forward_list&lt;T&gt;&gt;</tt> <span class="badge">[C++11]</span>
 </h3>
 
 
@@ -13418,7 +13474,7 @@ struct config::list_traits&lt;std::forward_list&lt;T&gt;&gt;;
 
 
 <h3 id="config--bytes_value_parser">
-<a class="self-link" href="#config--bytes_value_parser"></a><span class="h3_num">5.6.7</span><tt>config::bytes_value_parser</tt>
+<a class="self-link" href="#config--bytes_value_parser"></a><span class="h3_num">5.7.7</span><tt>config::bytes_value_parser</tt>
 </h3>
 
 

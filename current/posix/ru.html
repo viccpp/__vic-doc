@@ -71,6 +71,7 @@ h1:hover>a.self-link, h2:hover>a.self-link, h3:hover>a.self-link, h4:hover>a.sel
 	visibility: visible;
 }
 tt { font-family: consolas, monospace; }
+:not(a, h2, h3) > tt { background-color: #E3E6E8; padding: 0 2px; }
 pre.code {
 	background-color: #EEE;
 	border: 1px solid #CCCCCC;
@@ -8602,7 +8603,8 @@ constexpr To byte_cast(From v);
 представляют байт (см. <a href="#is_byte"><tt>is_byte</tt></a>).</p>
 
 <div>
-<u>Предусловие</u>: is_byte&lt;From&gt;::value &amp;&amp; is_byte&lt;To&gt;::value</div>
+<u>Предусловие</u>: <tt>is_byte&lt;From&gt;::value &amp;&amp; is_byte&lt;To&gt;::value</tt>
+</div>
 
 
 
@@ -9892,9 +9894,9 @@ public:
 
     // BEGIN C++11
     template&lt;class Rep, class Period&gt;
-    bool wait_for(const std::chrono::duration&lt;Rep,Period&gt; &amp;d);
+    bool wait_for(std::chrono::duration&lt;Rep,Period&gt; d);
     template&lt;class Clock, class Duration&gt;
-    bool wait_until(const std::chrono::time_point&lt;Clock,Duration&gt; &amp;t);
+    bool wait_until(std::chrono::time_point&lt;Clock,Duration&gt; t);
     // END C++11
 };
 
@@ -9971,9 +9973,9 @@ Returns <tt>signaled()</tt>.</p>
 
 <div>
 <pre class="prototype">template&lt;class Rep, class Period&gt;
-bool wait_for(const std::chrono::duration&lt;Rep,Period&gt; &amp;d) <span class="badge">[C++11]</span></pre>
+bool wait_for(std::chrono::duration&lt;Rep,Period&gt; d) <span class="badge">[C++11]</span></pre>
 <pre class="prototype">template&lt;class Clock, class Duration&gt;
-bool wait_until(const std::chrono::time_point&lt;Clock,Duration&gt; &amp;t) <span class="badge">[C++11]</span></pre>
+bool wait_until(std::chrono::time_point&lt;Clock,Duration&gt; t) <span class="badge">[C++11]</span></pre>
 <blockquote>
 
 

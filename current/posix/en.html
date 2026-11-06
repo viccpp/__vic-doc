@@ -51,12 +51,22 @@ caption.toc {
 	margin-bottom: 12pt;
 	margin-left: 0;
 }
-td.toc-chapter-no {
+table.toc {
+	font-size: 10pt;
+}
+table.toc td.toc-chapter-no {
 	padding-right: 1ex;
 	vertical-align: top;
 }
+table.toc td.toc-indent {
+	padding-left: 4ex;
+}
+table.toc tr.toc-gap td {
+	font-size: 5pt;
+}
 a { color: #0000EE; text-decoration: none; }
 a:hover { text-decoration: underline; }
+a.broken-link { color: red; }
 a.self-link {
 	font-weight: normal;
 	margin-left: -1.5ex;
@@ -108,6 +118,16 @@ span.badge {
 	font-size: 9pt;
 	font-weight: bold;
 }
+span.label {
+	text-decoration: underline;
+}
+span.label-strong {
+	text-decoration: underline;
+	font-weight: bold;
+}
+ul.nomarks {
+	list-style-type: none;
+}
 blockquote {
 	margin-top: 6pt;
 	margin-bottom: 0;
@@ -122,7 +142,7 @@ blockquote * {
 <body><div class="page-wrap">
 <h1 class="main-title">__vic's C++ library (POSIX)<span class="ver"> v1.0 [Draft]</span>
 </h1>
-<table style="font-size:10pt;" cellspacing="0" cellpadding="0">
+<table class="toc" cellspacing="0" cellpadding="0">
 <caption class="toc">Contents</caption>
 <tr>
 <td class="toc-chapter-no">1</td>
@@ -136,7 +156,7 @@ blockquote * {
 <td class="toc-chapter-no">1.2</td>
 <td><a href="#general-structure">General structure and usage</a></td>
 </tr>
-<tr><td colspan="2" style="font-size:5pt;"> </td></tr>
+<tr class="toc-gap"><td colspan="2"> </td></tr>
 <tr>
 <td class="toc-chapter-no">2</td>
 <td><a href="#components-reference">Library components reference</a></td>
@@ -147,36 +167,36 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.1</td>
-<td style="padding-left:4ex"><a href="#nullptr"><tt>nullptr</tt> <span class="badge">[C++98 only]</span></a></td>
+<td class="toc-indent"><a href="#nullptr"><tt>nullptr</tt> <span class="badge">[C++98 only]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.2</td>
-<td style="padding-left:4ex"><a href="#noexcept"><tt>noexcept</tt> <span class="badge">[C++98 only]</span></a></td>
+<td class="toc-indent"><a href="#noexcept"><tt>noexcept</tt> <span class="badge">[C++98 only]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.3</td>
-<td style="padding-left:4ex"><a href="#array_size"><tt>array_size()</tt></a></td>
+<td class="toc-indent"><a href="#array_size"><tt>array_size()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.4</td>
-<td style="padding-left:4ex"><a href="#non_copyable"><tt>non_copyable</tt></a></td>
+<td class="toc-indent"><a href="#non_copyable"><tt>non_copyable</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.5</td>
-<td style="padding-left:4ex"><a href="#non_heap_allocatable"><tt>non_heap_allocatable</tt></a></td>
+<td class="toc-indent"><a href="#non_heap_allocatable"><tt>non_heap_allocatable</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.6</td>
-<td style="padding-left:4ex"><a href="#std--move"><tt>std::move()</tt>, <tt>std::forward()</tt>, <tt>std::swap()</tt>
+<td class="toc-indent"><a href="#std--move"><tt>std::move()</tt>, <tt>std::forward()</tt>, <tt>std::swap()</tt>
 <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.7</td>
-<td style="padding-left:4ex"><a href="#VIC_SWAP_HEADER"><tt>__VIC_SWAP_HEADER</tt></a></td>
+<td class="toc-indent"><a href="#VIC_SWAP_HEADER"><tt>__VIC_SWAP_HEADER</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.1.8</td>
-<td style="padding-left:4ex"><a href="#platform-dependent-macros">Platform-dependent macros</a></td>
+<td class="toc-indent"><a href="#platform-dependent-macros">Platform-dependent macros</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.2</td>
@@ -184,11 +204,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.2.1</td>
-<td style="padding-left:4ex"><a href="#skip_if_front"><tt>skip_if_front()</tt></a></td>
+<td class="toc-indent"><a href="#skip_front_if"><tt>skip_front_if()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.2.2</td>
-<td style="padding-left:4ex"><a href="#skip_if_back"><tt>skip_if_back()</tt></a></td>
+<td class="toc-indent"><a href="#skip_back_if"><tt>skip_back_if()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3</td>
@@ -196,31 +216,31 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.1</td>
-<td style="padding-left:4ex"><a href="#ascii--is-functions"><tt>ascii::is</tt>-functions</a></td>
+<td class="toc-indent"><a href="#ascii--is-functions"><tt>ascii::is</tt>-functions</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.2</td>
-<td style="padding-left:4ex"><a href="#ascii--todigit"><tt>ascii::todigit()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--todigit"><tt>ascii::todigit()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.3</td>
-<td style="padding-left:4ex"><a href="#ascii--toxdigit"><tt>ascii::toxdigit_upper()</tt>, <tt>ascii::toxdigit_lower()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--toxdigit"><tt>ascii::toxdigit_upper()</tt>, <tt>ascii::toxdigit_lower()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.4</td>
-<td style="padding-left:4ex"><a href="#ascii--digit_to_number"><tt>ascii::digit_to_number()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--digit_to_number"><tt>ascii::digit_to_number()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.5</td>
-<td style="padding-left:4ex"><a href="#ascii--xdigit_to_number"><tt>ascii::xdigit_to_number()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--xdigit_to_number"><tt>ascii::xdigit_to_number()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.6</td>
-<td style="padding-left:4ex"><a href="#ascii--tolower-char"><tt>ascii::tolower(char)</tt>, <tt>ascii::toupper(char)</tt></a></td>
+<td class="toc-indent"><a href="#ascii--tolower-char"><tt>ascii::tolower(char)</tt>, <tt>ascii::toupper(char)</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.3.7</td>
-<td style="padding-left:4ex"><a href="#ascii--equal_icase-char"><tt>ascii::equal_icase(char,char)</tt></a></td>
+<td class="toc-indent"><a href="#ascii--equal_icase-char"><tt>ascii::equal_icase(char,char)</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.4</td>
@@ -228,15 +248,15 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.4.1</td>
-<td style="padding-left:4ex"><a href="#ascii--tolower-str"><tt>ascii::tolower()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--tolower-str"><tt>ascii::tolower()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.4.2</td>
-<td style="padding-left:4ex"><a href="#ascii--toupper-str"><tt>ascii::toupper()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--toupper-str"><tt>ascii::toupper()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.4.3</td>
-<td style="padding-left:4ex"><a href="#ascii--equal_icase-str"><tt>ascii::equal_icase()</tt></a></td>
+<td class="toc-indent"><a href="#ascii--equal_icase-str"><tt>ascii::equal_icase()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5</td>
@@ -244,47 +264,47 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.1</td>
-<td style="padding-left:4ex"><a href="#base16"><tt>base16</tt></a></td>
+<td class="toc-indent"><a href="#base16"><tt>base16</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.2</td>
-<td style="padding-left:4ex"><a href="#base16--bad_format"><tt>base16::bad_format</tt></a></td>
+<td class="toc-indent"><a href="#base16--bad_format"><tt>base16::bad_format</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.3</td>
-<td style="padding-left:4ex"><a href="#base16--bad_digit"><tt>base16::bad_digit</tt></a></td>
+<td class="toc-indent"><a href="#base16--bad_digit"><tt>base16::bad_digit</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.4</td>
-<td style="padding-left:4ex"><a href="#base16--bad_length"><tt>base16::bad_length</tt></a></td>
+<td class="toc-indent"><a href="#base16--bad_length"><tt>base16::bad_length</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.5</td>
-<td style="padding-left:4ex"><a href="#base16--status"><tt>base16::status</tt></a></td>
+<td class="toc-indent"><a href="#base16--status"><tt>base16::status</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.6</td>
-<td style="padding-left:4ex"><a href="#base16--encode_upper"><tt>base16::encode_upper()</tt></a></td>
+<td class="toc-indent"><a href="#base16--encode_upper"><tt>base16::encode_upper()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.7</td>
-<td style="padding-left:4ex"><a href="#base16--encode_lower"><tt>base16::encode_lower()</tt></a></td>
+<td class="toc-indent"><a href="#base16--encode_lower"><tt>base16::encode_lower()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.8</td>
-<td style="padding-left:4ex"><a href="#base16--encode_byte_lower"><tt>base16::encode_byte_lower()</tt></a></td>
+<td class="toc-indent"><a href="#base16--encode_byte_lower"><tt>base16::encode_byte_lower()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.9</td>
-<td style="padding-left:4ex"><a href="#base16--encode_byte_upper"><tt>base16::encode_byte_upper()</tt></a></td>
+<td class="toc-indent"><a href="#base16--encode_byte_upper"><tt>base16::encode_byte_upper()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.10</td>
-<td style="padding-left:4ex"><a href="#base16--decode"><tt>base16::decode()</tt></a></td>
+<td class="toc-indent"><a href="#base16--decode"><tt>base16::decode()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.5.11</td>
-<td style="padding-left:4ex"><a href="#base16--try_decode"><tt>base16::try_decode()</tt></a></td>
+<td class="toc-indent"><a href="#base16--try_decode"><tt>base16::try_decode()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6</td>
@@ -292,43 +312,47 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.1</td>
-<td style="padding-left:4ex"><a href="#base64"><tt>base64</tt></a></td>
+<td class="toc-indent"><a href="#base64"><tt>base64</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.2</td>
-<td style="padding-left:4ex"><a href="#base64--bad_format"><tt>base64::bad_format</tt></a></td>
+<td class="toc-indent"><a href="#base64--bad_format"><tt>base64::bad_format</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.3</td>
-<td style="padding-left:4ex"><a href="#base64--bad_digit"><tt>base64::bad_digit</tt></a></td>
+<td class="toc-indent"><a href="#base64--bad_digit"><tt>base64::bad_digit</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.4</td>
-<td style="padding-left:4ex"><a href="#base64--bad_length"><tt>base64::bad_length</tt></a></td>
+<td class="toc-indent"><a href="#base64--bad_length"><tt>base64::bad_length</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.5</td>
-<td style="padding-left:4ex"><a href="#base64--status"><tt>base64::status</tt></a></td>
+<td class="toc-indent"><a href="#base64--bad_padding"><tt>base64::bad_padding</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.6</td>
-<td style="padding-left:4ex"><a href="#base64--encode"><tt>base64::encode()</tt></a></td>
+<td class="toc-indent"><a href="#base64--status"><tt>base64::status</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.7</td>
-<td style="padding-left:4ex"><a href="#base64--decode"><tt>base64::decode()</tt></a></td>
+<td class="toc-indent"><a href="#base64--encode"><tt>base64::encode()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.8</td>
-<td style="padding-left:4ex"><a href="#base64--try_decode"><tt>base64::try_decode()</tt></a></td>
+<td class="toc-indent"><a href="#base64--decode"><tt>base64::decode()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.9</td>
-<td style="padding-left:4ex"><a href="#base64--encoded_length"><tt>base64::encoded_length()</tt></a></td>
+<td class="toc-indent"><a href="#base64--try_decode"><tt>base64::try_decode()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.6.10</td>
-<td style="padding-left:4ex"><a href="#base64--max_decoded_length"><tt>base64::max_decoded_length()</tt></a></td>
+<td class="toc-indent"><a href="#base64--encoded_length"><tt>base64::encoded_length()</tt></a></td>
+</tr>
+<tr>
+<td class="toc-chapter-no">2.6.11</td>
+<td class="toc-indent"><a href="#base64--max_decoded_length"><tt>base64::max_decoded_length()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.7</td>
@@ -336,7 +360,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.7.1</td>
-<td style="padding-left:4ex"><a href="#bin_file"><tt>bin_file</tt></a></td>
+<td class="toc-indent"><a href="#bin_file"><tt>bin_file</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8</td>
@@ -344,55 +368,55 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.1</td>
-<td style="padding-left:4ex"><a href="#lo_nibble"><tt>lo_nibble()</tt>, <tt>hi_nibble()</tt></a></td>
+<td class="toc-indent"><a href="#lo_nibble"><tt>lo_nibble()</tt>, <tt>hi_nibble()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.2</td>
-<td style="padding-left:4ex"><a href="#msb_ones"><tt>msb_ones()</tt>, <tt>lsb_ones()</tt></a></td>
+<td class="toc-indent"><a href="#msb_ones"><tt>msb_ones()</tt>, <tt>lsb_ones()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.3</td>
-<td style="padding-left:4ex"><a href="#get_lsbs"><tt>get_lsbs()</tt></a></td>
+<td class="toc-indent"><a href="#get_lsbs"><tt>get_lsbs()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.4</td>
-<td style="padding-left:4ex"><a href="#ord"><tt>ord()</tt></a></td>
+<td class="toc-indent"><a href="#ord"><tt>ord()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.5</td>
-<td style="padding-left:4ex"><a href="#popcount"><tt>popcount()</tt></a></td>
+<td class="toc-indent"><a href="#popcount"><tt>popcount()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.6</td>
-<td style="padding-left:4ex"><a href="#msb_position"><tt>msb_position()</tt></a></td>
+<td class="toc-indent"><a href="#msb_position"><tt>msb_position()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.7</td>
-<td style="padding-left:4ex"><a href="#ispow2"><tt>ispow2()</tt></a></td>
+<td class="toc-indent"><a href="#ispow2"><tt>ispow2()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.8</td>
-<td style="padding-left:4ex"><a href="#ceil2"><tt>ceil2()</tt></a></td>
+<td class="toc-indent"><a href="#ceil2"><tt>ceil2()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.9</td>
-<td style="padding-left:4ex"><a href="#floor2"><tt>floor2()</tt></a></td>
+<td class="toc-indent"><a href="#floor2"><tt>floor2()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.10</td>
-<td style="padding-left:4ex"><a href="#ceil_log2"><tt>ceil_log2()</tt></a></td>
+<td class="toc-indent"><a href="#ceil_log2"><tt>ceil_log2()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.11</td>
-<td style="padding-left:4ex"><a href="#floor_log2"><tt>floor_log2()</tt></a></td>
+<td class="toc-indent"><a href="#floor_log2"><tt>floor_log2()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.12</td>
-<td style="padding-left:4ex"><a href="#rotl"><tt>rotl()</tt>, <tt>rotr()</tt></a></td>
+<td class="toc-indent"><a href="#rotl"><tt>rotl()</tt>, <tt>rotr()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.8.13</td>
-<td style="padding-left:4ex"><a href="#swapped_nibbles"><tt>swapped_nibbles()</tt></a></td>
+<td class="toc-indent"><a href="#swapped_nibbles"><tt>swapped_nibbles()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9</td>
@@ -400,7 +424,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.9.1</td>
-<td style="padding-left:4ex"><a href="#bounded_vector"><tt>bounded_vector</tt></a></td>
+<td class="toc-indent"><a href="#bounded_vector"><tt>bounded_vector</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10</td>
@@ -408,23 +432,23 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10.1</td>
-<td style="padding-left:4ex"><a href="#is_leap_year"><tt>is_leap_year()</tt></a></td>
+<td class="toc-indent"><a href="#is_leap_year"><tt>is_leap_year()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10.2</td>
-<td style="padding-left:4ex"><a href="#days_in_month"><tt>days_in_month()</tt></a></td>
+<td class="toc-indent"><a href="#days_in_month"><tt>days_in_month()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10.3</td>
-<td style="padding-left:4ex"><a href="#days_between_years"><tt>days_between_years()</tt></a></td>
+<td class="toc-indent"><a href="#days_between_years"><tt>days_between_years()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10.4</td>
-<td style="padding-left:4ex"><a href="#invalid_date"><tt>invalid_date</tt></a></td>
+<td class="toc-indent"><a href="#invalid_date"><tt>invalid_date</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.10.5</td>
-<td style="padding-left:4ex"><a href="#validate_date_time"><tt>validate_date()</tt>, <tt>validate_time()</tt>,
+<td class="toc-indent"><a href="#validate_date_time"><tt>validate_date()</tt>, <tt>validate_time()</tt>,
 <tt>validate_date_time()</tt></a></td>
 </tr>
 <tr>
@@ -433,19 +457,19 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.11.1</td>
-<td style="padding-left:4ex"><a href="#endianness"><tt>endianness</tt></a></td>
+<td class="toc-indent"><a href="#endianness"><tt>endianness</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.11.2</td>
-<td style="padding-left:4ex"><a href="#endian--from"><tt>endian::from_...()</tt></a></td>
+<td class="toc-indent"><a href="#endian--from"><tt>endian::from_...()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.11.3</td>
-<td style="padding-left:4ex"><a href="#endian--to"><tt>endian::to_...()</tt></a></td>
+<td class="toc-indent"><a href="#endian--to"><tt>endian::to_...()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.11.4</td>
-<td style="padding-left:4ex"><a href="#swab"><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt></a></td>
+<td class="toc-indent"><a href="#swab"><tt>swab16()</tt>, <tt>swab32()</tt>, <tt>swab64()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.12</td>
@@ -453,11 +477,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.12.1</td>
-<td style="padding-left:4ex"><a href="#exception"><tt>exception</tt></a></td>
+<td class="toc-indent"><a href="#exception"><tt>exception</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.12.2</td>
-<td style="padding-left:4ex"><a href="#libc_error"><tt>libc_error</tt></a></td>
+<td class="toc-indent"><a href="#libc_error"><tt>libc_error</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13</td>
@@ -465,44 +489,44 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.1</td>
-<td style="padding-left:4ex"><a href="#path_exists"><tt>path_exists()</tt>, <tt>file_exists()</tt>, <tt>dir_exists()</tt>
+<td class="toc-indent"><a href="#path_exists"><tt>path_exists()</tt>, <tt>file_exists()</tt>, <tt>dir_exists()</tt>
 </a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.2</td>
-<td style="padding-left:4ex"><a href="#mkdir"><tt>mkdir()</tt>, <tt>mkdir_if_absent()</tt></a></td>
+<td class="toc-indent"><a href="#mkdir"><tt>mkdir()</tt>, <tt>mkdir_if_absent()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.3</td>
-<td style="padding-left:4ex"><a href="#rmdir"><tt>rmdir()</tt>, <tt>rmdir_if_exists()</tt></a></td>
+<td class="toc-indent"><a href="#rmdir"><tt>rmdir()</tt>, <tt>rmdir_if_exists()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.4</td>
-<td style="padding-left:4ex"><a href="#get_current_dir"><tt>get_current_dir()</tt></a></td>
+<td class="toc-indent"><a href="#get_current_dir"><tt>get_current_dir()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.5</td>
-<td style="padding-left:4ex"><a href="#remove_file"><tt>remove_file()</tt>, <tt>remove_file_if_exists()</tt>,
+<td class="toc-indent"><a href="#remove_file"><tt>remove_file()</tt>, <tt>remove_file_if_exists()</tt>,
 <tt>remove_file_nt()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.6</td>
-<td style="padding-left:4ex"><a href="#copy_file"><tt>copy_file()</tt>, <tt>copy_file_if_exists()</tt>,
+<td class="toc-indent"><a href="#copy_file"><tt>copy_file()</tt>, <tt>copy_file_if_exists()</tt>,
 <tt>copy_file_replace()</tt>, <tt>copy_file_replace_if_exists()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.7</td>
-<td style="padding-left:4ex"><a href="#move_file"><tt>move_file()</tt>, <tt>move_file_if_exists()</tt>,
+<td class="toc-indent"><a href="#move_file"><tt>move_file()</tt>, <tt>move_file_if_exists()</tt>,
 <tt>move_file_replace()</tt>, <tt>move_file_replace_if_exists()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.8</td>
-<td style="padding-left:4ex"><a href="#rename_file"><tt>rename_file()</tt>, <tt>rename_file_if_exists()</tt>,
+<td class="toc-indent"><a href="#rename_file"><tt>rename_file()</tt>, <tt>rename_file_if_exists()</tt>,
     <tt>rename_file_replace()</tt>, <tt>rename_file_replace_if_exists()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.13.9</td>
-<td style="padding-left:4ex"><a href="#file_size"><tt>file_size()</tt></a></td>
+<td class="toc-indent"><a href="#file_size"><tt>file_size()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.14</td>
@@ -510,11 +534,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.14.1</td>
-<td style="padding-left:4ex"><a href="#ipv4_addr"><tt>ipv4_addr</tt></a></td>
+<td class="toc-indent"><a href="#ipv4_addr"><tt>ipv4_addr</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.14.2</td>
-<td style="padding-left:4ex"><a href="#ipv6_addr"><tt>ipv6_addr</tt></a></td>
+<td class="toc-indent"><a href="#ipv6_addr"><tt>ipv6_addr</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.15</td>
@@ -522,16 +546,16 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.15.1</td>
-<td style="padding-left:4ex"><a href="#begin-array"><tt>begin(T[])</tt>, <tt>end(T[])</tt>, <tt>cbegin(T[])</tt>,
+<td class="toc-indent"><a href="#begin-array"><tt>begin(T[])</tt>, <tt>end(T[])</tt>, <tt>cbegin(T[])</tt>,
 <tt>cend(T[])</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.15.2</td>
-<td style="padding-left:4ex"><a href="#advance"><tt>advance()</tt></a></td>
+<td class="toc-indent"><a href="#advance"><tt>advance()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.15.3</td>
-<td style="padding-left:4ex"><a href="#next"><tt>next()</tt>, <tt>prev()</tt></a></td>
+<td class="toc-indent"><a href="#next"><tt>next()</tt>, <tt>prev()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.16</td>
@@ -539,7 +563,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.16.1</td>
-<td style="padding-left:4ex"><a href="#logger"><tt>logger</tt></a></td>
+<td class="toc-indent"><a href="#logger"><tt>logger</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.17</td>
@@ -547,11 +571,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.17.1</td>
-<td style="padding-left:4ex"><a href="#load_unaligned"><tt>load_unaligned()</tt></a></td>
+<td class="toc-indent"><a href="#load_unaligned"><tt>load_unaligned()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.17.2</td>
-<td style="padding-left:4ex"><a href="#store_unaligned"><tt>store_unaligned()</tt></a></td>
+<td class="toc-indent"><a href="#store_unaligned"><tt>store_unaligned()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.18</td>
@@ -559,11 +583,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.18.1</td>
-<td style="padding-left:4ex"><a href="#mutex"><tt>mutex</tt></a></td>
+<td class="toc-indent"><a href="#mutex"><tt>mutex</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.18.2</td>
-<td style="padding-left:4ex"><a href="#mutex_lock"><tt>mutex_lock</tt></a></td>
+<td class="toc-indent"><a href="#mutex_lock"><tt>mutex_lock</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.19</td>
@@ -575,7 +599,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.20.1</td>
-<td style="padding-left:4ex"><a href="#readonly_cstring"><tt>readonly_cstring</tt></a></td>
+<td class="toc-indent"><a href="#readonly_cstring"><tt>readonly_cstring</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.21</td>
@@ -583,7 +607,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.21.1</td>
-<td style="padding-left:4ex"><a href="#set_of_chars"><tt>set_of_chars</tt></a></td>
+<td class="toc-indent"><a href="#set_of_chars"><tt>set_of_chars</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22</td>
@@ -591,27 +615,27 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22.1</td>
-<td style="padding-left:4ex"><a href="#intN_t">Exact-width integer types</a></td>
+<td class="toc-indent"><a href="#intN_t">Exact-width integer types</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22.2</td>
-<td style="padding-left:4ex"><a href="#int_leastN_t">Minimum-width integer types</a></td>
+<td class="toc-indent"><a href="#int_leastN_t">Minimum-width integer types</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22.3</td>
-<td style="padding-left:4ex"><a href="#int_fastN_t">Fastest minimum-width integer types</a></td>
+<td class="toc-indent"><a href="#int_fastN_t">Fastest minimum-width integer types</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22.4</td>
-<td style="padding-left:4ex"><a href="#intmax_t">Greatest-width integer types</a></td>
+<td class="toc-indent"><a href="#intmax_t">Greatest-width integer types</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22.5</td>
-<td style="padding-left:4ex"><a href="#intptr_t">Integer types capable of holding object pointers</a></td>
+<td class="toc-indent"><a href="#intptr_t">Integer types capable of holding object pointers</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.22.6</td>
-<td style="padding-left:4ex"><a href="#int_exactly_bytes"><tt>int_exactly_bytes&lt;&gt;</tt>, <tt>uint_exactly_bytes&lt;&gt;</tt></a></td>
+<td class="toc-indent"><a href="#int_exactly_bytes"><tt>int_exactly_bytes&lt;&gt;</tt>, <tt>uint_exactly_bytes&lt;&gt;</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23</td>
@@ -619,19 +643,19 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.1</td>
-<td style="padding-left:4ex"><a href="#stdio_file"><tt>stdio_file</tt></a></td>
+<td class="toc-indent"><a href="#stdio_file"><tt>stdio_file</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.2</td>
-<td style="padding-left:4ex"><a href="#read-FILE"><tt>read(std::FILE)</tt></a></td>
+<td class="toc-indent"><a href="#read-FILE"><tt>read(std::FILE)</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.3</td>
-<td style="padding-left:4ex"><a href="#write-FILE"><tt>write(std::FILE)</tt></a></td>
+<td class="toc-indent"><a href="#write-FILE"><tt>write(std::FILE)</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.23.4</td>
-<td style="padding-left:4ex"><a href="#getline-FILE"><tt>getline(std::FILE)</tt></a></td>
+<td class="toc-indent"><a href="#getline-FILE"><tt>getline(std::FILE)</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24</td>
@@ -639,27 +663,27 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24.1</td>
-<td style="padding-left:4ex"><a href="#decimal_to_number"><tt>decimal_to_number()</tt></a></td>
+<td class="toc-indent"><a href="#decimal_to_number"><tt>decimal_to_number()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24.2</td>
-<td style="padding-left:4ex"><a href="#decimal_to_number_range"><tt>decimal_to_number_range()</tt></a></td>
+<td class="toc-indent"><a href="#decimal_to_number_range"><tt>decimal_to_number_range()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24.3</td>
-<td style="padding-left:4ex"><a href="#parse_decimal"><tt>parse_decimal()</tt></a></td>
+<td class="toc-indent"><a href="#parse_decimal"><tt>parse_decimal()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24.4</td>
-<td style="padding-left:4ex"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
+<td class="toc-indent"><a href="#decimal_parser"><tt>decimal_parser</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24.5</td>
-<td style="padding-left:4ex"><a href="#number_parse_status"><tt>number_parse_status</tt></a></td>
+<td class="toc-indent"><a href="#number_parse_status"><tt>number_parse_status</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.24.6</td>
-<td style="padding-left:4ex"><a href="#number_parse_result"><tt>number_parse_result</tt></a></td>
+<td class="toc-indent"><a href="#number_parse_result"><tt>number_parse_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.25</td>
@@ -667,7 +691,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.25.1</td>
-<td style="padding-left:4ex"><a href="#string_buffer"><tt>string_buffer</tt></a></td>
+<td class="toc-indent"><a href="#string_buffer"><tt>string_buffer</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.26</td>
@@ -675,7 +699,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.26.1</td>
-<td style="padding-left:4ex"><a href="#string_ref"><tt>string_ref</tt></a></td>
+<td class="toc-indent"><a href="#string_ref"><tt>string_ref</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27</td>
@@ -683,31 +707,31 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.1</td>
-<td style="padding-left:4ex"><a href="#trim"><tt>trim</tt> functions</a></td>
+<td class="toc-indent"><a href="#trim"><tt>trim</tt> functions</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.2</td>
-<td style="padding-left:4ex"><a href="#sift"><tt>sift()</tt></a></td>
+<td class="toc-indent"><a href="#sift"><tt>sift()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.3</td>
-<td style="padding-left:4ex"><a href="#sift_if"><tt>sift_if()</tt></a></td>
+<td class="toc-indent"><a href="#sift_if"><tt>sift_if()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.4</td>
-<td style="padding-left:4ex"><a href="#pad_front"><tt>pad_front()</tt></a></td>
+<td class="toc-indent"><a href="#pad_front"><tt>pad_front()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.5</td>
-<td style="padding-left:4ex"><a href="#pad_back"><tt>pad_back()</tt></a></td>
+<td class="toc-indent"><a href="#pad_back"><tt>pad_back()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.6</td>
-<td style="padding-left:4ex"><a href="#starts_with"><tt>starts_with()</tt></a></td>
+<td class="toc-indent"><a href="#starts_with"><tt>starts_with()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.27.7</td>
-<td style="padding-left:4ex"><a href="#ends_with"><tt>ends_with()</tt></a></td>
+<td class="toc-indent"><a href="#ends_with"><tt>ends_with()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28</td>
@@ -715,79 +739,79 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.1</td>
-<td style="padding-left:4ex"><a href="#tchar--length"><tt>tchar::length()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--length"><tt>tchar::length()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.2</td>
-<td style="padding-left:4ex"><a href="#tchar--empty"><tt>tchar::empty()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--empty"><tt>tchar::empty()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.3</td>
-<td style="padding-left:4ex"><a href="#tchar--end"><tt>tchar::end()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--end"><tt>tchar::end()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.4</td>
-<td style="padding-left:4ex"><a href="#tchar--compare"><tt>tchar::compare()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--compare"><tt>tchar::compare()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.5</td>
-<td style="padding-left:4ex"><a href="#tchar--equal"><tt>tchar::equal()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--equal"><tt>tchar::equal()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.6</td>
-<td style="padding-left:4ex"><a href="#tchar--copy"><tt>tchar::copy()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--copy"><tt>tchar::copy()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.7</td>
-<td style="padding-left:4ex"><a href="#tchar--move"><tt>tchar::move()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--move"><tt>tchar::move()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.8</td>
-<td style="padding-left:4ex"><a href="#tchar--concat"><tt>tchar::concat()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--concat"><tt>tchar::concat()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.9</td>
-<td style="padding-left:4ex"><a href="#tchar--find"><tt>tchar::find()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find"><tt>tchar::find()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.10</td>
-<td style="padding-left:4ex"><a href="#tchar--rfind"><tt>tchar::rfind()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--rfind"><tt>tchar::rfind()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.11</td>
-<td style="padding-left:4ex"><a href="#tchar--find_if"><tt>tchar::find_if()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find_if"><tt>tchar::find_if()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.12</td>
-<td style="padding-left:4ex"><a href="#tchar--find_if_not"><tt>tchar::find_if_not()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find_if_not"><tt>tchar::find_if_not()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.13</td>
-<td style="padding-left:4ex"><a href="#tchar--rfind_if"><tt>tchar::rfind_if()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--rfind_if"><tt>tchar::rfind_if()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.14</td>
-<td style="padding-left:4ex"><a href="#tchar--rfind_if_not"><tt>tchar::rfind_if_not()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--rfind_if_not"><tt>tchar::rfind_if_not()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.15</td>
-<td style="padding-left:4ex"><a href="#tchar--find_first_of"><tt>tchar::find_first_of()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find_first_of"><tt>tchar::find_first_of()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.16</td>
-<td style="padding-left:4ex"><a href="#tchar--find_first_not_of"><tt>tchar::find_first_not_of()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find_first_not_of"><tt>tchar::find_first_not_of()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.17</td>
-<td style="padding-left:4ex"><a href="#tchar--find_last_of"><tt>tchar::find_last_of()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find_last_of"><tt>tchar::find_last_of()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.18</td>
-<td style="padding-left:4ex"><a href="#tchar--find_last_not_of"><tt>tchar::find_last_not_of()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--find_last_not_of"><tt>tchar::find_last_not_of()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.28.19</td>
-<td style="padding-left:4ex"><a href="#tchar--skip"><tt>tchar::skip()</tt></a></td>
+<td class="toc-indent"><a href="#tchar--skip"><tt>tchar::skip()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.29</td>
@@ -795,15 +819,15 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.29.1</td>
-<td style="padding-left:4ex"><a href="#thread"><tt>thread</tt></a></td>
+<td class="toc-indent"><a href="#thread"><tt>thread</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.29.2</td>
-<td style="padding-left:4ex"><a href="#thread--id"><tt>thread::id</tt></a></td>
+<td class="toc-indent"><a href="#thread--id"><tt>thread::id</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.29.3</td>
-<td style="padding-left:4ex"><a href="#this_thread"><tt>this_thread</tt></a></td>
+<td class="toc-indent"><a href="#this_thread"><tt>this_thread</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.30</td>
@@ -811,7 +835,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.30.1</td>
-<td style="padding-left:4ex"><a href="#throw_errno"><tt>throw_errno()</tt></a></td>
+<td class="toc-indent"><a href="#throw_errno"><tt>throw_errno()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.31</td>
@@ -819,7 +843,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.31.1</td>
-<td style="padding-left:4ex"><a href="#to_text_append"><tt>to_text_append()</tt></a></td>
+<td class="toc-indent"><a href="#to_text_append"><tt>to_text_append()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32</td>
@@ -827,87 +851,87 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.1</td>
-<td style="padding-left:4ex"><a href="#integral_constant"><tt>integral_constant</tt></a></td>
+<td class="toc-indent"><a href="#integral_constant"><tt>integral_constant</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.2</td>
-<td style="padding-left:4ex"><a href="#true_type"><tt>true_type</tt></a></td>
+<td class="toc-indent"><a href="#true_type"><tt>true_type</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.3</td>
-<td style="padding-left:4ex"><a href="#false_type"><tt>false_type</tt></a></td>
+<td class="toc-indent"><a href="#false_type"><tt>false_type</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.4</td>
-<td style="padding-left:4ex"><a href="#is_same"><tt>is_same</tt></a></td>
+<td class="toc-indent"><a href="#is_same"><tt>is_same</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.5</td>
-<td style="padding-left:4ex"><a href="#is_const"><tt>is_const</tt></a></td>
+<td class="toc-indent"><a href="#is_const"><tt>is_const</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.6</td>
-<td style="padding-left:4ex"><a href="#is_byte"><tt>is_byte</tt></a></td>
+<td class="toc-indent"><a href="#is_byte"><tt>is_byte</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.7</td>
-<td style="padding-left:4ex"><a href="#byte_cast"><tt>byte_cast()</tt></a></td>
+<td class="toc-indent"><a href="#byte_cast"><tt>byte_cast()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.8</td>
-<td style="padding-left:4ex"><a href="#is_signed_integer"><tt>is_signed_integer</tt></a></td>
+<td class="toc-indent"><a href="#is_signed_integer"><tt>is_signed_integer</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.9</td>
-<td style="padding-left:4ex"><a href="#is_unsigned_integer"><tt>is_unsigned_integer</tt></a></td>
+<td class="toc-indent"><a href="#is_unsigned_integer"><tt>is_unsigned_integer</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.10</td>
-<td style="padding-left:4ex"><a href="#conjunction"><tt>conjunction</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#conjunction"><tt>conjunction</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.11</td>
-<td style="padding-left:4ex"><a href="#disjunction"><tt>disjunction</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#disjunction"><tt>disjunction</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.12</td>
-<td style="padding-left:4ex"><a href="#negation"><tt>negation</tt></a></td>
+<td class="toc-indent"><a href="#negation"><tt>negation</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.13</td>
-<td style="padding-left:4ex"><a href="#remove_const"><tt>remove_const</tt></a></td>
+<td class="toc-indent"><a href="#remove_const"><tt>remove_const</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.14</td>
-<td style="padding-left:4ex"><a href="#remove_volatile"><tt>remove_volatile</tt></a></td>
+<td class="toc-indent"><a href="#remove_volatile"><tt>remove_volatile</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.15</td>
-<td style="padding-left:4ex"><a href="#remove_cv"><tt>remove_cv</tt></a></td>
+<td class="toc-indent"><a href="#remove_cv"><tt>remove_cv</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.16</td>
-<td style="padding-left:4ex"><a href="#remove_reference"><tt>remove_reference</tt></a></td>
+<td class="toc-indent"><a href="#remove_reference"><tt>remove_reference</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.17</td>
-<td style="padding-left:4ex"><a href="#remove_cvref"><tt>remove_cvref</tt></a></td>
+<td class="toc-indent"><a href="#remove_cvref"><tt>remove_cvref</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.18</td>
-<td style="padding-left:4ex"><a href="#remove_pointer"><tt>remove_pointer</tt></a></td>
+<td class="toc-indent"><a href="#remove_pointer"><tt>remove_pointer</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.19</td>
-<td style="padding-left:4ex"><a href="#conditional"><tt>conditional</tt></a></td>
+<td class="toc-indent"><a href="#conditional"><tt>conditional</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.20</td>
-<td style="padding-left:4ex"><a href="#enable_if"><tt>enable_if</tt>, <tt>disable_if</tt></a></td>
+<td class="toc-indent"><a href="#enable_if"><tt>enable_if</tt>, <tt>disable_if</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.32.21</td>
-<td style="padding-left:4ex"><a href="#index_sequence"><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#index_sequence"><tt>index_sequence</tt>, <tt>make_index_sequence</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.33</td>
@@ -915,15 +939,15 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.33.1</td>
-<td style="padding-left:4ex"><a href="#unicode_t"><tt>unicode_t</tt></a></td>
+<td class="toc-indent"><a href="#unicode_t"><tt>unicode_t</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.33.2</td>
-<td style="padding-left:4ex"><a href="#utf_transcode"><tt>utf_transcode()</tt></a></td>
+<td class="toc-indent"><a href="#utf_transcode"><tt>utf_transcode()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.33.3</td>
-<td style="padding-left:4ex"><a href="#unicode_code_point_constants"><tt>Code point constants</tt></a></td>
+<td class="toc-indent"><a href="#unicode_code_point_constants"><tt>Code point constants</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.34</td>
@@ -931,11 +955,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.34.1</td>
-<td style="padding-left:4ex"><a href="#utf8--status"><tt>utf8::status</tt></a></td>
+<td class="toc-indent"><a href="#utf8--status"><tt>utf8::status</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.34.2</td>
-<td style="padding-left:4ex"><a href="#utf8--is_error"><tt>utf8::is_error()</tt></a></td>
+<td class="toc-indent"><a href="#utf8--is_error"><tt>utf8::is_error()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.35</td>
@@ -947,11 +971,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.36.1</td>
-<td style="padding-left:4ex"><a href="#utf8--read_result"><tt>utf8::read_result</tt></a></td>
+<td class="toc-indent"><a href="#utf8--read_result"><tt>utf8::read_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.36.2</td>
-<td style="padding-left:4ex"><a href="#utf8--convert_or_throw"><tt>utf8::convert_or_throw()</tt></a></td>
+<td class="toc-indent"><a href="#utf8--convert_or_throw"><tt>utf8::convert_or_throw()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.37</td>
@@ -959,7 +983,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.37.1</td>
-<td style="padding-left:4ex"><a href="#utf8--reader"><tt>utf8::reader</tt></a></td>
+<td class="toc-indent"><a href="#utf8--reader"><tt>utf8::reader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.38</td>
@@ -967,7 +991,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.38.1</td>
-<td style="padding-left:4ex"><a href="#utf8--writer"><tt>utf8::writer</tt></a></td>
+<td class="toc-indent"><a href="#utf8--writer"><tt>utf8::writer</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.39</td>
@@ -975,7 +999,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.39.1</td>
-<td style="padding-left:4ex"><a href="#utf16--code_unit_t"><tt>utf16::code_unit_t</tt></a></td>
+<td class="toc-indent"><a href="#utf16--code_unit_t"><tt>utf16::code_unit_t</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.40</td>
@@ -983,11 +1007,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.40.1</td>
-<td style="padding-left:4ex"><a href="#utf16--status"><tt>utf16::status</tt></a></td>
+<td class="toc-indent"><a href="#utf16--status"><tt>utf16::status</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.40.2</td>
-<td style="padding-left:4ex"><a href="#utf16--is_error"><tt>utf16::is_error()</tt></a></td>
+<td class="toc-indent"><a href="#utf16--is_error"><tt>utf16::is_error()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.41</td>
@@ -999,15 +1023,15 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.42.1</td>
-<td style="padding-left:4ex"><a href="#utf16--read_result"><tt>utf16::read_result</tt></a></td>
+<td class="toc-indent"><a href="#utf16--read_result"><tt>utf16::read_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.42.2</td>
-<td style="padding-left:4ex"><a href="#utf16--read_unit_result"><tt>utf16::read_unit_result</tt></a></td>
+<td class="toc-indent"><a href="#utf16--read_unit_result"><tt>utf16::read_unit_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.42.3</td>
-<td style="padding-left:4ex"><a href="#utf16--convert_or_throw"><tt>utf16::convert_or_throw()</tt></a></td>
+<td class="toc-indent"><a href="#utf16--convert_or_throw"><tt>utf16::convert_or_throw()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.43</td>
@@ -1015,7 +1039,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.43.1</td>
-<td style="padding-left:4ex"><a href="#utf16--reader"><tt>utf16::reader</tt></a></td>
+<td class="toc-indent"><a href="#utf16--reader"><tt>utf16::reader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.44</td>
@@ -1023,7 +1047,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.44.1</td>
-<td style="padding-left:4ex"><a href="#utf16--writer"><tt>utf16::writer</tt></a></td>
+<td class="toc-indent"><a href="#utf16--writer"><tt>utf16::writer</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.45</td>
@@ -1031,7 +1055,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.45.1</td>
-<td style="padding-left:4ex"><a href="#waitable_event"><tt>waitable_event</tt></a></td>
+<td class="toc-indent"><a href="#waitable_event"><tt>waitable_event</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.46</td>
@@ -1039,7 +1063,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.46.1</td>
-<td style="padding-left:4ex"><a href="#posix--cond_variable"><tt>posix::cond_variable</tt></a></td>
+<td class="toc-indent"><a href="#posix--cond_variable"><tt>posix::cond_variable</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.47</td>
@@ -1047,7 +1071,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.47.1</td>
-<td style="padding-left:4ex"><a href="#posix--daemon_control"><tt>posix::daemon_control</tt></a></td>
+<td class="toc-indent"><a href="#posix--daemon_control"><tt>posix::daemon_control</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.48</td>
@@ -1055,7 +1079,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.48.1</td>
-<td style="padding-left:4ex"><a href="#posix--dir_entries"><tt>posix::dir_entries</tt></a></td>
+<td class="toc-indent"><a href="#posix--dir_entries"><tt>posix::dir_entries</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.49</td>
@@ -1063,7 +1087,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.49.1</td>
-<td style="padding-left:4ex"><a href="#posix--dir_files"><tt>posix::dir_files</tt></a></td>
+<td class="toc-indent"><a href="#posix--dir_files"><tt>posix::dir_files</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.50</td>
@@ -1071,7 +1095,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.50.1</td>
-<td style="padding-left:4ex"><a href="#posix--is_EAGAIN"><tt>posix::is_EAGAIN()</tt>, <tt>posix::is_ENOENT()</tt></a></td>
+<td class="toc-indent"><a href="#posix--is_EAGAIN"><tt>posix::is_EAGAIN()</tt>, <tt>posix::is_ENOENT()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.51</td>
@@ -1083,7 +1107,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.52.1</td>
-<td style="padding-left:4ex"><a href="#posix--file"><tt>posix::file</tt></a></td>
+<td class="toc-indent"><a href="#posix--file"><tt>posix::file</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.53</td>
@@ -1091,7 +1115,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.53.1</td>
-<td style="padding-left:4ex"><a href="#posix--file_stat"><tt>posix::file_stat</tt></a></td>
+<td class="toc-indent"><a href="#posix--file_stat"><tt>posix::file_stat</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.54</td>
@@ -1099,11 +1123,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.54.1</td>
-<td style="padding-left:4ex"><a href="#posix--basename"><tt>posix::basename()</tt>, <tt>posix::dirname()</tt></a></td>
+<td class="toc-indent"><a href="#posix--basename"><tt>posix::basename()</tt>, <tt>posix::dirname()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.54.2</td>
-<td style="padding-left:4ex"><a href="#posix--add_trailing_slash"><tt>posix::add_trailing_slash()</tt>,
+<td class="toc-indent"><a href="#posix--add_trailing_slash"><tt>posix::add_trailing_slash()</tt>,
     <tt>posix::with_trailing_slash()</tt></a></td>
 </tr>
 <tr>
@@ -1112,19 +1136,19 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.55.1</td>
-<td style="padding-left:4ex"><a href="#posix--ovectors"><tt>posix::ovectors</tt></a></td>
+<td class="toc-indent"><a href="#posix--ovectors"><tt>posix::ovectors</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.55.2</td>
-<td style="padding-left:4ex"><a href="#posix--total-iovec"><tt>posix::total(iovec[])</tt></a></td>
+<td class="toc-indent"><a href="#posix--total-iovec"><tt>posix::total(iovec[])</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.55.3</td>
-<td style="padding-left:4ex"><a href="#posix--cut_prefix-iovec"><tt>posix::cut_prefix(iovec[])</tt></a></td>
+<td class="toc-indent"><a href="#posix--remove_prefix-iovec"><tt>posix::remove_prefix(iovec[])</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.55.4</td>
-<td style="padding-left:4ex"><a href="#posix--writev_all"><tt>posix::writev_all()</tt></a></td>
+<td class="toc-indent"><a href="#posix--writev_all"><tt>posix::writev_all()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.56</td>
@@ -1132,11 +1156,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.56.1</td>
-<td style="padding-left:4ex"><a href="#posix--mutex"><tt>posix::mutex</tt></a></td>
+<td class="toc-indent"><a href="#posix--mutex"><tt>posix::mutex</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.56.2</td>
-<td style="padding-left:4ex"><a href="#posix--mutex_lock"><tt>posix::mutex_lock</tt></a></td>
+<td class="toc-indent"><a href="#posix--mutex_lock"><tt>posix::mutex_lock</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.57</td>
@@ -1144,7 +1168,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.57.1</td>
-<td style="padding-left:4ex"><a href="#posix--pidfile"><tt>posix::pidfile</tt></a></td>
+<td class="toc-indent"><a href="#posix--pidfile"><tt>posix::pidfile</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.58</td>
@@ -1152,15 +1176,15 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.58.1</td>
-<td style="padding-left:4ex"><a href="#posix--daemon"><tt>posix::daemon()</tt></a></td>
+<td class="toc-indent"><a href="#posix--daemon"><tt>posix::daemon()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.58.2</td>
-<td style="padding-left:4ex"><a href="#posix--ignore_signals"><tt>posix::ignore_signals()</tt></a></td>
+<td class="toc-indent"><a href="#posix--ignore_signals"><tt>posix::ignore_signals()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.58.3</td>
-<td style="padding-left:4ex"><a href="#posix--process_alive"><tt>posix::process_alive()</tt></a></td>
+<td class="toc-indent"><a href="#posix--process_alive"><tt>posix::process_alive()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.59</td>
@@ -1168,7 +1192,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.59.1</td>
-<td style="padding-left:4ex"><a href="#posix--sigset"><tt>posix::sigset</tt></a></td>
+<td class="toc-indent"><a href="#posix--sigset"><tt>posix::sigset</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.60</td>
@@ -1176,21 +1200,21 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.60.1</td>
-<td style="padding-left:4ex"><a href="#posix--this_thread"><tt>posix::this_thread</tt></a></td>
+<td class="toc-indent"><a href="#posix--this_thread"><tt>posix::this_thread</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.60.2</td>
-<td style="padding-left:4ex"><a href="#posix--this_thread--sigwait"><tt>posix::this_thread::sigwait()</tt>,
+<td class="toc-indent"><a href="#posix--this_thread--sigwait"><tt>posix::this_thread::sigwait()</tt>,
        <tt>posix::this_thread::sigwait_at_most()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.60.3</td>
-<td style="padding-left:4ex"><a href="#posix--this_thread--sigwaitinfo"><tt>posix::this_thread::sigwaitinfo()</tt>,
+<td class="toc-indent"><a href="#posix--this_thread--sigwaitinfo"><tt>posix::this_thread::sigwaitinfo()</tt>,
        <tt>posix::this_thread::sigwaitinfo_at_most()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.60.4</td>
-<td style="padding-left:4ex"><a href="#posix--this_thread--block_signals"><tt>posix::this_thread::block_signals()</tt>,
+<td class="toc-indent"><a href="#posix--this_thread--block_signals"><tt>posix::this_thread::block_signals()</tt>,
        <tt>posix::this_thread::unblock_signals()</tt>,
        <tt>posix::this_thread::set_sigmask()</tt></a></td>
 </tr>
@@ -1200,17 +1224,17 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">2.61.1</td>
-<td style="padding-left:4ex"><a href="#posix--time_spec"><tt>posix::time_spec</tt></a></td>
+<td class="toc-indent"><a href="#posix--time_spec"><tt>posix::time_spec</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.61.2</td>
-<td style="padding-left:4ex"><a href="#posix--nanoseconds_since_epoch"><tt>posix::nanoseconds_since_epoch()</tt></a></td>
+<td class="toc-indent"><a href="#posix--nanoseconds_since_epoch"><tt>posix::nanoseconds_since_epoch()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">2.61.3</td>
-<td style="padding-left:4ex"><a href="#posix--realtime_clock"><tt>posix::realtime_clock</tt>, <tt>posix::monotonic_clock</tt></a></td>
+<td class="toc-indent"><a href="#posix--realtime_clock"><tt>posix::realtime_clock</tt>, <tt>posix::monotonic_clock</tt></a></td>
 </tr>
-<tr><td colspan="2" style="font-size:5pt;"> </td></tr>
+<tr class="toc-gap"><td colspan="2"> </td></tr>
 <tr>
 <td class="toc-chapter-no">3</td>
 <td><a href="#sreaders">S-readers</a></td>
@@ -1221,23 +1245,23 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">3.1.1</td>
-<td style="padding-left:4ex"><a href="#sreader"><tt>sreader</tt> <span class="badge">[C++20]</span></a></td>
+<td class="toc-indent"><a href="#sreader"><tt>sreader</tt> <span class="badge">[C++20]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.1.2</td>
-<td style="padding-left:4ex"><a href="#byte_sreader"><tt>byte_sreader</tt> <span class="badge">[C++20]</span></a></td>
+<td class="toc-indent"><a href="#byte_sreader"><tt>byte_sreader</tt> <span class="badge">[C++20]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.1.3</td>
-<td style="padding-left:4ex"><a href="#sreader_result"><tt>sreader_result</tt> <span class="badge">[C++20]</span></a></td>
+<td class="toc-indent"><a href="#sreader_result"><tt>sreader_result</tt> <span class="badge">[C++20]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.1.4</td>
-<td style="padding-left:4ex"><a href="#sreader_value_t"><tt>sreader_value_t</tt></a></td>
+<td class="toc-indent"><a href="#sreader_value_t"><tt>sreader_value_t</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.1.5</td>
-<td style="padding-left:4ex"><a href="#uchar_value"><tt>uchar_value()</tt></a></td>
+<td class="toc-indent"><a href="#uchar_value"><tt>uchar_value()</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.2</td>
@@ -1245,11 +1269,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">3.2.1</td>
-<td style="padding-left:4ex"><a href="#sread_result"><tt>sread_result</tt></a></td>
+<td class="toc-indent"><a href="#sread_result"><tt>sread_result</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.2.2</td>
-<td style="padding-left:4ex"><a href="#sread_eof"><tt>sread_eof</tt></a></td>
+<td class="toc-indent"><a href="#sread_eof"><tt>sread_eof</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3</td>
@@ -1257,29 +1281,29 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3.1</td>
-<td style="padding-left:4ex"><a href="#iterator_sreader"><tt>iterator_sreader</tt></a></td>
+<td class="toc-indent"><a href="#iterator_sreader"><tt>iterator_sreader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3.2</td>
-<td style="padding-left:4ex"><a href="#iterator_sreader_n"><tt>iterator_sreader_n</tt></a></td>
+<td class="toc-indent"><a href="#iterator_sreader_n"><tt>iterator_sreader_n</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3.3</td>
-<td style="padding-left:4ex"><a href="#container_sreader"><tt>container_sreader</tt></a></td>
+<td class="toc-indent"><a href="#container_sreader"><tt>container_sreader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3.4</td>
-<td style="padding-left:4ex"><a href="#cstring_sreader"><tt>cstring_sreader</tt></a></td>
+<td class="toc-indent"><a href="#cstring_sreader"><tt>cstring_sreader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3.5</td>
-<td style="padding-left:4ex"><a href="#string_sreader"><tt>string_sreader</tt></a></td>
+<td class="toc-indent"><a href="#string_sreader"><tt>string_sreader</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">3.3.6</td>
-<td style="padding-left:4ex"><a href="#cstream_sreader"><tt>cstream_sreader</tt></a></td>
+<td class="toc-indent"><a href="#cstream_sreader"><tt>cstream_sreader</tt></a></td>
 </tr>
-<tr><td colspan="2" style="font-size:5pt;"> </td></tr>
+<tr class="toc-gap"><td colspan="2"> </td></tr>
 <tr>
 <td class="toc-chapter-no">4</td>
 <td><a href="#swriters">S-writers</a></td>
@@ -1290,7 +1314,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">4.1.1</td>
-<td style="padding-left:4ex"><a href="#swriter"><tt>swriter</tt> <span class="badge">[C++20]</span></a></td>
+<td class="toc-indent"><a href="#swriter"><tt>swriter</tt> <span class="badge">[C++20]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">4.2</td>
@@ -1298,25 +1322,25 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">4.2.1</td>
-<td style="padding-left:4ex"><a href="#null_swriter"><tt>null_swriter</tt></a></td>
+<td class="toc-indent"><a href="#null_swriter"><tt>null_swriter</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">4.2.2</td>
-<td style="padding-left:4ex"><a href="#push_back_swriter"><tt>push_back_swriter</tt></a></td>
+<td class="toc-indent"><a href="#push_back_swriter"><tt>push_back_swriter</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">4.2.3</td>
-<td style="padding-left:4ex"><a href="#iterator_swriter"><tt>iterator_swriter</tt></a></td>
+<td class="toc-indent"><a href="#iterator_swriter"><tt>iterator_swriter</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">4.2.4</td>
-<td style="padding-left:4ex"><a href="#string_swriter"><tt>string_swriter</tt></a></td>
+<td class="toc-indent"><a href="#string_swriter"><tt>string_swriter</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">4.2.5</td>
-<td style="padding-left:4ex"><a href="#cstream_swriter"><tt>cstream_swriter</tt></a></td>
+<td class="toc-indent"><a href="#cstream_swriter"><tt>cstream_swriter</tt></a></td>
 </tr>
-<tr><td colspan="2" style="font-size:5pt;"> </td></tr>
+<tr class="toc-gap"><td colspan="2"> </td></tr>
 <tr>
 <td class="toc-chapter-no">5</td>
 <td><a href="#config-library">Config library <span class="badge">[C++11]</span></a></td>
@@ -1331,7 +1355,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">5.3</td>
-<td><a href="#config-details">Implemetation details and additional features</a></td>
+<td><a href="#config-details">Implementation details and additional features</a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.4</td>
@@ -1339,7 +1363,7 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">5.4.1</td>
-<td style="padding-left:4ex"><a href="#config--parser"><tt>config::parser</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#config--parser"><tt>config::parser</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.5</td>
@@ -1351,11 +1375,11 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">5.6.1</td>
-<td style="padding-left:4ex"><a href="#config--value"><tt>config::value</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#config--value"><tt>config::value</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.6.2</td>
-<td style="padding-left:4ex"><a href="#config--list_traits"><tt>config::list_traits</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#config--list_traits"><tt>config::list_traits</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7</td>
@@ -1363,38 +1387,38 @@ blockquote * {
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.1</td>
-<td style="padding-left:4ex"><a href="#config--value-std--optional"><tt>config::value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
+<td class="toc-indent"><a href="#config--value-std--optional"><tt>config::value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.2</td>
-<td style="padding-left:4ex"><a href="#config--value-__vic--ipv4_addr"><tt>config::value&lt;__vic::ipv4_addr&gt;</tt></a></td>
+<td class="toc-indent"><a href="#config--value-__vic--ipv4_addr"><tt>config::value&lt;__vic::ipv4_addr&gt;</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.3</td>
-<td style="padding-left:4ex"><a href="#config--complex_value-std--optional"><tt>config::complex_value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
+<td class="toc-indent"><a href="#config--complex_value-std--optional"><tt>config::complex_value&lt;std::optional&lt;T&gt;&gt;</tt> <span class="badge">[C++17]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.4</td>
-<td style="padding-left:4ex"><a href="#config--list_traits-std--vector"><tt>config::list_traits&lt;std::vector&lt;T&gt;&gt;</tt></a></td>
+<td class="toc-indent"><a href="#config--list_traits-std--vector"><tt>config::list_traits&lt;std::vector&lt;T&gt;&gt;</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.5</td>
-<td style="padding-left:4ex"><a href="#config--list_traits-std--list"><tt>config::list_traits&lt;std::list&lt;T&gt;&gt;</tt></a></td>
+<td class="toc-indent"><a href="#config--list_traits-std--list"><tt>config::list_traits&lt;std::list&lt;T&gt;&gt;</tt></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.6</td>
-<td style="padding-left:4ex"><a href="#config--list_traits-std--forward_list"><tt>config::list_traits&lt;std::forward_list&lt;T&gt;&gt;</tt> <span class="badge">[C++11]</span></a></td>
+<td class="toc-indent"><a href="#config--list_traits-std--forward_list"><tt>config::list_traits&lt;std::forward_list&lt;T&gt;&gt;</tt> <span class="badge">[C++11]</span></a></td>
 </tr>
 <tr>
 <td class="toc-chapter-no">5.7.7</td>
-<td style="padding-left:4ex"><a href="#config--bytes_value_parser"><tt>config::bytes_value_parser</tt></a></td>
+<td class="toc-indent"><a href="#config--bytes_value_parser"><tt>config::bytes_value_parser</tt></a></td>
 </tr>
-<tr><td colspan="2" style="font-size:5pt;"> </td></tr>
+<tr class="toc-gap"><td colspan="2"> </td></tr>
 <tr>
 <td class="toc-chapter-no">6</td>
 <td><a href="#build">Build and install</a></td>
 </tr>
-<tr><td colspan="2" style="font-size:5pt;"> </td></tr>
+<tr class="toc-gap"><td colspan="2"> </td></tr>
 </table>
 
 
@@ -1670,8 +1694,8 @@ macro presence using <tt>#ifdef</tt>.</p>
 <p>Generic algorithms.</p>
 
 
-<h3 id="skip_if_front">
-<a class="self-link" href="#skip_if_front"></a><span class="h3_num">2.2.1</span><tt>skip_if_front()</tt>
+<h3 id="skip_front_if">
+<a class="self-link" href="#skip_front_if"></a><span class="h3_num">2.2.1</span><tt>skip_front_if()</tt>
 </h3>
 
 
@@ -1680,7 +1704,7 @@ template&lt;
     std::forward_iterator Iter,
     std::predicate&lt;std::iter_value_t&lt;Iter&gt;&gt; Pred
 &gt;
-Iter skip_if_front(Iter begin, Iter end, Pred pred);
+Iter skip_front_if(Iter begin, Iter end, Pred pred);
 </pre>
 
 <p>Skips all leading elements that match the given predicate and returns new
@@ -1689,8 +1713,8 @@ begin iterator.</p>
 
 
 
-<h3 id="skip_if_back">
-<a class="self-link" href="#skip_if_back"></a><span class="h3_num">2.2.2</span><tt>skip_if_back()</tt>
+<h3 id="skip_back_if">
+<a class="self-link" href="#skip_back_if"></a><span class="h3_num">2.2.2</span><tt>skip_back_if()</tt>
 </h3>
 
 
@@ -1699,7 +1723,7 @@ template&lt;
     std::bidirectional_iterator Iter,
     std::predicate&lt;std::iter_value_t&lt;Iter&gt;&gt; Pred
 &gt;
-Iter skip_if_back(Iter begin, Iter end, Pred pred);
+Iter skip_back_if(Iter begin, Iter end, Pred pred);
 </pre>
 
 <p>Skips all trailing elements that match the given predicate and returns new
@@ -1761,7 +1785,7 @@ constexpr char ascii::todigit(int d);
 <p>Converts integer value from 0 to 9 to the decimal digit. The result is
 undefined if the input value goes beyond the range.</p>
 <div>
-<u>Precondition</u>: <tt>0 &lt;= d &amp;&amp; d &lt;= 9</tt>
+<span class="label">Precondition</span>: <tt>0 &lt;= d &amp;&amp; d &lt;= 9</tt>
 </div>
 
 
@@ -1785,7 +1809,7 @@ constexpr char toxdigit_lower(int d);
 uses upper case for <tt>A</tt>-<tt>F</tt>, the latter - lower. The result
 is undefined if the input value goes beyond the range.</p>
 <div>
-<u>Precondition</u>: <tt>0 &lt;= d &amp;&amp; d &lt;= 15</tt>
+<span class="label">Precondition</span>: <tt>0 &lt;= d &amp;&amp; d &lt;= 15</tt>
 </div>
 
 
@@ -1854,7 +1878,7 @@ constexpr char lower_to_upper(char lower);
 <p>More restricted counterpart of <tt>tolower()</tt>. The result is undefined
 if the argument is not an ASCII capital letter.</p>
 <div>
-<u>Precondition</u>: <tt>ascii::isupper(upper)</tt>
+<span class="label">Precondition</span>: <tt>ascii::isupper(upper)</tt>
 </div>
 </blockquote>
 </div>
@@ -1866,7 +1890,7 @@ if the argument is not an ASCII capital letter.</p>
 <p>More restricted counterpart of <tt>toupper()</tt>. The result is undefined
 if the argument is not an ASCII small letter.</p>
 <div>
-<u>Precondition</u>: <tt>ascii::islower(lower)</tt>
+<span class="label">Precondition</span>: <tt>ascii::islower(lower)</tt>
 </div>
 </blockquote>
 </div>
@@ -2284,8 +2308,26 @@ length is not a multiple of 4.</p>
 
 
 
+<h3 id="base64--bad_padding">
+<a class="self-link" href="#base64--bad_padding"></a><span class="h3_num">2.6.5</span><tt>base64::bad_padding</tt>
+</h3>
+
+
+<pre class="code">
+struct base64::bad_padding : public base64::bad_format
+{
+    const char *what() const noexcept;
+};
+</pre>
+
+<p>Exception class thrown by <a href="#base64--decode"><tt>base64::decode()</tt></a> when the input sequence
+incorrectly uses the <tt>=</tt> character.</p>
+
+
+
+
 <h3 id="base64--status">
-<a class="self-link" href="#base64--status"></a><span class="h3_num">2.6.5</span><tt>base64::status</tt>
+<a class="self-link" href="#base64--status"></a><span class="h3_num">2.6.6</span><tt>base64::status</tt>
 </h3>
 
 
@@ -2294,7 +2336,8 @@ enum class base64::status
 {
     ok,
     invalid_length,
-    invalid_digit
+    invalid_digit,
+    invalid_padding
 };
 using base64::status_t = base64::status; // for C++98
 </pre>
@@ -2306,7 +2349,7 @@ using base64::status_t = base64::status; // for C++98
 
 
 <h3 id="base64--encode">
-<a class="self-link" href="#base64--encode"></a><span class="h3_num">2.6.6</span><tt>base64::encode()</tt>
+<a class="self-link" href="#base64--encode"></a><span class="h3_num">2.6.7</span><tt>base64::encode()</tt>
 </h3>
 
 
@@ -2347,7 +2390,7 @@ std::string encode_base64(const bytes &amp;s)
 
 
 <h3 id="base64--decode">
-<a class="self-link" href="#base64--decode"></a><span class="h3_num">2.6.7</span><tt>base64::decode()</tt>
+<a class="self-link" href="#base64--decode"></a><span class="h3_num">2.6.8</span><tt>base64::decode()</tt>
 </h3>
 
 
@@ -2389,7 +2432,7 @@ bytes decode_base64(const std::string &amp;s)
 
 
 <h3 id="base64--try_decode">
-<a class="self-link" href="#base64--try_decode"></a><span class="h3_num">2.6.8</span><tt>base64::try_decode()</tt>
+<a class="self-link" href="#base64--try_decode"></a><span class="h3_num">2.6.9</span><tt>base64::try_decode()</tt>
 </h3>
 
 
@@ -2407,7 +2450,7 @@ instead of throwing exception.</p>
 
 
 <h3 id="base64--encoded_length">
-<a class="self-link" href="#base64--encoded_length"></a><span class="h3_num">2.6.9</span><tt>base64::encoded_length()</tt>
+<a class="self-link" href="#base64--encoded_length"></a><span class="h3_num">2.6.10</span><tt>base64::encoded_length()</tt>
 </h3>
 
 
@@ -2422,7 +2465,7 @@ length of the bytes sequence.</p>
 
 
 <h3 id="base64--max_decoded_length">
-<a class="self-link" href="#base64--max_decoded_length"></a><span class="h3_num">2.6.10</span><tt>base64::max_decoded_length()</tt>
+<a class="self-link" href="#base64--max_decoded_length"></a><span class="h3_num">2.6.11</span><tt>base64::max_decoded_length()</tt>
 </h3>
 
 
@@ -2520,7 +2563,7 @@ public:
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>is_open() == false()</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false()</tt>
 </div>
 </blockquote>
 </div>
@@ -2568,7 +2611,7 @@ public:
 <p>Open file for reading, writing or appending, correspondingly. Return
 <tt>is_open()</tt>.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == false</tt>
+<span class="label">Precondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -2589,7 +2632,7 @@ public:
 bytes read. Returned value can be less than requested only when end of file
 was reached. Throws on error.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -2602,7 +2645,7 @@ was reached. Throws on error.</p>
 of bytes read or <tt>0</tt> in case of end-of-file. The function returns after
 first chunk of any size was successfully received. Throws on error.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -2613,7 +2656,7 @@ first chunk of any size was successfully received. Throws on error.</p>
 
 <p>Writes the whole buffer to the file. Throws on error.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -2624,10 +2667,10 @@ first chunk of any size was successfully received. Throws on error.</p>
 
 <p>Closes the file. Throws on error.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -2719,11 +2762,17 @@ respectively.</p>
 
 
 <pre class="code">
-template&lt;class T&gt; constexpr T lsb_ones(unsigned bits_num);
-template&lt;class T&gt; constexpr T msb_ones(unsigned bits_num);
+template&lt;class UInt&gt; constexpr UInt lsb_ones(unsigned bits_num);
+template&lt;class UInt&gt; constexpr UInt msb_ones(unsigned bits_num);
 </pre>
 
-<p>Return the value of the type <tt>T</tt> with all least/most significant
+<div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
+<div>
+<span class="label">Precondition</span>: <tt>0 &lt; bits_num &amp;&amp; bits_num &lt;= sizeof(UInt)*CHAR_BIT</tt>
+</div>
+
+<p>Returns a value of the type <tt>UInt</tt> with all least/most significant
 <tt>bits_num</tt> bits filled with <tt>1</tt>, respectively. All other bits
 are set to <tt>0</tt>.</p>
 
@@ -2736,8 +2785,14 @@ are set to <tt>0</tt>.</p>
 
 
 <pre class="code">
-template&lt;class T&gt; constexpr T get_lsbs(T v, unsigned bits_num);
+template&lt;class UInt&gt; constexpr UInt get_lsbs(UInt v, unsigned bits_num);
 </pre>
+
+<div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
+<div>
+<span class="label">Precondition</span>: <tt>0 &lt; bits_num &amp;&amp; bits_num &lt;= sizeof(v)*CHAR_BIT</tt>
+</div>
 
 <p>Returns <tt>bits_num</tt> least significant bits of <tt>v</tt>. In other
 words, zeroes all but <tt>bits_num</tt> least significant bits.</p>
@@ -2756,7 +2811,7 @@ constexpr int ord(char ch);
 
 <p>Returns the character code from 0 to 255.</p>
 <div>
-<u>Postcondition</u>: ord(ch) &gt;= 0</div>
+<span class="label">Postcondition</span>: ord(ch) &gt;= 0</div>
 
 
 
@@ -2793,7 +2848,7 @@ unsigned msb_position(unsigned char v);
 </pre>
 
 <div>
-<u>Precondition</u>: <tt>v != 0</tt>
+<span class="label">Precondition</span>: <tt>v != 0</tt>
 </div>
 
 <p>Returns the position of the most significant 1-bit. The result is unspecified
@@ -2813,7 +2868,7 @@ bool ispow2(UInt n);
 </pre>
 
 <div>
-<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
 
 <p>Returns <tt>true</tt> if <tt>n</tt> is an integral power of 2.</p>
 
@@ -2831,7 +2886,7 @@ UInt ceil2(UInt n);
 </pre>
 
 <div>
-<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
 
 <p>Returns the minimal value <tt>m</tt> such that <tt>ispow2(m) &amp;&amp;
 m &gt;= n</tt>. If <tt>m</tt> is not representable as a value of type
@@ -2851,7 +2906,7 @@ UInt floor2(UInt n);
 </pre>
 
 <div>
-<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
 
 <p>If <tt>n != 0</tt> returns the maximal value <tt>m</tt> such that
 <tt>ispow2(m) &amp;&amp; m &lt;= n</tt>. Otherwise <tt>0</tt> is returned.</p>
@@ -2870,7 +2925,7 @@ unsigned ceil_log2(UInt n);
 </pre>
 
 <div>
-<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
 
 <p>Returns <tt>ceil(log2(n))</tt> if <tt>n != 0</tt> or 0 otherwise.</p>
 
@@ -2888,7 +2943,7 @@ unsigned floor_log2(UInt n);
 </pre>
 
 <div>
-<u>Precondition</u>: <tt>UInt</tt> is an unsigned integer type</div>
+<span class="label">Precondition</span>: <tt>UInt</tt> is an unsigned integer type</div>
 
 <p>Returns <tt>floor(log2(n))</tt> if <tt>n != 0</tt> or 0 otherwise.</p>
 
@@ -2901,24 +2956,25 @@ unsigned floor_log2(UInt n);
 
 
 <pre class="code">
-unsigned long long rotl(unsigned long long v, int shift);
-unsigned long      rotl(unsigned long v, int shift);
-unsigned           rotl(unsigned v, int shift);
-unsigned short     rotl(unsigned short v, int shift);
-unsigned char      rotl(unsigned char v, int shift);
+unsigned long long rotl(unsigned long long v, unsigned shift);
+unsigned long      rotl(unsigned long v,      unsigned shift);
+unsigned           rotl(unsigned v,           unsigned shift);
+unsigned short     rotl(unsigned short v,     unsigned shift);
+unsigned char      rotl(unsigned char v,      unsigned shift);
 
-unsigned long long rotr(unsigned long long v, int shift);
-unsigned long      rotr(unsigned long v, int shift);
-unsigned           rotr(unsigned v, int shift);
-unsigned short     rotr(unsigned short v, int shift);
-unsigned char      rotr(unsigned char v, int shift);
+unsigned long long rotr(unsigned long long v, unsigned shift);
+unsigned long      rotr(unsigned long v,      unsigned shift);
+unsigned           rotr(unsigned v,           unsigned shift);
+unsigned short     rotr(unsigned short v,     unsigned shift);
+unsigned char      rotr(unsigned char v,      unsigned shift);
 </pre>
+
+<div>
+<span class="label">Precondition</span>: <tt>shift &lt; sizeof(v)*CHAR_BIT</tt>
+</div>
 
 <p>The functions perform circular left (<tt>rotl</tt>) or right
 (<tt>rotr</tt>) bitwise shift (rotation).</p>
-<div>
-<u>Precondition</u>: <tt>0 &lt;= shift &amp;&amp; shift &lt; sizeof(v)*CHAR_BIT</tt>
-</div>
 
 
 
@@ -2958,7 +3014,7 @@ public:
     using const_iterator = <span class="nonterminal">&lt;implementation-defined&gt;</span>;
 
     bounded_vector();
-    explicit bounded_vector(size_t max_size);
+    explicit bounded_vector(size_t capacity);
     ~bounded_vector();
 
     // BEGIN C++11
@@ -2973,7 +3029,7 @@ public:
     bool full() const;
     bool empty() const;
 
-    void recreate(size_t new_max_size, bool size_exact = false);
+    void recreate(size_t new_capacity, bool size_exact = false);
     void *alloc(); // returns pointer to memory for object allocation
     void push_allocated(); // adds last allocated object to the container
     void pop_back();
@@ -3068,18 +3124,18 @@ store and placing only pointers to the container, even if we have
 
 <p>Create the object without memory allocation.</p>
 <div>
-<u>Postcondition</u>: <tt>capacity() == 0</tt>
+<span class="label">Postcondition</span>: <tt>capacity() == 0</tt>
 </div>
 </blockquote>
 </div>
 
 <div>
-<pre class="prototype">explicit bounded_vector(size_t max_size)</pre>
+<pre class="prototype">explicit bounded_vector(size_t capacity)</pre>
 <blockquote>
 
-<p>Allocates memory for <tt>max_size</tt> elements.</p>
+<p>Allocates memory for <tt>capacity</tt> elements.</p>
 <div>
-<u>Postcondition</u>: <tt>capacity() == max_size</tt>
+<span class="label">Postcondition</span>: <tt>this-&gt;capacity() == capacity</tt>
 </div>
 </blockquote>
 </div>
@@ -3129,15 +3185,15 @@ store and placing only pointers to the container, even if we have
 </div>
 
 <div>
-<pre class="prototype">void recreate(size_t new_max_size, bool size_exact = false)</pre>
+<pre class="prototype">void recreate(size_t new_capacity, bool size_exact = false)</pre>
 <blockquote>
 
 <p>Recreates the container. At first calls <tt>clear()</tt>, then reallocates
-memory buffer if <tt>new_max_size &gt; capacity()</tt> or <tt>size_exact</tt> is
-<tt>true</tt> and <tt>new_max_size != capacity()</tt>.</p>
+memory buffer if <tt>new_capacity &gt; capacity()</tt> or <tt>size_exact</tt> is
+<tt>true</tt> and <tt>new_capacity != capacity()</tt>.</p>
 <div>
-<u>Postcondition</u>: <tt>capacity() &gt;= new_max_size &amp;&amp; empty() == true</tt>
-(if <tt>size_exact == true</tt> then <tt>capacity() == new_max_size &amp;&amp;
+<span class="label">Postcondition</span>: <tt>capacity() &gt;= new_capacity &amp;&amp; empty() == true</tt>
+(if <tt>size_exact == true</tt> then <tt>capacity() == new_capacity &amp;&amp;
 empty() == true</tt>)</div>
 </blockquote>
 </div>
@@ -3149,10 +3205,10 @@ empty() == true</tt>)</div>
 <p>Returns the raw memory block where new instance of <tt>value_type</tt>
 can be allocated.</p>
 <div>
-<u>Precondition</u>: <tt>!full()</tt>
+<span class="label">Precondition</span>: <tt>!full()</tt>
 </div>
 <div>
-<u>Note</u>: Use <tt>emplace_back()</tt> in C++11 mode.</div>
+<span class="label">Note</span>: Use <tt>emplace_back()</tt> in C++11 mode.</div>
 </blockquote>
 </div>
 
@@ -3173,7 +3229,7 @@ container.</p>
 <tt>new</tt> + <tt>push_allocated()</tt> with a single call). A reference to
 the new object is returned.</p>
 <div>
-<u>Precondition</u>: <tt>!full()</tt>
+<span class="label">Precondition</span>: <tt>!full()</tt>
 </div>
 </blockquote>
 </div>
@@ -3184,7 +3240,7 @@ the new object is returned.</p>
 
 <p>Remove the last element from the container.</p>
 <div>
-<u>Precondition</u>: <tt>!empty()</tt>
+<span class="label">Precondition</span>: <tt>!empty()</tt>
 </div>
 </blockquote>
 </div>
@@ -3195,7 +3251,7 @@ the new object is returned.</p>
 
 <p>Destroys the elements in the reverse order they were created.</p>
 <div>
-<u>Postcondition</u>: <tt>size() == 0</tt> (<tt>empty() == true</tt>)</div>
+<span class="label">Postcondition</span>: <tt>size() == 0</tt> (<tt>empty() == true</tt>)</div>
 </blockquote>
 </div>
 
@@ -3217,7 +3273,7 @@ the new object is returned.</p>
 
 <p>Access to the elements by index.</p>
 <div>
-<u>Precondition</u>: <tt>i &lt; size()</tt>
+<span class="label">Precondition</span>: <tt>i &lt; size()</tt>
 </div>
 </blockquote>
 </div>
@@ -3234,7 +3290,7 @@ the new object is returned.</p>
 
 <p>Access to the first and the last elements.</p>
 <div>
-<u>Precondition</u>: <tt>!empty()</tt>
+<span class="label">Precondition</span>: <tt>!empty()</tt>
 </div>
 </blockquote>
 </div>
@@ -3378,7 +3434,7 @@ void validate_date_time(int yy, int mm, int dd, int hh, int mi, int ss);
 <p><tt>invalid_date</tt> is thrown in case of the constraint violation.</p>
 
 <div>
-<u><b>Note</b></u>: Specific time values as <tt>24:00:00</tt> (midnight at the end of a
+<span class="label-strong">Note</span>: Specific time values as <tt>24:00:00</tt> (midnight at the end of a
 day) or <tt>59:60</tt> (leap second) are considered as invalid!</div>
 
 
@@ -3686,7 +3742,7 @@ error code is now saved in the exception and cannot be rewritten by accident.
 </p>
 
 <div>
-<u><b>Note</b></u>: Usually exceptions of this class shouldn't be thrown explicitly! Use
+<span class="label-strong">Note</span>: Usually exceptions of this class shouldn't be thrown explicitly! Use
 <a href="#throw_errno"><tt>throw_errno()</tt></a> instead.</div>
 
 <div class="section">Class members</div>
@@ -3697,7 +3753,7 @@ error code is now saved in the exception and cannot be rewritten by accident.
 
 <p><tt>err_no</tt> - error code.</p>
 <div>
-<u>Postcondition</u>: <tt>code() == err_no</tt>
+<span class="label">Postcondition</span>: <tt>code() == err_no</tt>
 </div>
 </blockquote>
 </div>
@@ -3744,7 +3800,7 @@ meaning as the parameter of <tt>std::perror()</tt>.</p>
 <p>Filesystem utilities.</p>
 
 <div>
-<u><b>Note</b></u>: All paths are expected to be UTF-8 encoded!</div>
+<span class="label-strong">Note</span>: All paths are expected to be UTF-8 encoded!</div>
 
 
 <h3 id="path_exists">
@@ -4127,7 +4183,7 @@ template&lt;&gt; struct std::hash&lt;ipv4_addr&gt;;
 <p>Parses an IPv4 address from the text representation. In case of success,
 returns <tt>true</tt> and <tt>res</tt> contains the parsed value.</p>
 <div>
-<u>Note</u>: Expected input format is exactly 4 components in decimal format separated
+<span class="label">Note</span>: Expected input format is exactly 4 components in decimal format separated
 by dots.</div>
 </blockquote>
 </div>
@@ -4328,7 +4384,7 @@ template&lt;&gt; struct std::hash&lt;ipv6_addr&gt;;
 
 <p>Creates IPv4-mapped IPv6 address.</p>
 <div>
-<u>Postcondition</u>: <tt>is_ipv4_mapped() == true</tt>
+<span class="label">Postcondition</span>: <tt>is_ipv4_mapped() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -4379,7 +4435,7 @@ template&lt;&gt; struct std::hash&lt;ipv6_addr&gt;;
 
 <p>Converts the IPv4-mapped IPv6 address to <tt>ipv4_addr</tt>.</p>
 <div>
-<u>Precondition</u>: <tt>is_ipv4_mapped() == true</tt>
+<span class="label">Precondition</span>: <tt>is_ipv4_mapped() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -4610,13 +4666,13 @@ public:
     record error();
     record fatal();
 
-    bool trace_visible() const;
-    bool debug_visible() const;
-    bool info_visible() const;
-    bool notice_visible() const;
-    bool warning_visible() const;
-    bool error_visible() const;
-    bool fatal_visible() const;
+    [[nodiscard]] bool trace_on() const;
+    [[nodiscard]] bool debug_on() const;
+    [[nodiscard]] bool info_on() const;
+    [[nodiscard]] bool notice_on() const;
+    [[nodiscard]] bool warning_on() const;
+    [[nodiscard]] bool error_on() const;
+    [[nodiscard]] bool fatal_on() const;
 };
 class logger::record
 {
@@ -4700,7 +4756,7 @@ to the log by it's destructor:</p>
 </pre>
 
 <div>
-<u><b>Note</b></u>: In order to optimize the performace, use the plain functional notation
+<span class="label-strong">Note</span>: In order to optimize the performace, use the plain functional notation
 when the complete message is available:</div>
 <pre class="code">
 log.info("Message");
@@ -4712,9 +4768,9 @@ log.info() &lt;&lt; "Message";
 Such records will not be published in the log, but the program will waste
 time to format it. Therefore before creating any debug message using operator
 <tt>&lt;&lt;</tt> one should check if debug is enabled using
-<tt>debug_visible()</tt> or <tt>trace_visible()</tt> call:</p>
+<tt>debug_on()</tt> or <tt>trace_on()</tt> call:</p>
 <pre class="code">
-if(log.debug_visible())
+if(log.debug_on())
     log.debug() &lt;&lt; ...; // build the message
 </pre>
 <p>This advice doesn't cover plain calls <tt>debug(msg)</tt> and
@@ -4793,7 +4849,7 @@ The implementation can rely on it.</p>
 <p>Creates logger with the specified output and logging level. The output object
 must outlive the logger object!</p>
 <div>
-<u>Postcondition</u>: <tt>this-&gt;level() == level &amp;&amp; &amp;this-&gt;get_output() == &amp;out</tt>
+<span class="label">Postcondition</span>: <tt>this-&gt;level() == level &amp;&amp; &amp;this-&gt;get_output() == &amp;out</tt>
 </div>
 </blockquote>
 </div>
@@ -4820,7 +4876,7 @@ must outlive the logger object!</p>
 
 <p>Sets the logging level.</p>
 <div>
-<u>Postcondition</u>: <tt>level() == new_level</tt>
+<span class="label">Postcondition</span>: <tt>level() == new_level</tt>
 </div>
 </blockquote>
 </div>
@@ -4839,7 +4895,7 @@ must outlive the logger object!</p>
 
 <p>Sets new output and returns the previous one.</p>
 <div>
-<u>Postcondition</u>: <tt>&amp;get_output() == &amp;out</tt>
+<span class="label">Postcondition</span>: <tt>&amp;get_output() == &amp;out</tt>
 </div>
 </blockquote>
 </div>
@@ -4995,13 +5051,13 @@ added using operators <tt>&lt;&lt;</tt>.</p>
 </div>
 
 <div>
-<pre class="prototype">bool trace_visible() const</pre>
-<pre class="prototype">bool debug_visible() const</pre>
-<pre class="prototype">bool info_visible() const</pre>
-<pre class="prototype">bool notice_visible() const</pre>
-<pre class="prototype">bool warning_visible() const</pre>
-<pre class="prototype">bool error_visible() const</pre>
-<pre class="prototype">bool fatal_visible() const</pre>
+<pre class="prototype">[[nodiscard]] bool trace_on() const</pre>
+<pre class="prototype">[[nodiscard]] bool debug_on() const</pre>
+<pre class="prototype">[[nodiscard]] bool info_on() const</pre>
+<pre class="prototype">[[nodiscard]] bool notice_on() const</pre>
+<pre class="prototype">[[nodiscard]] bool warning_on() const</pre>
+<pre class="prototype">[[nodiscard]] bool error_on() const</pre>
+<pre class="prototype">[[nodiscard]] bool fatal_on() const</pre>
 <blockquote>
 
 
@@ -5061,7 +5117,7 @@ converted to text using <tt>log_value&lt;T&gt;::to_text()</tt> call.</p>
 <p>Converts a value of type <tt>T</tt> to text using unqualified
 <a href="#to_text_append"><tt>to_text_append()</tt></a> call.</p>
 <div>
-<u>Note</u>: This function (class with static function, to be precise) can be
+<span class="label">Note</span>: This function (class with static function, to be precise) can be
 specialized for your <tt>T</tt>. But usually you just define
 <tt>to_text_append(const T &amp;, std::string &amp;)</tt>.</div>
 </blockquote>
@@ -5378,7 +5434,7 @@ So that the pair of <tt>#include</tt> directives forms a section in the source
 file where structs alignment is disabled.</p>
 
 <div>
-<u><b>Note</b></u>: Each <tt>#include&lt;__vic/packon.h&gt;</tt> must have the corresponding
+<span class="label-strong">Note</span>: Each <tt>#include&lt;__vic/packon.h&gt;</tt> must have the corresponding
 <tt>#include&lt;__vic/packoff.h&gt;</tt>.</div>
 
 <div class="section">Example</div>
@@ -5517,7 +5573,7 @@ for such purposes.</p>
 
 <p>Creates an empty string.</p>
 <div>
-<u>Postcondition</u>: <tt>empty() == true</tt>
+<span class="label">Postcondition</span>: <tt>empty() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -5599,7 +5655,7 @@ for such purposes.</p>
 <p>Allocates internal buffer for <tt>n</tt> chars and returns the pointer to
 it. Can be useful in conjunction with functions like <tt>std::sprintf()</tt>.</p>
 <div>
-<u>Note</u>: Try to avoid this unsafe function!</div>
+<span class="label">Note</span>: Try to avoid this unsafe function!</div>
 </blockquote>
 </div>
 
@@ -5690,6 +5746,7 @@ public:
     template&lt;class Iter&gt; constexpr set_of_chars(Iter begin, Iter end);
     constexpr set_of_chars(std::initializer_list&lt;char&gt; set); // C++11
     constexpr set_of_chars(const char *c_str);
+    constexpr set_of_chars(std::string_view chars); // C++17
 
     constexpr bool contains(char ch) const;
 
@@ -5699,16 +5756,18 @@ public:
     template&lt;class Iter&gt; constexpr void add(Iter begin, Iter end);
     constexpr void add(const char *c_str);
     constexpr void add(std::initializer_list&lt;char&gt; set); // C++11
+    constexpr void add(std::string_view chars); // C++17
 
     template&lt;class Iter&gt; void assign(Iter begin, Iter end);
     void assign(const char *c_str)
     void assign(std::initializer_list&lt;char&gt; set); // C++11
+    void assign(std::string_view chars); // C++17
 
     void clear();
 };
 </pre>
 
-<p>Compact (only 32 bytes) and very fast implemetation of a set of chars. The
+<p>Compact (only 32 bytes) and very fast implementation of a set of chars. The
 cost of the <tt>contains()</tt> operation is always constant regardles of the
 argument and number of elements in the set.</p>
 
@@ -5720,7 +5779,7 @@ argument and number of elements in the set.</p>
 
 <p>Creates an empty set.</p>
 <div>
-<u>Postcondition</u>: <tt>contains(char(ch)) == false</tt> for any char
+<span class="label">Postcondition</span>: <tt>contains(char(ch)) == false</tt> for any char
 </div>
 </blockquote>
 </div>
@@ -5728,12 +5787,14 @@ argument and number of elements in the set.</p>
 <div>
 <pre class="prototype">template&lt;class Iter&gt; constexpr set_of_chars(Iter begin, Iter end)</pre>
 <pre class="prototype">constexpr set_of_chars(std::initializer_list&lt;char&gt; set) <span class="badge">[C++11]</span></pre>
+<pre class="prototype">constexpr set_of_chars(std::string_view chars) <span class="badge">[C++17]</span></pre>
 <blockquote>
+
 
 
 <p>Creates a set filled with characters from the specified range of values.</p>
 <div>
-<u>Note</u>: <tt>constexpr</tt> since C++14 only!</div>
+<span class="label">Note</span>: <tt>constexpr</tt> since C++14 only!</div>
 </blockquote>
 </div>
 
@@ -5742,9 +5803,9 @@ argument and number of elements in the set.</p>
 <blockquote>
 
 <p>Creates a set filled with characters from the specified C-string excluding
-NULL-terminator.</p>
+the NULL-terminator. <tt>nullptr</tt> creates an empty set.</p>
 <div>
-<u>Note</u>: <tt>constexpr</tt> since C++14 only!</div>
+<span class="label">Note</span>: <tt>constexpr</tt> since C++14 only!</div>
 </blockquote>
 </div>
 
@@ -5762,10 +5823,10 @@ NULL-terminator.</p>
 
 <p>Adds <tt>ch</tt> to the set.</p>
 <div>
-<u>Postcondition</u>: <tt>contains(ch) == true</tt>
+<span class="label">Postcondition</span>: <tt>contains(ch) == true</tt>
 </div>
 <div>
-<u>Note</u>: <tt>constexpr</tt> since C++14 only!</div>
+<span class="label">Note</span>: <tt>constexpr</tt> since C++14 only!</div>
 </blockquote>
 </div>
 
@@ -5775,22 +5836,24 @@ NULL-terminator.</p>
 
 <p>Removes <tt>ch</tt> from the set.</p>
 <div>
-<u>Postcondition</u>: <tt>contains(ch) == false</tt>
+<span class="label">Postcondition</span>: <tt>contains(ch) == false</tt>
 </div>
 <div>
-<u>Note</u>: <tt>constexpr</tt> since C++14 only!</div>
+<span class="label">Note</span>: <tt>constexpr</tt> since C++14 only!</div>
 </blockquote>
 </div>
 
 <div>
 <pre class="prototype">template&lt;class Iter&gt; constexpr void add(Iter begin, Iter end)</pre>
 <pre class="prototype">constexpr void add(std::initializer_list&lt;char&gt; set) <span class="badge">[C++11]</span></pre>
+<pre class="prototype">constexpr void add(std::string_view chars) <span class="badge">[C++17]</span></pre>
 <blockquote>
+
 
 
 <p>Calls <tt>add(ch)</tt> for each value in the range.</p>
 <div>
-<u>Note</u>: <tt>constexpr</tt> since C++14 only!</div>
+<span class="label">Note</span>: <tt>constexpr</tt> since C++14 only!</div>
 </blockquote>
 </div>
 
@@ -5799,9 +5862,9 @@ NULL-terminator.</p>
 <blockquote>
 
 <p>Calls <tt>add(ch)</tt> for each character in the C-string excluding
-NULL-terminator.</p>
+the NULL-terminator. <tt>nullptr</tt> creates an empty set.</p>
 <div>
-<u>Note</u>: <tt>constexpr</tt> since C++14 only!</div>
+<span class="label">Note</span>: <tt>constexpr</tt> since C++14 only!</div>
 </blockquote>
 </div>
 
@@ -5809,7 +5872,9 @@ NULL-terminator.</p>
 <pre class="prototype">template&lt;class Iter&gt; void assign(Iter begin, Iter end)</pre>
 <pre class="prototype">void assign(const char *c_str)</pre>
 <pre class="prototype">void assign(std::initializer_list&lt;char&gt; set) <span class="badge">[C++11]</span></pre>
+<pre class="prototype">void assign(std::string_view chars) <span class="badge">[C++17]</span></pre>
 <blockquote>
+
 
 
 
@@ -5824,7 +5889,7 @@ NULL-terminator.</p>
 
 <p>Removes all elements from the set.</p>
 <div>
-<u>Postcondition</u>: <tt>contains(char(ch)) == false</tt> for any char
+<span class="label">Postcondition</span>: <tt>contains(char(ch)) == false</tt> for any char
 </div>
 </blockquote>
 </div>
@@ -6024,7 +6089,7 @@ Automatic conversion to <tt>std::FILE *</tt> allows usage of the object
 whereever the file pointer is allowed/required.</p>
 
 <div>
-<u><b>Note</b></u>: Although the class destructor closes the open file, it is more safe
+<span class="label-strong">Note</span>: Although the class destructor closes the open file, it is more safe
 to use explicit <tt>close()</tt> call. Errors can happen when closing file,
 and <tt>close()</tt> can throw exception in such cases, while destructor -
 can't, so the error will be unnoticed by the application.</div>
@@ -6037,7 +6102,7 @@ can't, so the error will be unnoticed by the application.</div>
 
 <p>Wraps already existing stream pointer.</p>
 <div>
-<u>Precondition</u>: <tt>fp</tt> is either a pointer to the open file or
+<span class="label">Precondition</span>: <tt>fp</tt> is either a pointer to the open file or
 <tt>nullptr</tt>.</div>
 </blockquote>
 </div>
@@ -6076,7 +6141,7 @@ subsequent <tt>is_open()</tt> call!</p>
 <p>Calls <tt>std::fopen(name, mode)</tt>. Returns <tt>true</tt> in case of
 success.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == false</tt>
+<span class="label">Precondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -6096,10 +6161,10 @@ success.</p>
 <p>Calls <tt>std::fclose()</tt>. No preliminary checks whether the file is open
 are performed! Throws if <tt>std::fclose()</tt> fails.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -6127,7 +6192,7 @@ instead in case of error.</p>
 
 <p>Releases the file out of the object's control.</p>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -6138,10 +6203,10 @@ instead in case of error.</p>
 
 <p>Takes <tt>fp</tt> under control and returns the previous handle value.</p>
 <div>
-<u>Precondition</u>: <tt>fp</tt> is either a poiner to the open file or
+<span class="label">Precondition</span>: <tt>fp</tt> is either a poiner to the open file or
 <tt>nullptr</tt>.</div>
 <div>
-<u>Postcondition</u>: <tt>handle() == fp</tt>
+<span class="label">Postcondition</span>: <tt>handle() == fp</tt>
 </div>
 </blockquote>
 </div>
@@ -6444,7 +6509,7 @@ used type (integer overflow).</p>
 
 <p>Converts a range of characters or a string to a number.</p>
 <div>
-<u>Postcondition</u>: The result of conversion can be obtained by <tt>result()</tt>
+<span class="label">Postcondition</span>: The result of conversion can be obtained by <tt>result()</tt>
 call if <tt>number_parse_status::ok</tt> is returned.
 </div>
 </blockquote>
@@ -6457,7 +6522,7 @@ call if <tt>number_parse_status::ok</tt> is returned.
 <p>Returns the result of conversion produced by the the last <tt>parse()</tt>
 call.</p>
 <div>
-<u>Precondition</u>: The last <tt>parse()</tt> call returned
+<span class="label">Precondition</span>: The last <tt>parse()</tt> call returned
 <tt>number_parse_status::ok</tt>.</div>
 </blockquote>
 </div>
@@ -6544,10 +6609,10 @@ public:
 <blockquote>
 
 <div>
-<u>Precondition</u>: <tt>s != number_parse_status::ok</tt>
+<span class="label">Precondition</span>: <tt>s != number_parse_status::ok</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>status() == s</tt>
+<span class="label">Postcondition</span>: <tt>status() == s</tt>
 </div>
 </blockquote>
 </div>
@@ -6557,7 +6622,7 @@ public:
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>has_value() &amp;&amp; value() == n</tt>
+<span class="label">Postcondition</span>: <tt>has_value() &amp;&amp; value() == n</tt>
 </div>
 </blockquote>
 </div>
@@ -6586,7 +6651,7 @@ public:
 
 <p>The resulting number.</p>
 <div>
-<u>Precondition</u>: <tt>has_value() == true</tt>
+<span class="label">Precondition</span>: <tt>has_value() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -6619,7 +6684,6 @@ public:
     string_buffer(string_ref sr);
     string_buffer(const std::string &amp;str, size_type off, size_type n = npos);
     string_buffer(const char *char_buf, size_type n);
-    string_buffer(const char *begin, const char *end);
     template&lt;class InputIterator&gt;
     string_buffer(InputIterator begin, InputIterator end);
 
@@ -6753,7 +6817,7 @@ constructor for optimization purposes.</p>
 
 <p>Create an empty string.</p>
 <div>
-<u>Postcondition</u>: <tt>empty() == true</tt>
+<span class="label">Postcondition</span>: <tt>empty() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -6764,7 +6828,7 @@ constructor for optimization purposes.</p>
 
 <p>Calls <tt>reserve(n)</tt>.</p>
 <div>
-<u>Postcondition</u>: <tt>capacity() &gt;= n</tt>
+<span class="label">Postcondition</span>: <tt>capacity() &gt;= n</tt>
 </div>
 </blockquote>
 </div>
@@ -6797,11 +6861,9 @@ constructor for optimization purposes.</p>
 
 <div>
 <pre class="prototype">string_buffer(string_ref sr)</pre>
-<pre class="prototype">string_buffer(const char *begin, const char *end)</pre>
 <pre class="prototype">template&lt;class InputIterator&gt;
 string_buffer(InputIterator begin, InputIterator end)</pre>
 <blockquote>
-
 
 
 <p>Creates string from the chars range.</p>
@@ -6906,9 +6968,6 @@ public:
     template&lt;class Traits, class Alloc&gt;
     explicit basic_string_ref(
         const std::basic_string&lt;charT,Traits,Alloc&gt; &amp;str);
-    basic_string_ref(
-        typename std::basic_string&lt;charT&gt;::const_iterator begin,
-        typename std::basic_string&lt;charT&gt;::const_iterator end);
     // BEGIN C++11
     basic_string_ref(std::initializer_list&lt;charT&gt; );
     // END C++11
@@ -7038,7 +7097,7 @@ C-world - they are not copied to the heap and not converted to
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>empty() == true</tt>
+<span class="label">Postcondition</span>: <tt>empty() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -7052,7 +7111,7 @@ basic_string_ref(const std::basic_string&lt;charT,Traits,Alloc&gt; &amp;str)</pr
 
 <p>Creates reference to <tt>str</tt>.</p>
 <div>
-<u>Postcondition</u>: <tt>*this == str</tt>
+<span class="label">Postcondition</span>: <tt>*this == str</tt>
 </div>
 </blockquote>
 </div>
@@ -7061,12 +7120,8 @@ basic_string_ref(const std::basic_string&lt;charT,Traits,Alloc&gt; &amp;str)</pr
 <pre class="prototype">basic_string_ref(const charT *chars, size_t n)</pre>
 <pre class="prototype">basic_string_ref(const charT *begin, const charT *end)</pre>
 <pre class="prototype">basic_string_ref(const charT *chars, size_t n)</pre>
-<pre class="prototype">basic_string_ref(
-    typename std::basic_string&lt;charT&gt;::const_iterator begin,
-    typename std::basic_string&lt;charT&gt;::const_iterator end)</pre>
 <pre class="prototype">basic_string_ref(std::initializer_list&lt;charT&gt; ) <span class="badge">[C++11]</span></pre>
 <blockquote>
-
 
 
 
@@ -7116,7 +7171,7 @@ basic_string_ref(std::basic_string_view&lt;charT,Traits&gt; s) <span class="badg
 
 <p>The first and the last character of the string correspondingly.</p>
 <div>
-<u>Precondition</u>: <tt>!empty()</tt>
+<span class="label">Precondition</span>: <tt>!empty()</tt>
 </div>
 </blockquote>
 </div>
@@ -7127,7 +7182,7 @@ basic_string_ref(std::basic_string_view&lt;charT,Traits&gt; s) <span class="badg
 
 <p><tt>i</tt>-th character of the string.</p>
 <div>
-<u>Precondition</u>: <tt>i &lt; length()</tt>
+<span class="label">Precondition</span>: <tt>i &lt; length()</tt>
 </div>
 </blockquote>
 </div>
@@ -7270,9 +7325,9 @@ char *trim_back(char *str);
 char *trim(char *str, char ch);
 char *trim_front(char *str, char ch);
 char *trim_back(char *str, char ch);
-char *trim(char *str, const char *set);
-char *trim_front(char *str, const char *set);
-char *trim_back(char *str, const char *set);
+char *trim(char *str, const set_of_chars &amp;set);
+char *trim_front(char *str, const set_of_chars &amp;set);
+char *trim_back(char *str, const set_of_chars &amp;set);
 
 std::string &amp;trim(std::string &amp;str);
 std::string &amp;trim_front(std::string &amp;str);
@@ -7280,30 +7335,61 @@ std::string &amp;trim_back(std::string &amp;str);
 std::string &amp;trim(std::string &amp;str, char ch);
 std::string &amp;trim_front(std::string &amp;str, char ch);
 std::string &amp;trim_back(std::string &amp;str, char ch);
-std::string &amp;trim(std::string &amp;str, const char *set);
-std::string &amp;trim_front(std::string &amp;str, const char *set);
-std::string &amp;trim_back(std::string &amp;str, const char *set);
+std::string &amp;trim(std::string &amp;str, const set_of_chars &amp;set);
+std::string &amp;trim_front(std::string &amp;str, const set_of_chars &amp;set);
+std::string &amp;trim_back(std::string &amp;str, const set_of_chars &amp;set);
 
 #if __cpp_lib_string_view // C++17
-std::string_view trimmed(std::string_view str);
-std::string_view trimmed_front(std::string_view str);
-std::string_view trimmed_back(std::string_view str);
-std::string_view trimmed(std::string_view str, char ch);
-std::string_view trimmed_front(std::string_view str, char ch);
-std::string_view trimmed_back(std::string_view str, char ch);
-std::string_view trimmed(std::string_view str, const char *set);
-std::string_view trimmed_front(std::string_view str, const char *set);
-std::string_view trimmed_back(std::string_view str, const char *set);
+template&lt;class charT, class Traits, std::predicate&lt;charT&gt; Pred&gt;
+constexpr std::basic_string_view&lt;charT, Traits&gt; &amp;trim_if(
+    std::basic_string_view&lt;charT, Traits&gt; &amp;str, Pred pred);
+
+template&lt;class charT, class Traits, std::predicate&lt;charT&gt; Pred&gt;
+constexpr std::basic_string_view&lt;charT, Traits&gt; &amp;trim_front_if(
+    std::basic_string_view&lt;charT, Traits&gt; &amp;str, Pred pred);
+
+template&lt;class charT, class Traits, std::predicate&lt;charT&gt; Pred&gt;
+constexpr std::basic_string_view&lt;charT, Traits&gt; &amp;trim_back_if(
+    std::basic_string_view&lt;charT, Traits&gt; &amp;str, Pred pred);
+
+constexpr std::string_view &amp;trim(std::string_view &amp;str);
+constexpr std::string_view &amp;trim_front(std::string_view &amp;str);
+constexpr std::string_view &amp;trim_back(std::string_view &amp;str);
+constexpr std::string_view &amp;trim(std::string_view &amp;str, char ch);
+constexpr std::string_view &amp;trim_front(std::string_view &amp;str, char ch);
+constexpr std::string_view &amp;trim_back(std::string_view &amp;str, char ch);
+constexpr std::string_view &amp;trim(
+                            std::string_view &amp;str, const set_of_chars &amp;set);
+constexpr std::string_view &amp;trim_front(
+                            std::string_view &amp;str, const set_of_chars &amp;set);
+constexpr std::string_view &amp;trim_back(
+                            std::string_view &amp;str, const set_of_chars &amp;set);
+
+[[nodiscard]] constexpr std::string_view trimmed(std::string_view str);
+[[nodiscard]] constexpr std::string_view trimmed_front(std::string_view str);
+[[nodiscard]] constexpr std::string_view trimmed_back(std::string_view str);
+[[nodiscard]] constexpr std::string_view trimmed(
+                                            std::string_view str, char ch);
+[[nodiscard]] constexpr std::string_view trimmed_front(
+                                            std::string_view str, char ch);
+[[nodiscard]] constexpr std::string_view trimmed_back(
+                                            std::string_view str, char ch);
+[[nodiscard]] constexpr std::string_view trimmed(
+                            std::string_view str, const set_of_chars &amp;set);
+[[nodiscard]] constexpr std::string_view trimmed_front(
+                            std::string_view str, const set_of_chars &amp;set);
+[[nodiscard]] constexpr std::string_view trimmed_back(
+                            std::string_view str, const set_of_chars &amp;set);
 #else // until C++17
 std::string trimmed(const std::string &amp;str);
-std::string trimmed_left(const std::string &amp;str);
-std::string trimmed_right(const std::string &amp;str);
+std::string trimmed_front(const std::string &amp;str);
+std::string trimmed_back(const std::string &amp;str);
 std::string trimmed(const std::string &amp;str, char ch);
-std::string trimmed_left(const std::string &amp;str, char ch);
-std::string trimmed_right(const std::string &amp;str, char ch);
-std::string trimmed(const std::string &amp;str, const char *set);
-std::string trimmed_left(const std::string &amp;str, const char *set);
-std::string trimmed_right(const std::string &amp;str, const char *set);
+std::string trimmed_front(const std::string &amp;str, char ch);
+std::string trimmed_back(const std::string &amp;str, char ch);
+std::string trimmed(const std::string &amp;str, const set_of_chars &amp;set);
+std::string trimmed_front(const std::string &amp;str, const set_of_chars &amp;set);
+std::string trimmed_back(const std::string &amp;str, const set_of_chars &amp;set);
 #endif
 </pre>
 
@@ -7327,6 +7413,10 @@ functions should be used.</p>
 <ul><li>
 <tt>trimmed</tt> - return stripped copy of the string, argument
         itself is not modified.</li></ul>
+
+<div>
+<span class="label-strong">Note</span>: Use the <tt>trimmed</tt> functions with care in cases when they return
+<tt>string_view</tt> - it can result in a dangling reference!</div>
 
 <p>The implementation is optimized for common case when the string does not have
 anything to trim. In such cases no modifications of the argument are performed,
@@ -7363,8 +7453,8 @@ __vic::trim_back(st1, "123456789"); // result: "...value"
 
 
 <pre class="code">
-char *sift(char *str, const char *trash_chars);
-std::string &amp;sift(std::string &amp;str, const char *trash_chars);
+char *sift(char *str, const set_of_chars &amp;trash_chars);
+std::string &amp;sift(std::string &amp;str, const set_of_chars &amp;trash_chars);
 </pre>
 
 <p>Removes all characters from the set from the string. All <tt>nullptr</tt>
@@ -7388,12 +7478,12 @@ assert(std::strcmp(st, "abcde") == 0);
 
 <pre class="code">
 template&lt;class Pred&gt;
-char *sift(char *str, Pred pred);
+char *sift_if(char *str, Pred pred);
 template&lt;class Pred&gt;
-std::string &amp;sift(std::string &amp;str, Pred pred);
+std::string &amp;sift_if(std::string &amp;str, Pred pred);
 </pre>
 
-<p>Removes all characters satify the predicate <tt>pred</tt>. All
+<p>Removes all characters that satify the predicate <tt>pred</tt>. All
 <tt>nullptr</tt> values are treated as an empty string.</p>
 
 
@@ -7583,7 +7673,7 @@ charT *end(charT *str);
 <tt>wcschr(str, L'\0')</tt>.</p>
 
 <div>
-<u><b>Note</b></u>: Some buggy implementations of <tt>std::strchr()</tt> like MinGW return
+<span class="label-strong">Note</span>: Some buggy implementations of <tt>std::strchr()</tt> like MinGW return
 non-const <tt>char *</tt> even if the argument is <tt>const char *</tt> so
 this function can be used as a workaround in the similar use case.</div>
 
@@ -7618,7 +7708,7 @@ bool tchar::equal(const charT *str1, const charT *str2);
 <p>Checks if two strings are equal.</p>
 
 <div>
-<u>Precondition</u>: <tt>str1 != nullptr &amp;&amp; str2 != nullptr</tt>
+<span class="label">Precondition</span>: <tt>str1 != nullptr &amp;&amp; str2 != nullptr</tt>
 </div>
 
 
@@ -7978,7 +8068,7 @@ program you must call <tt>join()</tt> to free OS resources associated with the
 spawned thread.</p>
 
 <div>
-<u><b>Note</b></u>: The object must always outlive the associated OS thread. Your program
+<span class="label-strong">Note</span>: The object must always outlive the associated OS thread. Your program
 will be terminated by <tt>std::terminate()</tt> call if this usage contract
 is violated.</div>
 
@@ -7989,7 +8079,7 @@ is violated.</div>
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>joinable() == false</tt>
+<span class="label">Postcondition</span>: <tt>joinable() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -8000,7 +8090,7 @@ is violated.</div>
 
 <p>Calls <tt>std::terminate()</tt> if precondition is not satisfied.</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == false || alive() == false</tt>
+<span class="label">Precondition</span>: <tt>joinable() == false || alive() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -8020,7 +8110,7 @@ is violated.</div>
 <p>Move assignment for C++11 mode. Calls <tt>std::terminate()</tt> if
 precondition is not satisfied.</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == false || alive() == false</tt>
+<span class="label">Precondition</span>: <tt>joinable() == false || alive() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -8031,10 +8121,10 @@ precondition is not satisfied.</p>
 
 <p>Spawns new thread and calls <tt>worker()</tt> there.</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == false</tt>
+<span class="label">Precondition</span>: <tt>joinable() == false</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>joinable() == true</tt>
+<span class="label">Postcondition</span>: <tt>joinable() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -8045,10 +8135,10 @@ precondition is not satisfied.</p>
 
 <p>Cancels the thread execution.</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == true</tt>
+<span class="label">Precondition</span>: <tt>joinable() == true</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>joinable() == true</tt>
+<span class="label">Postcondition</span>: <tt>joinable() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -8060,10 +8150,10 @@ precondition is not satisfied.</p>
 <p>Waits for the thread termination if running and makes
 <tt>joinable() == false</tt>.</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == true</tt>
+<span class="label">Precondition</span>: <tt>joinable() == true</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>joinable() == false</tt>
+<span class="label">Postcondition</span>: <tt>joinable() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -8075,7 +8165,7 @@ precondition is not satisfied.</p>
 <p>Returns <tt>true</tt> if the thread haven't been terminated yet
 (<tt>worker()</tt> function haven't returned).</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == true</tt>
+<span class="label">Precondition</span>: <tt>joinable() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -8096,7 +8186,7 @@ precondition is not satisfied.</p>
 
 <p>Sends the signal <tt>signo</tt> the thread.</p>
 <div>
-<u>Precondition</u>: <tt>joinable() == true</tt>
+<span class="label">Precondition</span>: <tt>joinable() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -8150,7 +8240,7 @@ special distinct value not associated with any thread.</p>
 
 <p>Creates the special value not associated with any thread.</p>
 <div>
-<u>Postcondition</u>: <tt>bool(*this) == false</tt>
+<span class="label">Postcondition</span>: <tt>bool(*this) == false</tt>
 </div>
 </blockquote>
 </div>
@@ -8169,7 +8259,7 @@ special distinct value not associated with any thread.</p>
 
 <p>Returns a native OS-specific handle of the thread.</p>
 <div>
-<u>Precondition</u>: <tt>bool(*this) == true</tt>
+<span class="label">Precondition</span>: <tt>bool(*this) == true</tt>
 </div>
 </blockquote>
 </div>
@@ -8182,7 +8272,7 @@ special distinct value not associated with any thread.</p>
 
 <p>Check if <tt>a</tt> and <tt>b</tt> represent the same thread.</p>
 <div>
-<u>Invariant</u>: <tt>id() == id()</tt>
+<span class="label">Invariant</span>: <tt>id() == id()</tt>
 </div>
 </blockquote>
 </div>
@@ -8335,14 +8425,14 @@ namespace where the type is defined) in order to "teach" the library how to
 create a text from the value of the specified type.</p>
 
 <div>
-<u><b>Note</b></u>: This is not a replacement for such feature-rich formatting facilities
+<span class="label-strong">Note</span>: This is not a replacement for such feature-rich formatting facilities
 as <tt>std::format</tt> or <tt>std::sprintf</tt>. For example, there is no
 way to represent an integer value in HEX or right-align it to the specified
 width. The main purpose is the ability to represent the value in debug/log/error
 messages in some human-readable form.</div>
 
 <div>
-<u><b>Note</b></u>: <tt>signed char</tt> and <tt>unsigned char</tt> types are treated as
+<span class="label-strong">Note</span>: <tt>signed char</tt> and <tt>unsigned char</tt> types are treated as
 integers not characters!</div>
 
 <div>
@@ -8405,7 +8495,7 @@ integers not characters!</div>
 
 <p>Appends the specified string or character to the output string.</p>
 <div>
-<u>Note</u>: <tt>nullptr</tt> value in the <tt>const char *</tt> overload is threated
+<span class="label">Note</span>: <tt>nullptr</tt> value in the <tt>const char *</tt> overload is threated
 as an empty string.</div>
 </blockquote>
 </div>
@@ -8552,7 +8642,7 @@ constexpr To byte_cast(From v);
 byte types (see <a href="#is_byte"><tt>is_byte</tt></a>).</p>
 
 <div>
-<u>Precondition</u>: <tt>is_byte&lt;From&gt;::value &amp;&amp; is_byte&lt;To&gt;::value</tt>
+<span class="label">Precondition</span>: <tt>is_byte&lt;From&gt;::value &amp;&amp; is_byte&lt;To&gt;::value</tt>
 </div>
 
 
@@ -8567,8 +8657,8 @@ byte types (see <a href="#is_byte"><tt>is_byte</tt></a>).</p>
 template&lt;class T&gt; struct is_signed_integer;
 </pre>
 
-<p>A predicate. True if <tt>T</tt> is a one of the "standard signed integer
-types" (see the Standard).</p>
+<p>A predicate. True if <tt>T</tt> is a one of the "standard or extended signed
+integer types" (see the Standard).</p>
 
 
 
@@ -8582,8 +8672,8 @@ types" (see the Standard).</p>
 template&lt;class T&gt; struct is_unsigned_integer;
 </pre>
 
-<p>A predicate. True if <tt>T</tt> is a one of the "standard unsigned integer
-types" (see the Standard).</p>
+<p>A predicate. True if <tt>T</tt> is a one of the "standard or extended unsigned
+integer types" (see the Standard).</p>
 
 
 
@@ -8788,7 +8878,7 @@ using make_index_sequence = index_sequence&lt;0, 1, ..., Size-1&gt;;
 <p>Implementation of C++14 <tt>std::index_sequence</tt> for C++11.</p>
 
 <div>
-<u><b>Note</b></u>: Unlike <tt>std::index_sequence</tt> it isn't a special case of some sort
+<span class="label-strong">Note</span>: Unlike <tt>std::index_sequence</tt> it isn't a special case of some sort
 of <tt>std::integer_sequence</tt>.</div>
 
 
@@ -8975,10 +9065,10 @@ public:
 <blockquote>
 
 <div>
-<u>Precondition</u>: <tt>s != utf8::status::ok</tt>
+<span class="label">Precondition</span>: <tt>s != utf8::status::ok</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>status() == s</tt>
+<span class="label">Postcondition</span>: <tt>status() == s</tt>
 </div>
 </blockquote>
 </div>
@@ -8989,7 +9079,7 @@ public:
 
 <p>Returns the value read.</p>
 <div>
-<u>Precondition</u>: <tt>status() == utf8::status::ok</tt>
+<span class="label">Precondition</span>: <tt>status() == utf8::status::ok</tt>
 </div>
 </blockquote>
 </div>
@@ -9112,7 +9202,7 @@ explicit reader(Args&amp;&amp;... args) <span class="badge">[C++11]</span></pre>
 Other statuses are returned on errors, see <a href="#utf8--status"><tt>utf8::status</tt></a> for more
 details. <tt>ByteSReader::operator()</tt> is used to access individual bytes.</p>
 <div>
-<u>Note</u>: The function itself does not throw exceptions, but exception can be
+<span class="label">Note</span>: The function itself does not throw exceptions, but exception can be
 thrown by <tt>ByteSReader::operator()</tt>.</div>
 </blockquote>
 </div>
@@ -9442,10 +9532,10 @@ public:
 <blockquote>
 
 <div>
-<u>Precondition</u>: <tt>s != utf16::status::ok</tt>
+<span class="label">Precondition</span>: <tt>s != utf16::status::ok</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>status() == s</tt>
+<span class="label">Postcondition</span>: <tt>status() == s</tt>
 </div>
 </blockquote>
 </div>
@@ -9456,7 +9546,7 @@ public:
 
 <p>Returns the value read.</p>
 <div>
-<u>Precondition</u>: <tt>status() == utf16::status::ok</tt>
+<span class="label">Precondition</span>: <tt>status() == utf16::status::ok</tt>
 </div>
 </blockquote>
 </div>
@@ -9621,7 +9711,7 @@ explicit reader(Args&amp;&amp;... args) <span class="badge">[C++11]</span></pre>
 Other values are returned on errors, see <a href="#utf16--status"><tt>utf16::status</tt></a> for more details.
 <tt>CodeUnitReader::operator()</tt> is used to access code units.</p>
 <div>
-<u>Note</u>: The function itself does not throw exceptions, but exception can be
+<span class="label">Note</span>: The function itself does not throw exceptions, but exception can be
 thrown by <tt>CodeUnitReader::operator()</tt>.</div>
 </blockquote>
 </div>
@@ -9849,7 +9939,7 @@ resources consumption).</p>
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>signaled() == signaled</tt>
+<span class="label">Postcondition</span>: <tt>signaled() == signaled</tt>
 </div>
 </blockquote>
 </div>
@@ -9868,7 +9958,7 @@ resources consumption).</p>
 
 <p>Sets the signaled state.</p>
 <div>
-<u>Postcondition</u>: <tt>signaled() == true</tt>
+<span class="label">Postcondition</span>: <tt>signaled() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -9879,7 +9969,7 @@ resources consumption).</p>
 
 <p>Sets the nonsignaled state.</p>
 <div>
-<u>Postcondition</u>: <tt>signaled() == false</tt>
+<span class="label">Postcondition</span>: <tt>signaled() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -9890,7 +9980,7 @@ resources consumption).</p>
 
 <p>Waits for the signaled state with no timeout.</p>
 <div>
-<u>Postcondition</u>: <tt>signaled() == true</tt>
+<span class="label">Postcondition</span>: <tt>signaled() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -9902,7 +9992,7 @@ resources consumption).</p>
 <p>Waits for the signaled state no longer than the specified amount of
 milliseconds. Returns <tt>signaled()</tt>.</p>
 <div>
-<u>Note</u>: <tt>wait_for()</tt> should be used in C++11 mode instead.</div>
+<span class="label">Note</span>: <tt>wait_for()</tt> should be used in C++11 mode instead.</div>
 </blockquote>
 </div>
 
@@ -9963,7 +10053,7 @@ public:
 <p>POSIX condition variable.</p>
 
 <div>
-<u><b>Note</b></u>: In С++11 mode <tt>std::condition_variable</tt> can be a better
+<span class="label-strong">Note</span>: In С++11 mode <tt>std::condition_variable</tt> can be a better
 alternative.</div>
 
 <div class="section">Class members</div>
@@ -10064,7 +10154,7 @@ private-inherit this class by some sort of <tt>application</tt> class in
 your application.</p>
 
 <div>
-<u><b>Note</b></u>: PID-file is used to find the process instance. It is created in CWD
+<span class="label-strong">Note</span>: PID-file is used to find the process instance. It is created in CWD
 during process launch. If one removes this file all functions will assume
 that the process is not running despite the actual status! Therefore only
 read access to the PID-file by another tools is safe. It can be removed
@@ -10203,7 +10293,7 @@ set.</p>
 
 <p>Creates the closed object.</p>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -10251,10 +10341,10 @@ set appropriately.</p>
 
 <p>Frees the resources. Throws on errors.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -10274,7 +10364,7 @@ set appropriately.</p>
 <p>Returns the next entry or <tt>nullptr</tt> if the end of the list was
 reached.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -10298,7 +10388,7 @@ to the <tt>stat()</tt> call!</p>
 
 <p>Rewinds the cursor of the listing to the beginning.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 </blockquote>
 </div>
@@ -10495,7 +10585,7 @@ and <tt>::write()</tt> system calls.</p>
 
 <p>Wraps already existing descriptor.</p>
 <div>
-<u>Precondition</u>: <tt>fd</tt> is either an open descriptor or <tt>-1</tt>.</div>
+<span class="label">Precondition</span>: <tt>fd</tt> is either an open descriptor or <tt>-1</tt>.</div>
 </blockquote>
 </div>
 
@@ -10553,10 +10643,10 @@ file is open are performed! Correctly handles interruptions by signals. Throws
 in case of error. The postcondition is always satisfied, even if the function
 throws.</p>
 <div>
-<u>Precondition</u>: <tt>is_open() == true</tt>
+<span class="label">Precondition</span>: <tt>is_open() == true</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -10570,10 +10660,10 @@ assigns <tt>-1</tt> to it. No preliminary checks are performed! Correctly
 handles interruptions by signals. Throws in case of error. The postcondition
 is always satisfied, even if the function throws.</p>
 <div>
-<u>Precondition</u>: <tt>fd &gt;= 0</tt>
+<span class="label">Precondition</span>: <tt>fd &gt;= 0</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>fd == -1</tt>
+<span class="label">Postcondition</span>: <tt>fd == -1</tt>
 </div>
 </blockquote>
 </div>
@@ -10595,7 +10685,7 @@ in case of error, and <tt>errno</tt> contains error code.</p>
 
 <p>Releases the descriptor out of the object's control and returns it.</p>
 <div>
-<u>Postcondition</u>: <tt>is_open() == false</tt>
+<span class="label">Postcondition</span>: <tt>is_open() == false</tt>
 </div>
 </blockquote>
 </div>
@@ -10606,9 +10696,9 @@ in case of error, and <tt>errno</tt> contains error code.</p>
 
 <p>Takes <tt>fd</tt> under control and returns the previous handle value.</p>
 <div>
-<u>Precondition</u>: <tt>fd</tt> is ether an open descriptor or <tt>-1</tt>.</div>
+<span class="label">Precondition</span>: <tt>fd</tt> is ether an open descriptor or <tt>-1</tt>.</div>
 <div>
-<u>Postcondition</u>: <tt>handle() == fd</tt>
+<span class="label">Postcondition</span>: <tt>handle() == fd</tt>
 </div>
 </blockquote>
 </div>
@@ -11059,7 +11149,7 @@ number of the buffers.</p>
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>empty() &amp;&amp; total_bytes() == 0</tt>
+<span class="label">Postcondition</span>: <tt>empty() &amp;&amp; total_bytes() == 0</tt>
 </div>
 </blockquote>
 </div>
@@ -11070,10 +11160,10 @@ number of the buffers.</p>
 
 <p>Adds the specified buffer to the set.</p>
 <div>
-<u>Precondition</u>: <tt>!full()</tt>
+<span class="label">Precondition</span>: <tt>!full()</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>size()</tt> is increased by <tt>1</tt>,
+<span class="label">Postcondition</span>: <tt>size()</tt> is increased by <tt>1</tt>,
 <tt>total_bytes()</tt> is increased by <tt>buf_len</tt>.</div>
 </blockquote>
 </div>
@@ -11084,10 +11174,10 @@ number of the buffers.</p>
 
 <p>Removes the last added buffer from the set.</p>
 <div>
-<u>Precondition</u>: <tt>!empty()</tt>
+<span class="label">Precondition</span>: <tt>!empty()</tt>
 </div>
 <div>
-<u>Postcondition</u>: <tt>size()</tt> is decreased by <tt>1</tt>,
+<span class="label">Postcondition</span>: <tt>size()</tt> is decreased by <tt>1</tt>,
 <tt>total_bytes()</tt> is decreased by <tt>iov_len</tt> of the removed buffer.</div>
 </blockquote>
 </div>
@@ -11132,7 +11222,7 @@ number of the buffers.</p>
 
 <p>Removes all buffers from the set.</p>
 <div>
-<u>Postcondition</u>: <tt>empty() &amp;&amp; total_bytes() == 0</tt>
+<span class="label">Postcondition</span>: <tt>empty() &amp;&amp; total_bytes() == 0</tt>
 </div>
 </blockquote>
 </div>
@@ -11191,19 +11281,20 @@ template&lt;unsigned vsize&gt; size_t total(const ::iovec (&amp;vec)[vsize]);
 
 
 
-<h3 id="posix--cut_prefix-iovec">
-<a class="self-link" href="#posix--cut_prefix-iovec"></a><span class="h3_num">2.55.3</span><tt>posix::cut_prefix(iovec[])</tt>
+<h3 id="posix--remove_prefix-iovec">
+<a class="self-link" href="#posix--remove_prefix-iovec"></a><span class="h3_num">2.55.3</span><tt>posix::remove_prefix(iovec[])</tt>
 </h3>
 
 
 <pre class="code">
-void posix::cut_prefix(::iovec *&amp;vec, unsigned &amp;vec_len, size_t n);
+void posix::remove_prefix(::iovec *&amp;vec, unsigned &amp;vec_len, size_t n);
 </pre>
 
 <p>Removes first <tt>n</tt> bytes from the set of vectors <tt>vec</tt>. Returns
-the pointer to the modified set and the new length of the set. If <tt>n</tt> is
-greater than total size of the all buffers, <tt>vec_len</tt> becomes
-<tt>0</tt> and the value of <tt>vec</tt> is undefined.</p>
+(via the in/out parameters) the pointer to the modified set and the new length
+of the set. If <tt>n</tt> is greater than total size of the all buffers,
+<tt>vec_len</tt> becomes <tt>0</tt> and the value of <tt>vec</tt> is undefined.
+</p>
 
 <p>The function is useful to retry the interrrupted by signal system call when
 only part of data was written.</p>
@@ -11866,7 +11957,7 @@ namespace posix::this_thread
 an additional information about the received signal. The signal is returned in
 <tt>si_signo</tt> field.</p>
 <div>
-<u><b>Note</b></u>: The function is not interrupted by signal handlers as opposed to the
+<span class="label-strong">Note</span>: The function is not interrupted by signal handlers as opposed to the
 system call of the same name.</div>
 
 <p><tt>sigwaitinfo_at_most()</tt> is the same but waits no longer than the
@@ -11875,7 +11966,7 @@ signal other than one of those in set. If <tt>true</tt> is returned <tt>res</tt>
 contains filled <tt>siginfo_t</tt>.</p>
 
 <div>
-<u><b>Note</b></u>: <tt>::sigaction()</tt> with <tt>sa_flags</tt> containing
+<span class="label-strong">Note</span>: <tt>::sigaction()</tt> with <tt>sa_flags</tt> containing
 <tt>SA_SIGINFO</tt> has to be called for each signal from <tt>set</tt> before
 usage of any of these functions! Otherwise the returned <tt>siginfo_t</tt>
 value will contain garbage!</div>
@@ -12068,7 +12159,7 @@ time_spec &amp;operator-=(std::chrono::duration&lt;Rep,Period&gt; t2) <span clas
 
 <p>Calculates the difference between two values.</p>
 <div>
-<u>Precondition</u>: <tt>t2 &lt;= t1</tt>
+<span class="label">Precondition</span>: <tt>t2 &lt;= t1</tt>
 </div>
 </blockquote>
 </div>
@@ -12127,7 +12218,7 @@ result when available. The actual precision depends on the used platform.</p>
 
 
 <pre class="code">
-#if _POSIX_TIMERS &gt; 0
+#ifdef __VIC_HAVE_POSIX_TIMERS
 
 class posix::realtime_clock
 {
@@ -12169,8 +12260,9 @@ public:
 
 <p>POSIX system clocks (<tt>clock_gettime()</tt>) with
 <tt>&lt;chrono&gt;</tt>-clock interface. Absent in system not supporting them
-(check <tt>_POSIX_TIMERS</tt> macro). Additionally <tt>monotonic_clock</tt>
-is available only if <tt>_POSIX_MONOTONIC_CLOCK</tt> macro is defined.</p>
+(check <tt>__VIC_HAVE_POSIX_TIMERS</tt> macro). Additionally
+<tt>monotonic_clock</tt> is available only if <tt>_POSIX_MONOTONIC_CLOCK</tt>
+ macro is defined.</p>
 
 <div class="section">Class members</div>
 
@@ -12295,7 +12387,7 @@ contains the value read. <tt>false</tt> usually means EOF.</p>
 
 <p>Returns the value read.</p>
 <div>
-<u>Precondition</u>: <tt>*this == true</tt>
+<span class="label">Precondition</span>: <tt>*this == true</tt>
 </div>
 </blockquote>
 </div>
@@ -12441,7 +12533,7 @@ unsigned char uchar_value(ByteSReaderResult r);
 <tt>is_byte&lt;sreader_value_t&lt;ByteSReaderResult&gt;&gt;::value == true</tt>.</p>
 
 <div>
-<u>Precondition</u>: <tt>r == true</tt> (same as for <tt>r.value()</tt>)</div>
+<span class="label">Precondition</span>: <tt>r == true</tt> (same as for <tt>r.value()</tt>)</div>
 
 
 
@@ -12531,7 +12623,7 @@ __VIC_SREAD_RESULT(char) result = chars_reader();
 
 
 <div>
-<u>Postcondition</u>: <tt>!*this</tt>
+<span class="label">Postcondition</span>: <tt>!*this</tt>
 </div>
 </blockquote>
 </div>
@@ -12541,7 +12633,7 @@ __VIC_SREAD_RESULT(char) result = chars_reader();
 <blockquote>
 
 <div>
-<u>Postcondition</u>: <tt>*this &amp;&amp; value() == v</tt>
+<span class="label">Postcondition</span>: <tt>*this &amp;&amp; value() == v</tt>
 </div>
 </blockquote>
 </div>
@@ -12560,7 +12652,7 @@ __VIC_SREAD_RESULT(char) result = chars_reader();
 
 <p>Returns the value read.</p>
 <div>
-<u>Precondition</u>: <tt>*this == true</tt>
+<span class="label">Precondition</span>: <tt>*this == true</tt>
 </div>
 </blockquote>
 </div>
@@ -12575,7 +12667,7 @@ __VIC_SREAD_RESULT(char) result = chars_reader();
 
 <p>Returns <tt>r.value()</tt>.</p>
 <div>
-<u>Precondition</u>: <tt>r == true</tt>
+<span class="label">Precondition</span>: <tt>r == true</tt>
 </div>
 </blockquote>
 </div>
@@ -13114,7 +13206,7 @@ chars: }
 <p>A snippet like this creates a list of 4 elements: "<tt>$</tt>", "<tt>#</tt>",
 "<tt>{</tt>", "<tt>}</tt>".</p>
 
-<p>Multiline values can be specified the following syntax:</p>
+<p>Multiline values can be specified using the following syntax:</p>
 
 <pre class="code">
 name &lt;&lt;EOF
@@ -13256,7 +13348,7 @@ parser.parse("conf/my.cfg");
 
 
 <h2 id="config-details">
-<a class="self-link" href="#config-details"></a><span class="h2_num">5.3</span>Implemetation details and additional features</h2>
+<a class="self-link" href="#config-details"></a><span class="h2_num">5.3</span>Implementation details and additional features</h2>
 
 
 <p>The type of a configuration parameter is determined by its type in the code,
@@ -13798,7 +13890,7 @@ class config::bytes_value_parser;
 powers of 2 (1K = 1024).</p>
 
 <div>
-<u>Precondition</u>: <tt>TUInt</tt> – is an usigned integer type.</div>
+<span class="label">Precondition</span>: <tt>TUInt</tt> – is an usigned integer type.</div>
 
 
 
